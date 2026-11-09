@@ -1,0 +1,2605 @@
+# Zendure EMS dashboard 1.12.6 (3 sets). Tabblad Statistieken vereist de HACS-kaart ApexCharts Card.
+# Gebruik: Instellingen > Dashboards > Dashboard toevoegen > Nieuw dashboard,
+# open het, kies het potlood > drie puntjes > Raw-configuratie-editor en plak dit.
+title: Zendure EMS 1.12.6
+views:
+- title: Overzicht
+  path: overzicht
+  icon: mdi:home-battery
+  type: sections
+  max_columns: 3
+  sections:
+  - type: grid
+    cards:
+    - type: picture-elements
+      title: Energiestroom
+      image: data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='700' viewBox='0 0 1000 700'%3E%3Cdefs%3E%3CradialGradient id='sky' cx='0.5' cy='0.25' r='0.9'%3E%3Cstop offset='0' stop-color='%232a3442'/%3E%3Cstop offset='0.6' stop-color='%23151a22'/%3E%3Cstop offset='1' stop-color='%230b0e13'/%3E%3C/radialGradient%3E%3ClinearGradient id='lawn' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233b4a3a'/%3E%3Cstop offset='1' stop-color='%232a3629'/%3E%3C/linearGradient%3E%3ClinearGradient id='soilL' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%233a342e'/%3E%3Cstop offset='1' stop-color='%231d1a17'/%3E%3C/linearGradient%3E%3ClinearGradient id='soilR' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%232b2723'/%3E%3Cstop offset='1' stop-color='%23141210'/%3E%3C/linearGradient%3E%3ClinearGradient id='paving' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238b8a86'/%3E%3Cstop offset='1' stop-color='%236c6b68'/%3E%3C/linearGradient%3E%3ClinearGradient id='plasterL' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ecebe6'/%3E%3Cstop offset='1' stop-color='%23cfcdc6'/%3E%3C/linearGradient%3E%3ClinearGradient id='plasterR' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23bebcb5'/%3E%3Cstop offset='1' stop-color='%23a5a39c'/%3E%3C/linearGradient%3E%3ClinearGradient id='plasterT' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23d9d8d3'/%3E%3Cstop offset='1' stop-color='%23c4c3be'/%3E%3C/linearGradient%3E%3ClinearGradient id='darkL' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%234a4f57'/%3E%3Cstop offset='1' stop-color='%233a3e45'/%3E%3C/linearGradient%3E%3ClinearGradient id='darkR' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%2333373d'/%3E%3Cstop offset='1' stop-color='%23282b30'/%3E%3C/linearGradient%3E%3ClinearGradient id='roof' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%235a5e64'/%3E%3Cstop offset='1' stop-color='%23474a50'/%3E%3C/linearGradient%3E%3ClinearGradient id='glass' x1='0' y1='0' x2='0.3' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe3ad'/%3E%3Cstop offset='0.55' stop-color='%23f3bd6c'/%3E%3Cstop offset='1' stop-color='%23c98a3e'/%3E%3C/linearGradient%3E%3ClinearGradient id='glassR' x1='0' y1='0' x2='0.3' y2='1'%3E%3Cstop offset='0' stop-color='%23f0cf96'/%3E%3Cstop offset='1' stop-color='%23b27a38'/%3E%3C/linearGradient%3E%3ClinearGradient id='sheen' x1='0' y1='0' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%23ffffff' stop-opacity='0'/%3E%3Cstop offset='0.5' stop-color='%23ffffff' stop-opacity='0.22'/%3E%3Cstop offset='1' stop-color='%23ffffff' stop-opacity='0'/%3E%3C/linearGradient%3E%3ClinearGradient id='pv' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233f5f8c'/%3E%3Cstop offset='0.5' stop-color='%231c2f4d'/%3E%3Cstop offset='1' stop-color='%23121f34'/%3E%3C/linearGradient%3E%3ClinearGradient id='wood' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23a7744a'/%3E%3Cstop offset='1' stop-color='%237e532f'/%3E%3C/linearGradient%3E%3ClinearGradient id='garageDoor' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%235b6068'/%3E%3Cstop offset='1' stop-color='%233f434a'/%3E%3C/linearGradient%3E%3ClinearGradient id='carBody' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%239aa3ad'/%3E%3Cstop offset='0.5' stop-color='%236d7681'/%3E%3Cstop offset='1' stop-color='%233f454d'/%3E%3C/linearGradient%3E%3ClinearGradient id='carSide' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%237a838e'/%3E%3Cstop offset='1' stop-color='%233a4048'/%3E%3C/linearGradient%3E%3ClinearGradient id='carGlass' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236f8196'/%3E%3Cstop offset='1' stop-color='%231f2833'/%3E%3C/linearGradient%3E%3ClinearGradient id='batt' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23f4f5f6'/%3E%3Cstop offset='1' stop-color='%23cfd3d8'/%3E%3C/linearGradient%3E%3ClinearGradient id='battR' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0'
+        stop-color='%23c3c8ce'/%3E%3Cstop offset='1' stop-color='%239ea4ab'/%3E%3C/linearGradient%3E%3ClinearGradient id='cab' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23b9bdc2'/%3E%3Cstop offset='1' stop-color='%238d9298'/%3E%3C/linearGradient%3E%3CradialGradient id='spill' cx='0.5' cy='0.5' r='0.5'%3E%3Cstop offset='0' stop-color='%23ffcf87' stop-opacity='0.38'/%3E%3Cstop offset='1' stop-color='%23ffcf87' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='canopy' cx='0.4' cy='0.35' r='0.7'%3E%3Cstop offset='0' stop-color='%235f7a55'/%3E%3Cstop offset='1' stop-color='%232f4430'/%3E%3C/radialGradient%3E%3Cfilter id='blur6' x='-30%25' y='-30%25' width='160%25' height='160%25'%3E%3CfeGaussianBlur stdDeviation='6'/%3E%3C/filter%3E%3Cfilter id='blur3' x='-30%25' y='-30%25' width='160%25' height='160%25'%3E%3CfeGaussianBlur stdDeviation='3'/%3E%3C/filter%3E%3Cfilter id='grain' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7' result='n'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0.09 0'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='1000' height='700' rx='28' fill='url(%23sky)'/%3E%3Cpolygon points='470.0,288.0 851.9,508.5 597.3,655.5 215.4,435.0' fill='%23000' opacity='0.6' filter='url(%23blur6)'/%3E%3Cpolygon points='197.4,409.0 579.3,629.5 579.3,644.2 197.4,423.7' fill='url(%23soilL)' /%3E%3Cpolygon points='833.9,482.5 579.3,629.5 579.3,644.2 833.9,497.2' fill='url(%23soilR)' /%3E%3Cpolygon points='452.0,262.0 833.9,482.5 579.3,629.5 197.4,409.0' fill='url(%23lawn)' /%3E%3Cpolygon points='313.8,392.2 499.3,499.3 477.5,511.9 292.0,404.8' fill='url(%23paving)' /%3E%3Cpolygon points='397.4,465.7 422.9,480.4 372.0,509.8 346.5,495.1' fill='url(%23paving)' /%3E%3Cline x1='387.3' y1='471.6' x2='412.7' y2='486.3' stroke='%235c5b58' stroke-width='0.8'/%3E%3Cline x1='377.1' y1='477.5' x2='402.5' y2='492.2' stroke='%235c5b58' stroke-width='0.8'/%3E%3Cline x1='366.9' y1='483.3' x2='392.3' y2='498.0' stroke='%235c5b58' stroke-width='0.8'/%3E%3Cline x1='356.7' y1='489.2' x2='382.2' y2='503.9' stroke='%235c5b58' stroke-width='0.8'/%3E%3Cpolygon points='542.9,482.5 666.6,553.9 557.5,616.9 433.8,545.5' fill='url(%23paving)' /%3E%3Cline x1='524.7' y1='493.0' x2='648.4' y2='564.4' stroke='%235c5b58' stroke-width='0.7' opacity='0.8'/%3E%3Cline x1='506.6' y1='503.5' x2='630.2' y2='574.9' stroke='%235c5b58' stroke-width='0.7' opacity='0.8'/%3E%3Cline x1='488.4' y1='514.0' x2='612.0' y2='585.4' stroke='%235c5b58' stroke-width='0.7' opacity='0.8'/%3E%3Cline x1='470.2' y1='524.5' x2='593.9' y2='595.9' stroke='%235c5b58' stroke-width='0.7' opacity='0.8'/%3E%3Cline x1='452.0' y1='535.0' x2='575.7' y2='606.4' stroke='%235c5b58' stroke-width='0.7' opacity='0.8'/%3E%3Cellipse cx='366.5' cy='443.6' rx='70' ry='26' fill='url(%23spill)'/%3E%3Cellipse cx='444.7' cy='488.8' rx='70' ry='26' fill='url(%23spill)'/%3E%3Cpath d='M244.7,128.0 L244.7,376.5 L251.9,398.5 L370.2,424.8 L370.2,394.3' fill='none' stroke='%23ff9f43' stroke-opacity='0.13' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M510.2,128.0 L510.2,267.2 L370.2,394.3' fill='none' stroke='%23ffd43b' stroke-opacity='0.13' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M370.2,394.3 L506.6,327.1 L880.0,327.1 L880.0,128.0' fill='none' stroke='%234dabf7' stroke-opacity='0.13' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M370.2,394.3 L360.2,388.5 L338.3,380.1 L331.1,414.8 L331.1,612.0' fill='none' stroke='%2351cf66' stroke-opacity='0.13' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M370.2,394.3 L506.6,473.1 L547.5,469.4 L547.5,469.4 L545.7,494.6' fill='none' stroke='%23b197fc' stroke-opacity='0.13' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cellipse cx='451.1' cy='304.9' rx='31.5' ry='13.2' fill='%23000' opacity='0.35' filter='url(%23blur3)'/%3E%3Cline x1='441.1' y1='301.9' x2='441.1' y2='199.0' stroke='%234a3a2c'
+        stroke-width='3.2' stroke-linecap='round'/%3E%3Cellipse cx='430.1' cy='186.4' rx='26.8' ry='24.6' fill='url(%23canopy)' opacity='0.95'/%3E%3Cellipse cx='453.7' cy='191.1' rx='23.6' ry='21.7' fill='url(%23canopy)' opacity='0.95'/%3E%3Cellipse cx='441.1' cy='165.9' rx='25.2' ry='23.2' fill='url(%23canopy)' opacity='0.95'/%3E%3Cellipse cx='442.7' cy='181.7' rx='31.5' ry='29.0' fill='url(%23canopy)' opacity='0.85'/%3E%3Cpath d='M324.7,348.1 q-5.4,-9 -9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M324.7,348.1 q-3.2,-9 -5.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M324.7,348.1 q-1.1,-9 -2.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M324.7,348.1 q1.1,-9 2.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M324.7,348.1 q3.2,-9 5.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M324.7,348.1 q5.4,-9 9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M313.8,362.8 q-5.4,-9 -9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M313.8,362.8 q-3.2,-9 -5.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M313.8,362.8 q-1.1,-9 -2.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M313.8,362.8 q1.1,-9 2.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M313.8,362.8 q3.2,-9 5.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M313.8,362.8 q5.4,-9 9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M355.6,349.1 q-5.4,-9 -9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M355.6,349.1 q-3.2,-9 -5.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M355.6,349.1 q-1.1,-9 -2.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M355.6,349.1 q1.1,-9 2.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M355.6,349.1 q3.2,-9 5.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M355.6,349.1 q5.4,-9 9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpolygon points='452.0,325.0 615.7,419.5 488.4,505.6 313.8,404.8' fill='%23000' opacity='0.35' filter='url(%23blur3)'/%3E%3Cpolygon points='324.7,398.5 488.4,493.0 488.4,425.8 324.7,331.3' fill='url(%23plasterL)' /%3E%3Cpolygon points='615.7,419.5 488.4,493.0 488.4,425.8 615.7,352.3' fill='url(%23plasterR)' /%3E%3Cpolygon points='452.0,257.8 615.7,352.3 488.4,425.8 324.7,331.3' fill='url(%23roof)' /%3E%3Cpolygon points='324.7,331.3 361.1,352.3 361.1,348.1 324.7,327.1' fill='%23e2e1dc' /%3E%3Cpolygon points='364.7,350.2 361.1,352.3 361.1,348.1 364.7,346.0' fill='%23b5b3ad' /%3E%3Cpolygon points='328.3,325.0 364.7,346.0 361.1,348.1 324.7,327.1' fill='%23d8d7d2' /%3E%3Cpolygon points='324.7,331.3 328.3,333.4 328.3,329.2 324.7,327.1' fill='%23e2e1dc' /%3E%3Cpolygon points='455.6,259.9 328.3,333.4 328.3,329.2 455.6,255.7' fill='%23b5b3ad' /%3E%3Cpolygon points='452.0,253.6 455.6,255.7 328.3,329.2 324.7,327.1' fill='%23d8d7d2' /%3E%3Cpolygon points='361.1,352.3 488.4,425.8 488.4,421.6 361.1,348.1' fill='%23e2e1dc' /%3E%3Cpolygon points='492.0,423.7 488.4,425.8 488.4,421.6 492.0,419.5' fill='%23b5b3ad' /%3E%3Cpolygon points='364.7,346.0 492.0,419.5 488.4,421.6 361.1,348.1' fill='%23d8d7d2' /%3E%3Cpolygon points='484.7,423.7 488.4,425.8 488.4,421.6 484.7,419.5' fill='%23e2e1dc' /%3E%3Cpolygon
+        points='615.7,352.3 488.4,425.8 488.4,421.6 615.7,348.1' fill='%23b5b3ad' /%3E%3Cpolygon points='612.0,346.0 615.7,348.1 488.4,421.6 484.7,419.5' fill='%23d8d7d2' /%3E%3Cpolygon points='376.0,426.6 415.3,449.3 415.3,391.4 376.0,368.7' fill='%232b2e33' /%3E%3Cpolygon points='377.4,425.8 413.8,446.8 413.8,392.2 377.4,371.2' fill='url(%23glass)' /%3E%3Cpolygon points='377.4,425.8 388.3,432.1 388.3,377.5 377.4,371.2' fill='url(%23sheen)' opacity='0.35'/%3E%3Cpolygon points='394.9,435.9 396.3,436.7 396.3,382.1 394.9,381.3' fill='%232b2e33' /%3E%3Cpolygon points='445.1,466.5 480.7,487.1 480.7,429.2 445.1,408.6' fill='%232b2e33' /%3E%3Cpolygon points='446.5,465.7 479.3,484.6 479.3,430.0 446.5,411.1' fill='url(%23glass)' /%3E%3Cpolygon points='446.5,465.7 456.4,471.4 456.4,416.8 446.5,411.1' fill='url(%23sheen)' opacity='0.35'/%3E%3Cpolygon points='462.2,474.7 463.6,475.6 463.6,421.0 462.2,420.1' fill='%232b2e33' /%3E%3Cpolygon points='595.3,429.8 512.4,477.7 512.4,419.7 595.3,371.8' fill='%2325282c' /%3E%3Cpolygon points='593.9,429.0 513.8,475.2 513.8,420.6 593.9,374.4' fill='url(%23glassR)' /%3E%3Cpolygon points='567.9,443.9 566.5,444.8 566.5,390.2 567.9,389.3' fill='%2325282c' /%3E%3Cpolygon points='541.2,459.3 539.8,460.2 539.8,405.6 541.2,404.7' fill='%2325282c' /%3E%3Cpolygon points='422.0,454.7 440.2,465.2 440.2,413.7 422.0,403.2' fill='url(%23wood)' /%3E%3Cpolygon points='423.8,450.5 425.6,451.5 425.6,408.5 423.8,407.4' fill='%23e8c99a' /%3E%3Cpolygon points='399.3,405.8 433.8,425.8 433.8,422.6 399.3,402.7' fill='%2333363b' /%3E%3Cpolygon points='450.2,416.3 433.8,425.8 433.8,422.6 450.2,413.2' fill='%232a2d31' /%3E%3Cpolygon points='415.6,393.2 450.2,413.2 433.8,422.6 399.3,402.7' fill='%233c4046' /%3E%3Ccircle cx='444.7' cy='423.7' r='16' fill='url(%23spill)'/%3E%3Ccircle cx='444.7' cy='423.7' r='1.6' fill='%23ffe7b5'/%3E%3Cpolygon points='488.4,278.8 615.7,352.3 522.9,412.2 390.2,335.5' fill='%23000' opacity='0.25' filter='url(%23blur3)'/%3E%3Cpolygon points='393.8,333.4 521.1,406.9 521.1,341.8 393.8,268.3' fill='url(%23darkL)' /%3E%3Cpolygon points='615.7,352.3 521.1,406.9 521.1,341.8 615.7,287.2' fill='url(%23darkR)' /%3E%3Cpolygon points='488.4,213.7 615.7,287.2 521.1,341.8 393.8,268.3' fill='url(%23roof)' /%3E%3Cpolygon points='396.5,333.9 397.8,334.7 397.8,271.7 396.5,270.9' fill='url(%23wood)' /%3E%3Cpolygon points='398.7,335.2 400.0,335.9 400.0,272.9 398.7,272.2' fill='url(%23wood)' /%3E%3Cpolygon points='400.9,336.4 402.2,337.2 402.2,274.2 400.9,273.4' fill='url(%23wood)' /%3E%3Cpolygon points='403.1,337.7 404.4,338.4 404.4,275.4 403.1,274.7' fill='url(%23wood)' /%3E%3Cpolygon points='405.3,339.0 406.5,339.7 406.5,276.7 405.3,276.0' fill='url(%23wood)' /%3E%3Cpolygon points='407.4,340.2 408.7,341.0 408.7,278.0 407.4,277.2' fill='url(%23wood)' /%3E%3Cpolygon points='409.6,341.5 410.9,342.2 410.9,279.2 409.6,278.5' fill='url(%23wood)' /%3E%3Cpolygon points='411.8,342.7 413.1,343.5 413.1,280.5 411.8,279.7' fill='url(%23wood)' /%3E%3Cpolygon points='414.0,344.0 415.3,344.7 415.3,281.7 414.0,281.0' fill='url(%23wood)' /%3E%3Cpolygon points='416.2,345.3 417.4,346.0 417.4,283.0 416.2,282.3' fill='url(%23wood)' /%3E%3Cpolygon points='418.4,346.5 419.6,347.3 419.6,284.3 418.4,283.5' fill='url(%23wood)' /%3E%3Cpolygon points='420.5,347.8 421.8,348.5 421.8,285.5 420.5,284.8' fill='url(%23wood)' /%3E%3Cpolygon points='422.7,349.0 424.0,349.8 424.0,286.8 422.7,286.0' fill='url(%23wood)' /%3E%3Cpolygon points='424.9,350.3 426.2,351.0 426.2,288.0 424.9,287.3' fill='url(%23wood)' /%3E%3Cpolygon points='427.1,351.6 428.4,352.3 428.4,289.3 427.1,288.6' fill='url(%23wood)' /%3E%3Cpolygon points='429.3,352.8 430.5,353.6 430.5,290.6 429.3,289.8' fill='url(%23wood)' /%3E%3Cpolygon points='431.4,354.1 432.7,354.8 432.7,291.8 431.4,291.1' fill='url(%23wood)' /%3E%3Cpolygon points='433.6,355.3 434.9,356.1 434.9,293.1 433.6,292.3' fill='url(%23wood)' /%3E%3Cpolygon points='435.8,356.6 437.1,357.3 437.1,294.3 435.8,293.6' fill='url(%23wood)' /%3E%3Cpolygon points='438.0,357.9 439.3,358.6 439.3,295.6 438.0,294.9' fill='url(%23wood)'
+        /%3E%3Cpolygon points='440.2,359.1 441.5,359.9 441.5,296.9 440.2,296.1' fill='url(%23wood)' /%3E%3Cpolygon points='442.4,360.4 443.6,361.1 443.6,298.1 442.4,297.4' fill='url(%23wood)' /%3E%3Cpolygon points='444.5,361.6 445.8,362.4 445.8,299.4 444.5,298.6' fill='url(%23wood)' /%3E%3Cpolygon points='446.7,362.9 448.0,363.6 448.0,300.6 446.7,299.9' fill='url(%23wood)' /%3E%3Cpolygon points='448.9,364.2 450.2,364.9 450.2,301.9 448.9,301.2' fill='url(%23wood)' /%3E%3Cpolygon points='451.1,365.4 452.4,366.2 452.4,303.2 451.1,302.4' fill='url(%23wood)' /%3E%3Cpolygon points='453.3,366.7 454.5,367.4 454.5,304.4 453.3,303.7' fill='url(%23wood)' /%3E%3Cpolygon points='455.5,367.9 456.7,368.7 456.7,305.7 455.5,304.9' fill='url(%23wood)' /%3E%3Cpolygon points='457.6,369.2 458.9,369.9 458.9,306.9 457.6,306.2' fill='url(%23wood)' /%3E%3Cpolygon points='463.3,360.5 513.5,389.5 513.5,348.3 463.3,319.3' fill='%232b2e33' /%3E%3Cpolygon points='464.7,359.7 512.0,387.0 512.0,349.2 464.7,321.9' fill='url(%23glass)' /%3E%3Cpolygon points='464.7,359.7 478.9,367.8 478.9,330.0 464.7,321.9' fill='url(%23sheen)' opacity='0.35'/%3E%3Cpolygon points='479.8,368.3 481.2,369.2 481.2,331.4 479.8,330.5' fill='%232b2e33' /%3E%3Cpolygon points='495.5,377.4 497.0,378.3 497.0,340.5 495.5,339.6' fill='%232b2e33' /%3E%3Cpolygon points='602.6,346.8 559.7,371.6 559.7,330.5 602.6,305.7' fill='%2325282c' /%3E%3Cpolygon points='601.1,346.0 561.1,369.1 561.1,331.3 601.1,308.2' fill='url(%23glassR)' /%3E%3Cpolygon points='581.9,357.1 580.4,358.0 580.4,320.2 581.9,319.3' fill='%2325282c' /%3E%3Cpolygon points='393.8,268.3 521.1,341.8 521.1,338.6 393.8,265.1' fill='%234d5259' /%3E%3Cpolygon points='524.7,339.7 521.1,341.8 521.1,338.6 524.7,336.5' fill='%233b3f45' /%3E%3Cpolygon points='397.4,263.0 524.7,336.5 521.1,338.6 393.8,265.1' fill='%235e636a' /%3E%3Cpolygon points='517.5,339.7 521.1,341.8 521.1,338.6 517.5,336.5' fill='%234d5259' /%3E%3Cpolygon points='615.7,287.2 521.1,341.8 521.1,338.6 615.7,284.0' fill='%233b3f45' /%3E%3Cpolygon points='612.0,281.9 615.7,284.0 521.1,338.6 517.5,336.5' fill='%235e636a' /%3E%3Cpolygon points='393.8,268.3 397.4,270.4 397.4,267.2 393.8,265.1' fill='%234d5259' /%3E%3Cpolygon points='492.0,215.8 397.4,270.4 397.4,267.2 492.0,212.7' fill='%233b3f45' /%3E%3Cpolygon points='488.4,210.5 492.0,212.7 397.4,267.2 393.8,265.1' fill='%235e636a' /%3E%3Cpolygon points='462.0,237.7 489.3,253.5 485.6,260.8 458.4,245.1' fill='%23000' opacity='0.25'/%3E%3Cpolygon points='488.4,214.8 515.7,230.5 489.3,253.1 462.0,237.3' fill='url(%23pv)' stroke='%239fb3cc' stroke-width='0.8' stroke-linejoin='round'/%3E%3Cline x1='497.5' y1='220.0' x2='471.1' y2='242.6' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='506.6' y1='225.3' x2='480.2' y2='247.8' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='475.2' y1='226.0' x2='502.5' y2='241.8' stroke='%2346638c' stroke-width='0.5'/%3E%3Cpolygon points='488.4,214.8 500.6,221.8 468.8,241.3 462.0,237.3' fill='url(%23sheen)' opacity='0.5'/%3E%3Cpolygon points='490.7,254.3 518.0,270.1 514.4,277.4 487.1,261.7' fill='%23000' opacity='0.25'/%3E%3Cpolygon points='517.1,231.3 544.4,247.1 518.0,269.7 490.7,253.9' fill='url(%23pv)' stroke='%239fb3cc' stroke-width='0.8' stroke-linejoin='round'/%3E%3Cline x1='526.2' y1='236.6' x2='499.8' y2='259.2' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='535.3' y1='241.8' x2='508.9' y2='264.4' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='503.9' y1='242.6' x2='531.2' y2='258.4' stroke='%2346638c' stroke-width='0.5'/%3E%3Cpolygon points='517.1,231.3 529.4,238.4 497.6,257.9 490.7,253.9' fill='url(%23sheen)' opacity='0.5'/%3E%3Cpolygon points='519.5,270.9 546.8,286.7 543.1,294.0 515.8,278.3' fill='%23000' opacity='0.25'/%3E%3Cpolygon points='545.8,247.9 573.1,263.7 546.8,286.3 519.5,270.5' fill='url(%23pv)' stroke='%239fb3cc' stroke-width='0.8' stroke-linejoin='round'/%3E%3Cline x1='554.9' y1='253.2' x2='528.6' y2='275.8' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='564.0' y1='258.4' x2='537.7' y2='281.0' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='532.7'
+        y1='259.2' x2='559.9' y2='275.0' stroke='%2346638c' stroke-width='0.5'/%3E%3Cpolygon points='545.8,247.9 558.1,255.0 526.3,274.4 519.5,270.5' fill='url(%23sheen)' opacity='0.5'/%3E%3Cpolygon points='548.2,287.5 575.5,303.3 571.8,310.6 544.6,294.9' fill='%23000' opacity='0.25'/%3E%3Cpolygon points='574.6,264.5 601.9,280.3 575.5,302.8 548.2,287.1' fill='url(%23pv)' stroke='%239fb3cc' stroke-width='0.8' stroke-linejoin='round'/%3E%3Cline x1='583.7' y1='269.8' x2='557.3' y2='292.3' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='592.8' y1='275.0' x2='566.4' y2='297.6' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='561.4' y1='275.8' x2='588.7' y2='291.6' stroke='%2346638c' stroke-width='0.5'/%3E%3Cpolygon points='574.6,264.5 586.9,271.6 555.0,291.0 548.2,287.1' fill='url(%23sheen)' opacity='0.5'/%3E%3Cpolygon points='425.6,258.7 452.9,274.5 449.3,281.8 422.0,266.1' fill='%23000' opacity='0.25'/%3E%3Cpolygon points='452.0,235.8 479.3,251.5 452.9,274.1 425.6,258.3' fill='url(%23pv)' stroke='%239fb3cc' stroke-width='0.8' stroke-linejoin='round'/%3E%3Cline x1='461.1' y1='241.0' x2='434.7' y2='263.6' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='470.2' y1='246.2' x2='443.8' y2='268.8' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='438.8' y1='247.0' x2='466.1' y2='262.8' stroke='%2346638c' stroke-width='0.5'/%3E%3Cpolygon points='452.0,235.8 464.3,242.8 432.4,262.3 425.6,258.3' fill='url(%23sheen)' opacity='0.5'/%3E%3Cpolygon points='454.4,275.3 481.6,291.1 478.0,298.4 450.7,282.7' fill='%23000' opacity='0.25'/%3E%3Cpolygon points='480.7,252.3 508.0,268.1 481.6,290.7 454.4,274.9' fill='url(%23pv)' stroke='%239fb3cc' stroke-width='0.8' stroke-linejoin='round'/%3E%3Cline x1='489.8' y1='257.6' x2='463.5' y2='280.2' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='498.9' y1='262.8' x2='472.6' y2='285.4' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='467.5' y1='263.6' x2='494.8' y2='279.4' stroke='%2346638c' stroke-width='0.5'/%3E%3Cpolygon points='480.7,252.3 493.0,259.4 461.2,278.9 454.4,274.9' fill='url(%23sheen)' opacity='0.5'/%3E%3Cpolygon points='483.1,291.9 510.4,307.7 506.7,315.0 479.5,299.3' fill='%23000' opacity='0.25'/%3E%3Cpolygon points='509.5,268.9 536.7,284.7 510.4,307.3 483.1,291.5' fill='url(%23pv)' stroke='%239fb3cc' stroke-width='0.8' stroke-linejoin='round'/%3E%3Cline x1='518.6' y1='274.2' x2='492.2' y2='296.8' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='527.7' y1='279.4' x2='501.3' y2='302.0' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='496.3' y1='280.2' x2='523.6' y2='296.0' stroke='%2346638c' stroke-width='0.5'/%3E%3Cpolygon points='509.5,268.9 521.7,276.0 489.9,295.4 483.1,291.5' fill='url(%23sheen)' opacity='0.5'/%3E%3Cpolygon points='511.8,308.5 539.1,324.3 535.5,331.6 508.2,315.9' fill='%23000' opacity='0.25'/%3E%3Cpolygon points='538.2,285.5 565.5,301.3 539.1,323.8 511.8,308.1' fill='url(%23pv)' stroke='%239fb3cc' stroke-width='0.8' stroke-linejoin='round'/%3E%3Cline x1='547.3' y1='290.8' x2='520.9' y2='313.3' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='556.4' y1='296.0' x2='530.0' y2='318.6' stroke='%2346638c' stroke-width='0.5'/%3E%3Cline x1='525.0' y1='296.8' x2='552.3' y2='312.6' stroke='%2346638c' stroke-width='0.5'/%3E%3Cpolygon points='538.2,285.5 550.5,292.6 518.7,312.0 511.8,308.1' fill='url(%23sheen)' opacity='0.5'/%3E%3Cpolygon points='319.4,395.5 332.5,403.0 326.1,410.9 313.1,403.3' fill='%23000' opacity='0.35' filter='url(%23blur3)'/%3E%3Cpolygon points='312.5,398.4 325.6,406.0 325.6,376.6 312.5,369.0' fill='url(%23batt)' stroke='%237d848c' stroke-width='0.5' stroke-linejoin='round'/%3E%3Cpolygon points='332.5,402.0 325.6,406.0 325.6,376.6 332.5,372.6' fill='url(%23battR)' stroke='%237d848c' stroke-width='0.5' stroke-linejoin='round'/%3E%3Cpolygon points='319.4,365.0 332.5,372.6 325.6,376.6 312.5,369.0' fill='%23e7e9ec' stroke='%237d848c' stroke-width='0.5' stroke-linejoin='round'/%3E%3Cline x1='313.2' y1='389.4' x2='324.9' y2='396.1' stroke='%23a8aeb5' stroke-width='0.7'/%3E%3Cline x1='313.2' y1='379.9' x2='324.9' y2='386.6' stroke='%23a8aeb5'
+        stroke-width='0.7'/%3E%3Crect x='315.1' y='374.7' width='8' height='2.4' rx='1.2' fill='%2351cf66' transform='rotate(-30 319.1 375.9)'/%3E%3Cpolygon points='360.5,398.8 373.3,406.2 373.3,393.6 360.5,386.2' fill='%2334383e' stroke='%2380878f' stroke-width='0.5'/%3E%3Cpolygon points='376.5,404.3 373.3,406.2 373.3,393.6 376.5,391.7' fill='%232a2e33' stroke='%2380878f' stroke-width='0.5'/%3E%3Cpolygon points='363.8,384.3 376.5,391.7 373.3,393.6 360.5,386.2' fill='%233a3f46' stroke='%2380878f' stroke-width='0.5'/%3E%3Ccircle cx='370.2' cy='394.3' r='2.8' fill='%234dabf7'/%3E%3Cpolygon points='436.5,478.8 482.0,505.1 482.0,497.7 436.5,471.5' fill='%2355595e' /%3E%3Cpolygon points='492.9,498.8 482.0,505.1 482.0,497.7 492.9,491.4' fill='%233a3d41' /%3E%3Cpolygon points='447.5,465.2 492.9,491.4 482.0,497.7 436.5,471.5' fill='%234a4d52' /%3E%3Cpath d='M446.5,478.3 q-5.4,-9 -9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M446.5,478.3 q-3.6,-9 -6.6,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M446.5,478.3 q-1.8,-9 -3.3,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M446.5,478.3 q0.0,-9 0.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M446.5,478.3 q1.8,-9 3.3,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M446.5,478.3 q3.6,-9 6.6,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M446.5,478.3 q5.4,-9 9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M453.8,482.5 q-5.4,-9 -9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M453.8,482.5 q-3.6,-9 -6.6,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M453.8,482.5 q-1.8,-9 -3.3,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M453.8,482.5 q0.0,-9 0.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M453.8,482.5 q1.8,-9 3.3,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M453.8,482.5 q3.6,-9 6.6,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M453.8,482.5 q5.4,-9 9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M461.1,486.7 q-5.4,-9 -9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M461.1,486.7 q-3.6,-9 -6.6,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M461.1,486.7 q-1.8,-9 -3.3,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M461.1,486.7 q0.0,-9 0.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M461.1,486.7 q1.8,-9 3.3,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M461.1,486.7 q3.6,-9 6.6,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M461.1,486.7 q5.4,-9 9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M468.4,490.9 q-5.4,-9 -9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M468.4,490.9 q-3.6,-9 -6.6,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M468.4,490.9 q-1.8,-9 -3.3,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M468.4,490.9 q0.0,-9 0.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2'
+        stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M468.4,490.9 q1.8,-9 3.3,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M468.4,490.9 q3.6,-9 6.6,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M468.4,490.9 q5.4,-9 9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M475.6,495.1 q-5.4,-9 -9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M475.6,495.1 q-3.6,-9 -6.6,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M475.6,495.1 q-1.8,-9 -3.3,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M475.6,495.1 q0.0,-9 0.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M475.6,495.1 q1.8,-9 3.3,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M475.6,495.1 q3.6,-9 6.6,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M475.6,495.1 q5.4,-9 9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M482.9,499.3 q-5.4,-9 -9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M482.9,499.3 q-3.6,-9 -6.6,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M482.9,499.3 q-1.8,-9 -3.3,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M482.9,499.3 q0.0,-9 0.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M482.9,499.3 q1.8,-9 3.3,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M482.9,499.3 q3.6,-9 6.6,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M482.9,499.3 q5.4,-9 9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpolygon points='626.6,425.8 735.7,488.8 643.0,550.8 526.6,483.6' fill='%23000' opacity='0.35' filter='url(%23blur3)'/%3E%3Cpolygon points='535.7,478.3 641.1,539.2 641.1,478.3 535.7,417.4' fill='url(%23plasterL)' /%3E%3Cpolygon points='732.1,486.7 641.1,539.2 641.1,478.3 732.1,425.8' fill='url(%23plasterR)' /%3E%3Cpolygon points='626.6,364.9 732.1,425.8 641.1,478.3 535.7,417.4' fill='url(%23roof)' /%3E%3Cpolygon points='535.7,417.4 641.1,478.3 641.1,475.2 535.7,414.2' fill='%23e2e1dc' /%3E%3Cpolygon points='643.9,476.7 641.1,478.3 641.1,475.2 643.9,473.6' fill='%23b5b3ad' /%3E%3Cpolygon points='538.4,412.7 643.9,473.6 641.1,475.2 535.7,414.2' fill='%23d8d7d2' /%3E%3Cpolygon points='638.4,476.7 641.1,478.3 641.1,475.2 638.4,473.6' fill='%23e2e1dc' /%3E%3Cpolygon points='732.1,425.8 641.1,478.3 641.1,475.2 732.1,422.6' fill='%23b5b3ad' /%3E%3Cpolygon points='729.3,421.1 732.1,422.6 641.1,475.2 638.4,473.6' fill='%23d8d7d2' /%3E%3Cpolygon points='564.8,495.1 632.0,534.0 632.0,484.6 564.8,445.8' fill='url(%23garageDoor)' /%3E%3Cline x1='564.8' y1='486.9' x2='632.0' y2='525.8' stroke='%232f3237' stroke-width='0.8'/%3E%3Cline x1='564.8' y1='478.7' x2='632.0' y2='517.6' stroke='%232f3237' stroke-width='0.8'/%3E%3Cline x1='564.8' y1='470.5' x2='632.0' y2='509.4' stroke='%232f3237' stroke-width='0.8'/%3E%3Cline x1='564.8' y1='462.3' x2='632.0' y2='501.2' stroke='%232f3237' stroke-width='0.8'/%3E%3Cline x1='564.8' y1='454.2' x2='632.0' y2='493.0' stroke='%232f3237' stroke-width='0.8'/%3E%3Cpolygon points='715.3,472.8 665.1,501.8 665.1,475.4 715.3,446.4' fill='%2325282c' /%3E%3Cpolygon points='713.9,472.0 666.6,499.3 666.6,476.2 713.9,448.9' fill='url(%23glassR)' /%3E%3Cpolygon points='691.0,485.2 689.5,486.1 689.5,463.0 691.0,462.1' fill='%2325282c' /%3E%3Cpolygon points='544.8,470.9 550.2,474.1
+        550.2,467.8 544.8,464.7' fill='%23f1f2f3' stroke='%238f969d' stroke-width='0.5'/%3E%3Cpath d='M547.5,469.4 C549.5,507.4 517.7,524.6 545.7,494.6' fill='none' stroke='%2315171a' stroke-width='2.6' stroke-linecap='round'/%3E%3Crect x='539.7' y='495.4' width='14' height='8' rx='2' fill='%232a2f35' stroke='%23555c64' stroke-width='0.6'/%3E%3Cpolygon points='246.5,393.2 261.0,401.6 250.1,413.2 231.0,402.2' fill='%23000' opacity='0.35' filter='url(%23blur3)'/%3E%3Cpolygon points='237.4,398.5 251.9,406.9 251.9,380.6 237.4,372.2' fill='url(%23cab)' stroke='%236c7177' stroke-width='0.5' stroke-linejoin='round'/%3E%3Cpolygon points='261.0,401.6 251.9,406.9 251.9,380.6 261.0,375.4' fill='%238f949a' stroke='%236c7177' stroke-width='0.5' stroke-linejoin='round'/%3E%3Cpolygon points='246.5,367.0 261.0,375.4 251.9,380.6 237.4,372.2' fill='%23c9ccd0' stroke='%236c7177' stroke-width='0.5' stroke-linejoin='round'/%3E%3Cline x1='239.2' y1='379.6' x2='250.1' y2='385.9' stroke='%23f0b400' stroke-width='2.2'/%3E%3Cpolygon points='542.0,506.1 633.0,558.6 591.1,582.8 500.2,530.3' fill='%23000' opacity='0.55' filter='url(%23blur3)'/%3E%3Cellipse cx='525.3' cy='530.9' rx='7.2' ry='9.4' fill='%23111316' transform='rotate(-32 525.3 530.9)'/%3E%3Cellipse cx='525.3' cy='530.9' rx='4.6' ry='6.0' fill='%239aa1a8' transform='rotate(-32 525.3 530.9)'/%3E%3Cellipse cx='525.3' cy='530.9' rx='1.6' ry='2.1' fill='%233a3f45' transform='rotate(-32 525.3 530.9)'/%3E%3Cellipse cx='576.2' cy='560.3' rx='7.2' ry='9.4' fill='%23111316' transform='rotate(-32 576.2 560.3)'/%3E%3Cellipse cx='576.2' cy='560.3' rx='4.6' ry='6.0' fill='%239aa1a8' transform='rotate(-32 576.2 560.3)'/%3E%3Cellipse cx='576.2' cy='560.3' rx='1.6' ry='2.1' fill='%233a3f45' transform='rotate(-32 576.2 560.3)'/%3E%3Cpolygon points='510.2,522.4 592.0,569.7 592.0,556.0 510.2,508.8' fill='url(%23carSide)' stroke='%231c1f23' stroke-width='0.6' stroke-linejoin='round'/%3E%3Cpolygon points='625.7,550.2 592.0,569.7 592.0,556.0 625.7,536.6' fill='url(%23carSide)' stroke='%231c1f23' stroke-width='0.6' stroke-linejoin='round'/%3E%3Cpolygon points='543.8,489.3 625.7,536.6 592.0,556.0 510.2,508.8' fill='url(%23carBody)' stroke='%231c1f23' stroke-width='0.6' stroke-linejoin='round'/%3E%3Cpolygon points='595.3,510.0 608.9,529.4 579.7,546.3 566.0,526.9' fill='url(%23carGlass)' stroke='%231c1f23' stroke-width='0.6'/%3E%3Cpolygon points='516.0,509.6 579.7,546.3 566.0,526.9 526.0,503.8' fill='url(%23carGlass)' stroke='%231c1f23' stroke-width='0.6'/%3E%3Cline x1='545.2' y1='526.5' x2='545.2' y2='514.9' stroke='%232a2f35' stroke-width='2'/%3E%3Cpolygon points='555.3,486.9 595.3,510.0 566.0,526.9 526.0,503.8' fill='%235d656f' stroke='%231c1f23' stroke-width='0.6'/%3E%3Cpolygon points='545.3,492.7 555.3,486.9 526.0,503.8 516.0,509.6' fill='url(%23carGlass)' stroke='%231c1f23' stroke-width='0.6'/%3E%3Cpolygon points='600.2,554.4 594.2,557.9 594.2,560.4 600.2,556.9' fill='%23fff3d6' /%3E%3Cpolygon points='518.4,506.8 512.0,510.8 512.0,512.9 518.4,508.9' fill='%23c8323a' /%3E%3Cline x1='512.0' y1='512.5' x2='590.2' y2='557.7' stroke='%23c6ccd2' stroke-width='0.8' opacity='0.6'/%3E%3Ccircle cx='545.7' cy='494.6' r='2.6' fill='%23b197fc'/%3E%3Cellipse cx='778.4' cy='502.3' rx='27.3' ry='11.5' fill='%23000' opacity='0.35' filter='url(%23blur3)'/%3E%3Cline x1='768.4' y1='499.3' x2='768.4' y2='410.7' stroke='%234a3a2c' stroke-width='3.2' stroke-linecap='round'/%3E%3Cellipse cx='758.9' cy='399.8' rx='23.2' ry='21.3' fill='url(%23canopy)' opacity='0.95'/%3E%3Cellipse cx='779.4' cy='403.9' rx='20.5' ry='18.8' fill='url(%23canopy)' opacity='0.95'/%3E%3Cellipse cx='768.4' cy='382.0' rx='21.8' ry='20.1' fill='url(%23canopy)' opacity='0.95'/%3E%3Cellipse cx='769.8' cy='395.7' rx='27.3' ry='25.1' fill='url(%23canopy)' opacity='0.85'/%3E%3Cline x1='368.3' y1='476.2' x2='368.3' y2='466.8' stroke='%232c2f33' stroke-width='2'/%3E%3Cellipse cx='368.3' cy='476.2' rx='16' ry='7' fill='url(%23spill)'/%3E%3Ccircle cx='368.3' cy='466.8' r='1.8' fill='%23ffe2a8'/%3E%3Cline x1='406.5' y1='498.2' x2='406.5' y2='488.8' stroke='%232c2f33' stroke-width='2'/%3E%3Cellipse
+        cx='406.5' cy='498.2' rx='16' ry='7' fill='url(%23spill)'/%3E%3Ccircle cx='406.5' cy='488.8' r='1.8' fill='%23ffe2a8'/%3E%3Cline x1='444.7' y1='539.2' x2='444.7' y2='529.8' stroke='%232c2f33' stroke-width='2'/%3E%3Cellipse cx='444.7' cy='539.2' rx='16' ry='7' fill='url(%23spill)'/%3E%3Ccircle cx='444.7' cy='529.8' r='1.8' fill='%23ffe2a8'/%3E%3Cpath d='M324.7,461.5 q-5.4,-9 -9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M324.7,461.5 q-3.2,-9 -5.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M324.7,461.5 q-1.1,-9 -2.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M324.7,461.5 q1.1,-9 2.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M324.7,461.5 q3.2,-9 5.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M324.7,461.5 q5.4,-9 9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M437.5,522.4 q-5.4,-9 -9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M437.5,522.4 q-3.2,-9 -5.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M437.5,522.4 q-1.1,-9 -2.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M437.5,522.4 q1.1,-9 2.0,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M437.5,522.4 q3.2,-9 5.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M437.5,522.4 q5.4,-9 9.9,-17' fill='none' stroke='%238c9a6e' stroke-width='1.2' stroke-linecap='round' opacity='0.9'/%3E%3Crect width='1000' height='700' rx='28' filter='url(%23grain)' opacity='0.6'/%3E%3Ctext x='245' y='106' text-anchor='middle' font-family='Helvetica, Arial, sans-serif' font-weight='700' font-size='26' letter-spacing='3' fill='%23c9d2dd' stroke='%230b0e13' stroke-width='4' paint-order='stroke'%3ENET%3C/text%3E%3Ctext x='510' y='106' text-anchor='middle' font-family='Helvetica, Arial, sans-serif' font-weight='700' font-size='26' letter-spacing='3' fill='%23c9d2dd' stroke='%230b0e13' stroke-width='4' paint-order='stroke'%3EZON%3C/text%3E%3Ctext x='880' y='106' text-anchor='middle' font-family='Helvetica, Arial, sans-serif' font-weight='700' font-size='26' letter-spacing='3' fill='%23c9d2dd' stroke='%230b0e13' stroke-width='4' paint-order='stroke'%3EHUIS%3C/text%3E%3Ctext x='331' y='668' text-anchor='middle' font-family='Helvetica, Arial, sans-serif' font-weight='700' font-size='26' letter-spacing='3' fill='%23c9d2dd' stroke='%230b0e13' stroke-width='4' paint-order='stroke'%3EACCU'S%3C/text%3E%3Ctext x='616' y='668' text-anchor='middle' font-family='Helvetica, Arial, sans-serif' font-weight='700' font-size='26' letter-spacing='3' fill='%23c9d2dd' stroke='%230b0e13' stroke-width='4' paint-order='stroke'%3EAUTO%3C/text%3E%3C/svg%3E
+      elements:
+      - type: conditional
+        conditions:
+        - condition: state
+          entity: input_text.zendure_set2_ip
+          state_not:
+          - ''
+          - unknown
+          - unavailable
+        elements:
+        - type: image
+          image: data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='700' viewBox='0 0 1000 700'%3E%3Cdefs%3E%3ClinearGradient id='batt' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23f4f5f6'/%3E%3Cstop offset='1' stop-color='%23cfd3d8'/%3E%3C/linearGradient%3E%3ClinearGradient id='battR' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23c3c8ce'/%3E%3Cstop offset='1' stop-color='%239ea4ab'/%3E%3C/linearGradient%3E%3Cfilter id='blur3' x='-30%25' y='-30%25' width='160%25' height='160%25'%3E%3CfeGaussianBlur stdDeviation='3'/%3E%3C/filter%3E%3C/defs%3E%3Cpolygon points='335.4,404.7 348.5,412.3 342.2,420.1 329.1,412.6' fill='%23000' opacity='0.35' filter='url(%23blur3)'/%3E%3Cpolygon points='328.5,407.6 341.6,415.2 341.6,385.8 328.5,378.2' fill='url(%23batt)' stroke='%237d848c' stroke-width='0.5' stroke-linejoin='round'/%3E%3Cpolygon points='348.5,411.2 341.6,415.2 341.6,385.8 348.5,381.8' fill='url(%23battR)' stroke='%237d848c' stroke-width='0.5' stroke-linejoin='round'/%3E%3Cpolygon points='335.4,374.2 348.5,381.8 341.6,385.8 328.5,378.2' fill='%23e7e9ec' stroke='%237d848c' stroke-width='0.5' stroke-linejoin='round'/%3E%3Cline x1='329.2' y1='398.6' x2='340.9' y2='405.3' stroke='%23a8aeb5' stroke-width='0.7'/%3E%3Cline x1='329.2' y1='389.2' x2='340.9' y2='395.9' stroke='%23a8aeb5' stroke-width='0.7'/%3E%3Crect x='331.1' y='384.0' width='8' height='2.4' rx='1.2' fill='%2351cf66' transform='rotate(-30 335.1 385.2)'/%3E%3C/svg%3E
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          style:
+            left: 50%
+            top: 50%
+            width: 100%
+            pointer-events: none
+      - type: conditional
+        conditions:
+        - condition: state
+          entity: input_text.zendure_set3_ip
+          state_not:
+          - ''
+          - unknown
+          - unavailable
+        elements:
+        - type: image
+          image: data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='700' viewBox='0 0 1000 700'%3E%3Cdefs%3E%3ClinearGradient id='batt' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23f4f5f6'/%3E%3Cstop offset='1' stop-color='%23cfd3d8'/%3E%3C/linearGradient%3E%3ClinearGradient id='battR' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23c3c8ce'/%3E%3Cstop offset='1' stop-color='%239ea4ab'/%3E%3C/linearGradient%3E%3Cfilter id='blur3' x='-30%25' y='-30%25' width='160%25' height='160%25'%3E%3CfeGaussianBlur stdDeviation='3'/%3E%3C/filter%3E%3C/defs%3E%3Cpolygon points='351.4,413.9 364.5,421.5 358.2,429.4 345.1,421.8' fill='%23000' opacity='0.35' filter='url(%23blur3)'/%3E%3Cpolygon points='344.5,416.9 357.6,424.4 357.6,395.0 344.5,387.5' fill='url(%23batt)' stroke='%237d848c' stroke-width='0.5' stroke-linejoin='round'/%3E%3Cpolygon points='364.5,420.4 357.6,424.4 357.6,395.0 364.5,391.0' fill='url(%23battR)' stroke='%237d848c' stroke-width='0.5' stroke-linejoin='round'/%3E%3Cpolygon points='351.4,383.5 364.5,391.0 357.6,395.0 344.5,387.5' fill='%23e7e9ec' stroke='%237d848c' stroke-width='0.5' stroke-linejoin='round'/%3E%3Cline x1='345.2' y1='407.8' x2='356.9' y2='414.6' stroke='%23a8aeb5' stroke-width='0.7'/%3E%3Cline x1='345.2' y1='398.4' x2='356.9' y2='405.1' stroke='%23a8aeb5' stroke-width='0.7'/%3E%3Crect x='347.1' y='393.2' width='8' height='2.4' rx='1.2' fill='%2351cf66' transform='rotate(-30 351.1 394.4)'/%3E%3C/svg%3E
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          style:
+            left: 50%
+            top: 50%
+            width: 100%
+            pointer-events: none
+      - type: conditional
+        conditions:
+        - condition: numeric_state
+          entity: sensor.zendure_ems_weergave_net
+          above: 0
+        elements:
+        - type: image
+          image: 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns=''http://www.w3.org/2000/svg'' width=''1000'' height=''700'' viewBox=''0 0 1000 700''%3E%3Cstyle%3E @keyframes f %7B from %7B stroke-dashoffset: 0; %7D to %7B stroke-dashoffset: -60; %7D %7D .g %7B fill: none; stroke: %23ff9f43; stroke-width: 9; stroke-opacity: 0.4; stroke-linecap: round; stroke-linejoin: round; filter: url(%23b); %7D .c %7B fill: none; stroke: %23ff9f43; stroke-width: 1.6; stroke-opacity: 0.55; stroke-linecap: round; stroke-linejoin: round; %7D .l %7B fill: none; stroke: %23ff9f43; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 12 18; animation: f 1.2s linear infinite; animation-direction: normal; %7D%0A%3C/style%3E%3Cdefs%3E%3Cfilter id=''b'' x=''-10%25'' y=''-10%25'' width=''120%25'' height=''120%25''%3E%3CfeGaussianBlur stdDeviation=''4''/%3E%3C/filter%3E%3C/defs%3E%3Cpath class=''g'' d=''M244.7,128.0 L244.7,376.5 L251.9,398.5 L370.2,424.8 L370.2,394.3''/%3E%3Cpath class=''c'' d=''M244.7,128.0 L244.7,376.5 L251.9,398.5 L370.2,424.8 L370.2,394.3''/%3E%3Cpath class=''l'' d=''M244.7,128.0 L244.7,376.5 L251.9,398.5 L370.2,424.8 L370.2,394.3''/%3E%3C/svg%3E'
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          style:
+            left: 50%
+            top: 50%
+            width: 100%
+            pointer-events: none
+      - type: conditional
+        conditions:
+        - condition: numeric_state
+          entity: sensor.zendure_ems_weergave_net
+          below: 0
+        elements:
+        - type: image
+          image: 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns=''http://www.w3.org/2000/svg'' width=''1000'' height=''700'' viewBox=''0 0 1000 700''%3E%3Cstyle%3E @keyframes f %7B from %7B stroke-dashoffset: 0; %7D to %7B stroke-dashoffset: -60; %7D %7D .g %7B fill: none; stroke: %23ff9f43; stroke-width: 9; stroke-opacity: 0.4; stroke-linecap: round; stroke-linejoin: round; filter: url(%23b); %7D .c %7B fill: none; stroke: %23ff9f43; stroke-width: 1.6; stroke-opacity: 0.55; stroke-linecap: round; stroke-linejoin: round; %7D .l %7B fill: none; stroke: %23ff9f43; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 12 18; animation: f 1.2s linear infinite; animation-direction: reverse; %7D%0A%3C/style%3E%3Cdefs%3E%3Cfilter id=''b'' x=''-10%25'' y=''-10%25'' width=''120%25'' height=''120%25''%3E%3CfeGaussianBlur stdDeviation=''4''/%3E%3C/filter%3E%3C/defs%3E%3Cpath class=''g'' d=''M244.7,128.0 L244.7,376.5 L251.9,398.5 L370.2,424.8 L370.2,394.3''/%3E%3Cpath class=''c'' d=''M244.7,128.0 L244.7,376.5 L251.9,398.5 L370.2,424.8 L370.2,394.3''/%3E%3Cpath class=''l'' d=''M244.7,128.0 L244.7,376.5 L251.9,398.5 L370.2,424.8 L370.2,394.3''/%3E%3C/svg%3E'
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          style:
+            left: 50%
+            top: 50%
+            width: 100%
+            pointer-events: none
+      - type: conditional
+        conditions:
+        - condition: numeric_state
+          entity: sensor.zendure_ems_weergave_zon
+          above: 0
+        elements:
+        - type: image
+          image: 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns=''http://www.w3.org/2000/svg'' width=''1000'' height=''700'' viewBox=''0 0 1000 700''%3E%3Cstyle%3E @keyframes f %7B from %7B stroke-dashoffset: 0; %7D to %7B stroke-dashoffset: -60; %7D %7D .g %7B fill: none; stroke: %23ffd43b; stroke-width: 9; stroke-opacity: 0.4; stroke-linecap: round; stroke-linejoin: round; filter: url(%23b); %7D .c %7B fill: none; stroke: %23ffd43b; stroke-width: 1.6; stroke-opacity: 0.55; stroke-linecap: round; stroke-linejoin: round; %7D .l %7B fill: none; stroke: %23ffd43b; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 12 18; animation: f 1.2s linear infinite; animation-direction: normal; %7D%0A%3C/style%3E%3Cdefs%3E%3Cfilter id=''b'' x=''-10%25'' y=''-10%25'' width=''120%25'' height=''120%25''%3E%3CfeGaussianBlur stdDeviation=''4''/%3E%3C/filter%3E%3C/defs%3E%3Cpath class=''g'' d=''M510.2,128.0 L510.2,267.2 L370.2,394.3''/%3E%3Cpath class=''c'' d=''M510.2,128.0 L510.2,267.2 L370.2,394.3''/%3E%3Cpath class=''l'' d=''M510.2,128.0 L510.2,267.2 L370.2,394.3''/%3E%3C/svg%3E'
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          style:
+            left: 50%
+            top: 50%
+            width: 100%
+            pointer-events: none
+      - type: conditional
+        conditions:
+        - condition: numeric_state
+          entity: sensor.zendure_ems_weergave_huis
+          above: 0
+        elements:
+        - type: image
+          image: 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns=''http://www.w3.org/2000/svg'' width=''1000'' height=''700'' viewBox=''0 0 1000 700''%3E%3Cstyle%3E @keyframes f %7B from %7B stroke-dashoffset: 0; %7D to %7B stroke-dashoffset: -60; %7D %7D .g %7B fill: none; stroke: %234dabf7; stroke-width: 9; stroke-opacity: 0.4; stroke-linecap: round; stroke-linejoin: round; filter: url(%23b); %7D .c %7B fill: none; stroke: %234dabf7; stroke-width: 1.6; stroke-opacity: 0.55; stroke-linecap: round; stroke-linejoin: round; %7D .l %7B fill: none; stroke: %234dabf7; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 12 18; animation: f 1.2s linear infinite; animation-direction: normal; %7D%0A%3C/style%3E%3Cdefs%3E%3Cfilter id=''b'' x=''-10%25'' y=''-10%25'' width=''120%25'' height=''120%25''%3E%3CfeGaussianBlur stdDeviation=''4''/%3E%3C/filter%3E%3C/defs%3E%3Cpath class=''g'' d=''M370.2,394.3 L506.6,327.1 L880.0,327.1 L880.0,128.0''/%3E%3Cpath class=''c'' d=''M370.2,394.3 L506.6,327.1 L880.0,327.1 L880.0,128.0''/%3E%3Cpath class=''l'' d=''M370.2,394.3 L506.6,327.1 L880.0,327.1 L880.0,128.0''/%3E%3C/svg%3E'
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          style:
+            left: 50%
+            top: 50%
+            width: 100%
+            pointer-events: none
+      - type: conditional
+        conditions:
+        - condition: numeric_state
+          entity: sensor.zendure_ems_weergave_accu
+          above: 0
+        elements:
+        - type: image
+          image: 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns=''http://www.w3.org/2000/svg'' width=''1000'' height=''700'' viewBox=''0 0 1000 700''%3E%3Cstyle%3E @keyframes f %7B from %7B stroke-dashoffset: 0; %7D to %7B stroke-dashoffset: -60; %7D %7D .g %7B fill: none; stroke: %2351cf66; stroke-width: 9; stroke-opacity: 0.4; stroke-linecap: round; stroke-linejoin: round; filter: url(%23b); %7D .c %7B fill: none; stroke: %2351cf66; stroke-width: 1.6; stroke-opacity: 0.55; stroke-linecap: round; stroke-linejoin: round; %7D .l %7B fill: none; stroke: %2351cf66; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 12 18; animation: f 1.2s linear infinite; animation-direction: normal; %7D%0A%3C/style%3E%3Cdefs%3E%3Cfilter id=''b'' x=''-10%25'' y=''-10%25'' width=''120%25'' height=''120%25''%3E%3CfeGaussianBlur stdDeviation=''4''/%3E%3C/filter%3E%3C/defs%3E%3Cpath class=''g'' d=''M370.2,394.3 L360.2,388.5 L338.3,380.1 L331.1,414.8 L331.1,612.0''/%3E%3Cpath class=''c'' d=''M370.2,394.3 L360.2,388.5 L338.3,380.1 L331.1,414.8 L331.1,612.0''/%3E%3Cpath class=''l'' d=''M370.2,394.3 L360.2,388.5 L338.3,380.1 L331.1,414.8 L331.1,612.0''/%3E%3C/svg%3E'
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          style:
+            left: 50%
+            top: 50%
+            width: 100%
+            pointer-events: none
+      - type: conditional
+        conditions:
+        - condition: numeric_state
+          entity: sensor.zendure_ems_weergave_accu
+          below: 0
+        elements:
+        - type: image
+          image: 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns=''http://www.w3.org/2000/svg'' width=''1000'' height=''700'' viewBox=''0 0 1000 700''%3E%3Cstyle%3E @keyframes f %7B from %7B stroke-dashoffset: 0; %7D to %7B stroke-dashoffset: -60; %7D %7D .g %7B fill: none; stroke: %2351cf66; stroke-width: 9; stroke-opacity: 0.4; stroke-linecap: round; stroke-linejoin: round; filter: url(%23b); %7D .c %7B fill: none; stroke: %2351cf66; stroke-width: 1.6; stroke-opacity: 0.55; stroke-linecap: round; stroke-linejoin: round; %7D .l %7B fill: none; stroke: %2351cf66; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 12 18; animation: f 1.2s linear infinite; animation-direction: reverse; %7D%0A%3C/style%3E%3Cdefs%3E%3Cfilter id=''b'' x=''-10%25'' y=''-10%25'' width=''120%25'' height=''120%25''%3E%3CfeGaussianBlur stdDeviation=''4''/%3E%3C/filter%3E%3C/defs%3E%3Cpath class=''g'' d=''M370.2,394.3 L360.2,388.5 L338.3,380.1 L331.1,414.8 L331.1,612.0''/%3E%3Cpath class=''c'' d=''M370.2,394.3 L360.2,388.5 L338.3,380.1 L331.1,414.8 L331.1,612.0''/%3E%3Cpath class=''l'' d=''M370.2,394.3 L360.2,388.5 L338.3,380.1 L331.1,414.8 L331.1,612.0''/%3E%3C/svg%3E'
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          style:
+            left: 50%
+            top: 50%
+            width: 100%
+            pointer-events: none
+      - type: conditional
+        conditions:
+        - condition: numeric_state
+          entity: sensor.zendure_ems_weergave_ev
+          above: 0
+        elements:
+        - type: image
+          image: 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns=''http://www.w3.org/2000/svg'' width=''1000'' height=''700'' viewBox=''0 0 1000 700''%3E%3Cstyle%3E @keyframes f %7B from %7B stroke-dashoffset: 0; %7D to %7B stroke-dashoffset: -60; %7D %7D .g %7B fill: none; stroke: %23b197fc; stroke-width: 9; stroke-opacity: 0.4; stroke-linecap: round; stroke-linejoin: round; filter: url(%23b); %7D .c %7B fill: none; stroke: %23b197fc; stroke-width: 1.6; stroke-opacity: 0.55; stroke-linecap: round; stroke-linejoin: round; %7D .l %7B fill: none; stroke: %23b197fc; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 12 18; animation: f 1.2s linear infinite; animation-direction: normal; %7D%0A%3C/style%3E%3Cdefs%3E%3Cfilter id=''b'' x=''-10%25'' y=''-10%25'' width=''120%25'' height=''120%25''%3E%3CfeGaussianBlur stdDeviation=''4''/%3E%3C/filter%3E%3C/defs%3E%3Cpath class=''g'' d=''M370.2,394.3 L506.6,473.1 L547.5,469.4 L547.5,469.4 L545.7,494.6''/%3E%3Cpath class=''c'' d=''M370.2,394.3 L506.6,473.1 L547.5,469.4 L547.5,469.4 L545.7,494.6''/%3E%3Cpath class=''l'' d=''M370.2,394.3 L506.6,473.1 L547.5,469.4 L547.5,469.4 L545.7,494.6''/%3E%3C/svg%3E'
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          style:
+            left: 50%
+            top: 50%
+            width: 100%
+            pointer-events: none
+      - type: state-label
+        entity: sensor.zendure_ems_weergave_net
+        style:
+          left: 24.5%
+          top: 9.4%
+          color: white
+          font-weight: 600
+          font-size: clamp(11px, 2.3vw, 22px)
+          text-shadow: 0 1px 3px black
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.zendure_ems_weergave_zon
+        style:
+          left: 51.0%
+          top: 9.4%
+          color: white
+          font-weight: 600
+          font-size: clamp(11px, 2.3vw, 22px)
+          text-shadow: 0 1px 3px black
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.zendure_ems_weergave_huis
+        style:
+          left: 88.0%
+          top: 9.4%
+          color: white
+          font-weight: 600
+          font-size: clamp(11px, 2.3vw, 22px)
+          text-shadow: 0 1px 3px black
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.zendure_ems_weergave_accu
+        style:
+          left: 33.1%
+          top: 89.7%
+          color: white
+          font-weight: 600
+          font-size: clamp(11px, 2.3vw, 22px)
+          text-shadow: 0 1px 3px black
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.zendure_ems_weergave_ev
+        style:
+          left: 61.6%
+          top: 89.7%
+          color: white
+          font-weight: 600
+          font-size: clamp(11px, 2.3vw, 22px)
+          text-shadow: 0 1px 3px black
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.zendure_ems_gemiddelde_soc
+        style:
+          left: 29.0%
+          top: 63.1%
+          color: '#51cf66'
+          font-weight: 600
+          font-size: clamp(10px, 1.8vw, 17px)
+          text-shadow: 0 1px 3px black
+    - type: vertical-stack
+      cards:
+      - type: tile
+        entity: input_select.zendure_ems_modus
+        name: Modus
+        features:
+        - type: select-options
+      - type: tile
+        entity: input_select.zendure_ems_profiel
+        name: Profiel activeren
+        features:
+        - type: select-options
+      - type: entities
+        entities:
+        - entity: sensor.zendure_ems_actief_profiel
+          name: Actief profiel
+        - type: buttons
+          entities:
+          - entity: script.zendure_ems_profiel_opslaan
+            name: Opslaan als mijn profiel 1
+            icon: mdi:numeric-1-box
+            tap_action:
+              action: perform-action
+              perform_action: script.zendure_ems_profiel_opslaan
+              data:
+                slot: 1
+              confirmation:
+                text: Huidige instellingen opslaan als mijn profiel 1?
+          - entity: script.zendure_ems_profiel_opslaan
+            name: Opslaan als mijn profiel 2
+            icon: mdi:numeric-2-box
+            tap_action:
+              action: perform-action
+              perform_action: script.zendure_ems_profiel_opslaan
+              data:
+                slot: 2
+              confirmation:
+                text: Huidige instellingen opslaan als mijn profiel 2?
+      - type: entities
+        entities:
+        - entity: sensor.zendure_ems_status
+          name: Status
+        - type: attribute
+          entity: sensor.zendure_ems_prijsactie
+          attribute: omschrijving
+          name: Prijsactie
+        - type: attribute
+          entity: sensor.zendure_ems_regelaar
+          attribute: actieve_sets
+          name: Actieve sets
+          icon: mdi:battery-sync
+        - entity: input_text.zendure_ems_versie
+          name: Versie package (dashboard 1.12.6)
+          icon: mdi:tag-outline
+      - type: glance
+        show_state: true
+        entities:
+        - entity: sensor.zendure_ems_grafiek_net
+          name: Net
+        - entity: sensor.zendure_ems_accuvermogen
+          name: Accu's
+        - entity: sensor.zendure_ems_gemiddelde_soc
+          name: SOC
+        - entity: sensor.zendure_ems_opgeslagen_energie
+          name: Opgeslagen
+        - entity: sensor.zendure_ems_stroomprijs
+          name: Prijs
+  - type: grid
+    cards:
+    - type: vertical-stack
+      cards:
+      - type: tile
+        entity: input_boolean.zendure_ems_toon_o_laadtoestand
+        name: Laadtoestand per set
+        icon: mdi:gauge
+        hide_state: true
+        tap_action:
+          action: toggle
+        icon_tap_action:
+          action: toggle
+      - type: conditional
+        conditions:
+        - condition: state
+          entity: input_boolean.zendure_ems_toon_o_laadtoestand
+          state: 'on'
+        card:
+          type: vertical-stack
+          cards:
+          - type: horizontal-stack
+            cards:
+            - type: conditional
+              conditions:
+              - condition: state
+                entity: sensor.zendure_set1_soc
+                state_not: unavailable
+              card:
+                type: gauge
+                entity: sensor.zendure_set1_soc
+                name: Set 1
+                min: 0
+                max: 100
+                severity:
+                  red: 0
+                  yellow: 20
+                  green: 40
+            - type: conditional
+              conditions:
+              - condition: state
+                entity: sensor.zendure_set2_soc
+                state_not: unavailable
+              card:
+                type: gauge
+                entity: sensor.zendure_set2_soc
+                name: Set 2
+                min: 0
+                max: 100
+                severity:
+                  red: 0
+                  yellow: 20
+                  green: 40
+            - type: conditional
+              conditions:
+              - condition: state
+                entity: sensor.zendure_set3_soc
+                state_not: unavailable
+              card:
+                type: gauge
+                entity: sensor.zendure_set3_soc
+                name: Set 3
+                min: 0
+                max: 100
+                severity:
+                  red: 0
+                  yellow: 20
+                  green: 40
+    - type: vertical-stack
+      cards:
+      - type: tile
+        entity: input_boolean.zendure_ems_toon_o_sets
+        name: Sets
+        icon: mdi:home-battery
+        hide_state: true
+        tap_action:
+          action: toggle
+        icon_tap_action:
+          action: toggle
+      - type: conditional
+        conditions:
+        - condition: state
+          entity: input_boolean.zendure_ems_toon_o_sets
+          state: 'on'
+        card:
+          type: vertical-stack
+          cards:
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.zendure_set1_soc
+              state_not: unavailable
+            card:
+              type: entities
+              title: Set 1
+              state_color: true
+              entities:
+              - entity: sensor.zendure_set1_vermogen
+                name: Vermogen (+ laden / - ontladen)
+              - entity: sensor.zendure_set1_soc
+                name: Laadtoestand
+              - entity: sensor.zendure_set1_temperatuur
+                name: Temperatuur
+              - entity: input_boolean.zendure_set1_laden
+                name: Laden toegestaan
+              - entity: input_boolean.zendure_set1_ontladen
+                name: Ontladen toegestaan
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.zendure_set2_soc
+              state_not: unavailable
+            card:
+              type: entities
+              title: Set 2
+              state_color: true
+              entities:
+              - type: conditional
+                conditions:
+                - entity: input_text.zendure_set2_ip
+                  state_not: ''
+                - entity: input_text.zendure_set2_ip
+                  state_not: unknown
+                row:
+                  entity: sensor.zendure_set2_vermogen
+                  name: Vermogen (+ laden / - ontladen)
+              - type: conditional
+                conditions:
+                - entity: input_text.zendure_set2_ip
+                  state_not: ''
+                - entity: input_text.zendure_set2_ip
+                  state_not: unknown
+                row:
+                  entity: sensor.zendure_set2_soc
+                  name: Laadtoestand
+              - type: conditional
+                conditions:
+                - entity: input_text.zendure_set2_ip
+                  state_not: ''
+                - entity: input_text.zendure_set2_ip
+                  state_not: unknown
+                row:
+                  entity: sensor.zendure_set2_temperatuur
+                  name: Temperatuur
+              - type: conditional
+                conditions:
+                - entity: input_text.zendure_set2_ip
+                  state_not: ''
+                - entity: input_text.zendure_set2_ip
+                  state_not: unknown
+                row:
+                  entity: input_boolean.zendure_set2_laden
+                  name: Laden toegestaan
+              - type: conditional
+                conditions:
+                - entity: input_text.zendure_set2_ip
+                  state_not: ''
+                - entity: input_text.zendure_set2_ip
+                  state_not: unknown
+                row:
+                  entity: input_boolean.zendure_set2_ontladen
+                  name: Ontladen toegestaan
+              visibility:
+              - condition: state
+                entity: input_text.zendure_set2_ip
+                state_not:
+                - ''
+                - unknown
+                - unavailable
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.zendure_set3_soc
+              state_not: unavailable
+            card:
+              type: entities
+              title: Set 3
+              state_color: true
+              entities:
+              - type: conditional
+                conditions:
+                - entity: input_text.zendure_set3_ip
+                  state_not: ''
+                - entity: input_text.zendure_set3_ip
+                  state_not: unknown
+                row:
+                  entity: sensor.zendure_set3_vermogen
+                  name: Vermogen (+ laden / - ontladen)
+              - type: conditional
+                conditions:
+                - entity: input_text.zendure_set3_ip
+                  state_not: ''
+                - entity: input_text.zendure_set3_ip
+                  state_not: unknown
+                row:
+                  entity: sensor.zendure_set3_soc
+                  name: Laadtoestand
+              - type: conditional
+                conditions:
+                - entity: input_text.zendure_set3_ip
+                  state_not: ''
+                - entity: input_text.zendure_set3_ip
+                  state_not: unknown
+                row:
+                  entity: sensor.zendure_set3_temperatuur
+                  name: Temperatuur
+              - type: conditional
+                conditions:
+                - entity: input_text.zendure_set3_ip
+                  state_not: ''
+                - entity: input_text.zendure_set3_ip
+                  state_not: unknown
+                row:
+                  entity: input_boolean.zendure_set3_laden
+                  name: Laden toegestaan
+              - type: conditional
+                conditions:
+                - entity: input_text.zendure_set3_ip
+                  state_not: ''
+                - entity: input_text.zendure_set3_ip
+                  state_not: unknown
+                row:
+                  entity: input_boolean.zendure_set3_ontladen
+                  name: Ontladen toegestaan
+              visibility:
+              - condition: state
+                entity: input_text.zendure_set3_ip
+                state_not:
+                - ''
+                - unknown
+                - unavailable
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_o_planner
+      name: Planner (per kwartier)
+      icon: mdi:calendar-clock
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+      grid_options:
+        columns: full
+    - type: markdown
+      content: |-
+        {%- set deel = 'kop' -%}
+        {%- set up = state_attr('sensor.zendure_ems_planning', 'komende') or [] -%}
+        {%- set pa = 'sensor.zendure_ems_prijsactie' -%}
+        {%- if up | count == 0 -%}
+        <ha-icon icon="mdi:alert-circle-outline"></ha-icon> Geen prijsdata. Vul bij **Instellingen** een prijssensor in (Nordpool, Zonneplan of ENTSO-e).
+        {%- else -%}
+        {%- macro tijden(qs, eerst=false) -%}
+        {%- set n = namespace(o=[], a=0, e=0) -%}
+        {%- for q in qs | sort -%}{%- if q != n.e -%}{%- if n.a -%}{%- set n.o = n.o + [[n.a, n.e]] -%}{%- endif -%}{%- set n.a = q -%}{%- endif -%}{%- set n.e = q + 900 -%}{%- endfor -%}
+        {%- if n.a -%}{%- set n.o = n.o + [[n.a, n.e]] -%}{%- endif -%}
+        {%- for r in (n.o[:1] if eerst else n.o) -%}{{ ', ' if not loop.first else '' }}{{ ('morgen ' if eerst and (r[0] | timestamp_custom('%d')) != now().strftime('%d') else '') ~ r[0] | timestamp_custom('%H:%M') ~ '–' ~ r[1] | timestamp_custom('%H:%M') }}{%- endfor -%}
+        {%- endmacro -%}
+        {%- set act = states(pa) -%}
+        {%- set icons = {'grid_charge': 'mdi:transmission-tower-import', 'hold': 'mdi:pause-circle-outline', 'sell': 'mdi:cash-plus', 'zero': 'mdi:scale-balance'} -%}
+        {%- set hs = namespace(l=[]) -%}
+        {%- for s in up -%}
+          {%- set k = (s.s // 3600) * 3600 -%}
+          {%- if k not in hs.l -%}{%- set hs.l = hs.l + [k] -%}{%- endif -%}
+        {%- endfor -%}
+        {%- set hp = namespace(l=[]) -%}
+        {%- for k in hs.l[:36] -%}
+          {%- set g = up | selectattr('s', 'ge', k) | selectattr('s', 'lt', k + 3600) | list -%}
+          {%- set hp.l = hp.l + [{'k': k, 'p': (g | map(attribute='p') | sum) / (g | count)}] -%}
+        {%- endfor -%}
+        {%- set pmin = hp.l | map(attribute='p') | min -%}
+        {%- set pmax = hp.l | map(attribute='p') | max -%}
+        {%- set kmin = (hp.l | sort(attribute='p') | first).k -%}
+        {%- set kmax = (hp.l | sort(attribute='p') | last).k -%}
+        {%- set nowh = (as_timestamp(now()) // 3600) * 3600 -%}
+        {%- set today = now().strftime('%d') -%}
+        {%- set deel = deel | default('alles') -%}
+        {#KOP#}{%- if deel in ['kop', 'alles'] %}
+        ### <ha-icon icon="{{ icons.get(act, 'mdi:scale-balance') }}"></ha-icon> {{ state_attr(pa, 'omschrijving') }}
+        {%- if state_attr(pa, 'reden') != state_attr(pa, 'omschrijving') %}
+        <sub>{{ state_attr(pa, 'reden') }}</sub>
+        {%- endif %}
+
+        <ha-icon icon="mdi:transmission-tower-import"></ha-icon> **{{ state_attr(pa, 'gepland_netladen_kwh') }} kWh** netladen &nbsp;·&nbsp;
+        <ha-icon icon="mdi:white-balance-sunny"></ha-icon> {{ state_attr(pa, 'verwachte_zon_kwh') }} kWh zon &nbsp;·&nbsp;
+        <ha-icon icon="mdi:home-lightning-bolt-outline"></ha-icon> {{ state_attr(pa, 'verwacht_verbruik_kwh') }} kWh verbruik &nbsp;·&nbsp;
+        <ha-icon icon="mdi:transmission-tower"></ha-icon> {{ state_attr(pa, 'verwacht_tekort_kwh') }} kWh van het net
+        {%- if state_attr(pa, 'verkopen_gepland') == true %} &nbsp;·&nbsp;
+        <ha-icon icon="mdi:cash-plus"></ha-icon> {{ state_attr(pa, 'gepland_verkopen_kwh') }} kWh verkopen (≈ € {{ state_attr(pa, 'verwachte_handelswinst') }} winst)
+        {%- endif %}
+        {%- set q_sv = up | selectattr('sv', 'number') | selectattr('sv', 'gt', 0.01) | map(attribute='s') | list -%}
+        {%- set q_c = up | selectattr('c', 'gt', 0.01) | map(attribute='s') | list -%}
+        {%- if q_sv or q_c %}
+        <br><ha-icon icon="mdi:clock-start"></ha-icon> **Volgende:**
+        {%- if q_sv %} <font color="#8e44ad">💶 verkopen {{ tijden(q_sv, true) }}</font>{% endif %}
+        {%- if q_sv and q_c %} &nbsp;·&nbsp;{% endif %}
+        {%- if q_c %} <font color="#1e88e5">🔌 laden {{ tijden(q_c, true) }}</font>{% endif %}
+        {%- endif %}
+        <br><sub>tot {{ (up[-1].s + 900) | timestamp_custom('%d-%m %H:%M') }} · per kwartier gepland, hier per uur · <font color="#2e9e4f">■</font> goedkoop <font color="#e0a106">■</font> gemiddeld <font color="#d64541">■</font> duur</sub>
+        {%- endif %}
+        {%- endif -%}
+      visibility: &id001
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_o_planner
+        state: 'on'
+    - type: markdown
+      content: |-
+        {%- set deel = 0 -%}
+        {%- set up = state_attr('sensor.zendure_ems_planning', 'komende') or [] -%}
+        {%- set pa = 'sensor.zendure_ems_prijsactie' -%}
+        {%- if up | count == 0 -%}
+        <ha-icon icon="mdi:alert-circle-outline"></ha-icon> Geen prijsdata. Vul bij **Instellingen** een prijssensor in (Nordpool, Zonneplan of ENTSO-e).
+        {%- else -%}
+        {%- macro tijden(qs, eerst=false) -%}
+        {%- set n = namespace(o=[], a=0, e=0) -%}
+        {%- for q in qs | sort -%}{%- if q != n.e -%}{%- if n.a -%}{%- set n.o = n.o + [[n.a, n.e]] -%}{%- endif -%}{%- set n.a = q -%}{%- endif -%}{%- set n.e = q + 900 -%}{%- endfor -%}
+        {%- if n.a -%}{%- set n.o = n.o + [[n.a, n.e]] -%}{%- endif -%}
+        {%- for r in (n.o[:1] if eerst else n.o) -%}{{ ', ' if not loop.first else '' }}{{ ('morgen ' if eerst and (r[0] | timestamp_custom('%d')) != now().strftime('%d') else '') ~ r[0] | timestamp_custom('%H:%M') ~ '–' ~ r[1] | timestamp_custom('%H:%M') }}{%- endfor -%}
+        {%- endmacro -%}
+        {%- set act = states(pa) -%}
+        {%- set icons = {'grid_charge': 'mdi:transmission-tower-import', 'hold': 'mdi:pause-circle-outline', 'sell': 'mdi:cash-plus', 'zero': 'mdi:scale-balance'} -%}
+        {%- set hs = namespace(l=[]) -%}
+        {%- for s in up -%}
+          {%- set k = (s.s // 3600) * 3600 -%}
+          {%- if k not in hs.l -%}{%- set hs.l = hs.l + [k] -%}{%- endif -%}
+        {%- endfor -%}
+        {%- set hp = namespace(l=[]) -%}
+        {%- for k in hs.l[:36] -%}
+          {%- set g = up | selectattr('s', 'ge', k) | selectattr('s', 'lt', k + 3600) | list -%}
+          {%- set hp.l = hp.l + [{'k': k, 'p': (g | map(attribute='p') | sum) / (g | count)}] -%}
+        {%- endfor -%}
+        {%- set pmin = hp.l | map(attribute='p') | min -%}
+        {%- set pmax = hp.l | map(attribute='p') | max -%}
+        {%- set kmin = (hp.l | sort(attribute='p') | first).k -%}
+        {%- set kmax = (hp.l | sort(attribute='p') | last).k -%}
+        {%- set nowh = (as_timestamp(now()) // 3600) * 3600 -%}
+        {%- set today = now().strftime('%d') -%}
+        {%- set deel = deel | default('alles') -%}
+        {#/KOP#}{% set days = namespace(l=[]) -%}
+        {%- for h in hp.l -%}{%- set dd = h.k | timestamp_custom('%d-%m') -%}{%- if dd not in days.l -%}{%- set days.l = days.l + [dd] -%}{%- endif -%}{%- endfor -%}
+        {%- set sel = days.l if deel == 'alles' else (days.l[deel:deel + 1] if deel is number else []) -%}
+        {%- if deel is number and sel | count == 0 %}
+        #### Morgen
+        <sub>De prijzen voor morgen komen meestal rond 13:00.</sub>
+        {%- endif %}
+        {%- for day in sel %}
+
+        #### {{ 'Vandaag' if day[:2] == today else 'Morgen' }} <sub>{{ day }}</sub>
+        | Uur | Prijs | | Plan (kWh) | SOC |
+        |:--|--:|:--|:--|--:|
+        {% for h in hp.l if (h.k | timestamp_custom('%d-%m')) == day -%}
+        {%- set k = h.k -%}
+        {%- set g = up | selectattr('s', 'ge', k) | selectattr('s', 'lt', k + 3600) | list -%}
+        {%- set p = h.p -%}
+        {%- set f = ((p - pmin) / (pmax - pmin)) if pmax > pmin else 0.5 -%}
+        {%- set col = '#2e9e4f' if f < 0.34 else ('#e0a106' if f < 0.67 else '#d64541') -%}
+        {%- set bar = (f * 4) | round(0) | int + 1 -%}
+        {%- set c = g | map(attribute='c') | sum -%}
+        {%- set dd = g | map(attribute='d') | sum -%}
+        {%- set u = g | map(attribute='u') | sum -%}
+        {%- set z = g | map(attribute='z') | sum -%}
+        {%- set v = g | map(attribute='v') | sum -%}
+        {%- set hold = g | selectattr('h') | list | count > 0 -%}
+        {%- set plan = namespace(t=[]) -%}
+        {%- set qc = g | selectattr('c', 'gt', 0.01) | map(attribute='s') | list -%}
+        {%- set qv = g | selectattr('sv', 'number') | selectattr('sv', 'gt', 0.01) | map(attribute='s') | list -%}
+        {%- set qh = g | selectattr('h') | map(attribute='s') | list -%}
+        {%- if c > 0.01 -%}{%- set plan.t = plan.t + ['<font color="#1e88e5">🔌 laden ' ~ ('%.1f' | format(c)) ~ (' <sub>' ~ tijden(qc) ~ '</sub>' if qc | count < 4 else '') ~ '</font>'] -%}{%- endif -%}
+        {%- set sv = g | map(attribute='sv') | select('number') | sum -%}
+        {%- if sv > 0.01 -%}{%- set plan.t = plan.t + ['<font color="#8e44ad">💶 verkopen ' ~ ('%.1f' | format(sv)) ~ (' <sub>' ~ tijden(qv) ~ '</sub>' if qv | count < 4 else '') ~ '</font>'] -%}{%- endif -%}
+        {%- if hold -%}{%- set plan.t = plan.t + ['⏸ vasthouden' ~ (' <sub>' ~ tijden(qh) ~ '</sub>' if qh | count < 4 else '')] -%}{%- endif -%}
+        {%- if dd > 0.02 and not hold -%}{%- set plan.t = plan.t + ['<font color="#2e9e4f">🔋 accu ' ~ ('%.1f' | format(dd)) ~ '</font>'] -%}{%- endif -%}
+        {%- if z > v + 0.05 -%}{%- set plan.t = plan.t + ['☀️ zon over ' ~ ('%.1f' | format(z - v))] -%}{%- endif -%}
+        {%- if u > 0.02 and not hold and c <= 0.01 -%}{%- set plan.t = plan.t + ['🏠 net ' ~ ('%.1f' | format(u))] -%}{%- endif -%}
+        {%- if plan.t | count == 0 and z > 0.01 and z >= v - 0.05 -%}{%- set plan.t = ['☀️ zon dekt huis'] -%}{%- endif -%}
+        {%- if plan.t | count == 0 -%}{%- set plan.t = ['<font color="#9e9e9e">— rust</font>'] -%}{%- endif -%}
+        {%- set soc = g[-1].soc -%}
+        {%- set bi = 'mdi:battery-outline' if soc < 5 else ('mdi:battery' if soc >= 95 else 'mdi:battery-' ~ ((soc / 10) | round(0) | int * 10)) -%}
+        {%- set mark = ' ⬇' if k == kmin else (' ⬆' if k == kmax else '') -%}
+        {%- set b1 = '**' if k == nowh else '' -%}
+        | {{ b1 }}{{ k | timestamp_custom('%H:%M') }}{{ b1 }}{{ ' ◀' if k == nowh else '' }} | {{ b1 }}<font color="{{ col }}">{{ '%.3f' | format(p) }}</font>{{ b1 }}{{ mark }} | <font color="{{ col }}">{{ '▰' * bar }}</font> | {{ plan.t | join(' · ') }} | <ha-icon icon="{{ bi }}"></ha-icon> {{ soc }}% |
+        {% endfor -%}
+        {%- endfor -%}
+        {%- endif -%}
+      visibility: *id001
+    - type: markdown
+      content: |-
+        {%- set deel = 1 -%}
+        {%- set up = state_attr('sensor.zendure_ems_planning', 'komende') or [] -%}
+        {%- set pa = 'sensor.zendure_ems_prijsactie' -%}
+        {%- if up | count == 0 -%}
+        <ha-icon icon="mdi:alert-circle-outline"></ha-icon> Geen prijsdata. Vul bij **Instellingen** een prijssensor in (Nordpool, Zonneplan of ENTSO-e).
+        {%- else -%}
+        {%- macro tijden(qs, eerst=false) -%}
+        {%- set n = namespace(o=[], a=0, e=0) -%}
+        {%- for q in qs | sort -%}{%- if q != n.e -%}{%- if n.a -%}{%- set n.o = n.o + [[n.a, n.e]] -%}{%- endif -%}{%- set n.a = q -%}{%- endif -%}{%- set n.e = q + 900 -%}{%- endfor -%}
+        {%- if n.a -%}{%- set n.o = n.o + [[n.a, n.e]] -%}{%- endif -%}
+        {%- for r in (n.o[:1] if eerst else n.o) -%}{{ ', ' if not loop.first else '' }}{{ ('morgen ' if eerst and (r[0] | timestamp_custom('%d')) != now().strftime('%d') else '') ~ r[0] | timestamp_custom('%H:%M') ~ '–' ~ r[1] | timestamp_custom('%H:%M') }}{%- endfor -%}
+        {%- endmacro -%}
+        {%- set act = states(pa) -%}
+        {%- set icons = {'grid_charge': 'mdi:transmission-tower-import', 'hold': 'mdi:pause-circle-outline', 'sell': 'mdi:cash-plus', 'zero': 'mdi:scale-balance'} -%}
+        {%- set hs = namespace(l=[]) -%}
+        {%- for s in up -%}
+          {%- set k = (s.s // 3600) * 3600 -%}
+          {%- if k not in hs.l -%}{%- set hs.l = hs.l + [k] -%}{%- endif -%}
+        {%- endfor -%}
+        {%- set hp = namespace(l=[]) -%}
+        {%- for k in hs.l[:36] -%}
+          {%- set g = up | selectattr('s', 'ge', k) | selectattr('s', 'lt', k + 3600) | list -%}
+          {%- set hp.l = hp.l + [{'k': k, 'p': (g | map(attribute='p') | sum) / (g | count)}] -%}
+        {%- endfor -%}
+        {%- set pmin = hp.l | map(attribute='p') | min -%}
+        {%- set pmax = hp.l | map(attribute='p') | max -%}
+        {%- set kmin = (hp.l | sort(attribute='p') | first).k -%}
+        {%- set kmax = (hp.l | sort(attribute='p') | last).k -%}
+        {%- set nowh = (as_timestamp(now()) // 3600) * 3600 -%}
+        {%- set today = now().strftime('%d') -%}
+        {%- set deel = deel | default('alles') -%}
+        {#/KOP#}{% set days = namespace(l=[]) -%}
+        {%- for h in hp.l -%}{%- set dd = h.k | timestamp_custom('%d-%m') -%}{%- if dd not in days.l -%}{%- set days.l = days.l + [dd] -%}{%- endif -%}{%- endfor -%}
+        {%- set sel = days.l if deel == 'alles' else (days.l[deel:deel + 1] if deel is number else []) -%}
+        {%- if deel is number and sel | count == 0 %}
+        #### Morgen
+        <sub>De prijzen voor morgen komen meestal rond 13:00.</sub>
+        {%- endif %}
+        {%- for day in sel %}
+
+        #### {{ 'Vandaag' if day[:2] == today else 'Morgen' }} <sub>{{ day }}</sub>
+        | Uur | Prijs | | Plan (kWh) | SOC |
+        |:--|--:|:--|:--|--:|
+        {% for h in hp.l if (h.k | timestamp_custom('%d-%m')) == day -%}
+        {%- set k = h.k -%}
+        {%- set g = up | selectattr('s', 'ge', k) | selectattr('s', 'lt', k + 3600) | list -%}
+        {%- set p = h.p -%}
+        {%- set f = ((p - pmin) / (pmax - pmin)) if pmax > pmin else 0.5 -%}
+        {%- set col = '#2e9e4f' if f < 0.34 else ('#e0a106' if f < 0.67 else '#d64541') -%}
+        {%- set bar = (f * 4) | round(0) | int + 1 -%}
+        {%- set c = g | map(attribute='c') | sum -%}
+        {%- set dd = g | map(attribute='d') | sum -%}
+        {%- set u = g | map(attribute='u') | sum -%}
+        {%- set z = g | map(attribute='z') | sum -%}
+        {%- set v = g | map(attribute='v') | sum -%}
+        {%- set hold = g | selectattr('h') | list | count > 0 -%}
+        {%- set plan = namespace(t=[]) -%}
+        {%- set qc = g | selectattr('c', 'gt', 0.01) | map(attribute='s') | list -%}
+        {%- set qv = g | selectattr('sv', 'number') | selectattr('sv', 'gt', 0.01) | map(attribute='s') | list -%}
+        {%- set qh = g | selectattr('h') | map(attribute='s') | list -%}
+        {%- if c > 0.01 -%}{%- set plan.t = plan.t + ['<font color="#1e88e5">🔌 laden ' ~ ('%.1f' | format(c)) ~ (' <sub>' ~ tijden(qc) ~ '</sub>' if qc | count < 4 else '') ~ '</font>'] -%}{%- endif -%}
+        {%- set sv = g | map(attribute='sv') | select('number') | sum -%}
+        {%- if sv > 0.01 -%}{%- set plan.t = plan.t + ['<font color="#8e44ad">💶 verkopen ' ~ ('%.1f' | format(sv)) ~ (' <sub>' ~ tijden(qv) ~ '</sub>' if qv | count < 4 else '') ~ '</font>'] -%}{%- endif -%}
+        {%- if hold -%}{%- set plan.t = plan.t + ['⏸ vasthouden' ~ (' <sub>' ~ tijden(qh) ~ '</sub>' if qh | count < 4 else '')] -%}{%- endif -%}
+        {%- if dd > 0.02 and not hold -%}{%- set plan.t = plan.t + ['<font color="#2e9e4f">🔋 accu ' ~ ('%.1f' | format(dd)) ~ '</font>'] -%}{%- endif -%}
+        {%- if z > v + 0.05 -%}{%- set plan.t = plan.t + ['☀️ zon over ' ~ ('%.1f' | format(z - v))] -%}{%- endif -%}
+        {%- if u > 0.02 and not hold and c <= 0.01 -%}{%- set plan.t = plan.t + ['🏠 net ' ~ ('%.1f' | format(u))] -%}{%- endif -%}
+        {%- if plan.t | count == 0 and z > 0.01 and z >= v - 0.05 -%}{%- set plan.t = ['☀️ zon dekt huis'] -%}{%- endif -%}
+        {%- if plan.t | count == 0 -%}{%- set plan.t = ['<font color="#9e9e9e">— rust</font>'] -%}{%- endif -%}
+        {%- set soc = g[-1].soc -%}
+        {%- set bi = 'mdi:battery-outline' if soc < 5 else ('mdi:battery' if soc >= 95 else 'mdi:battery-' ~ ((soc / 10) | round(0) | int * 10)) -%}
+        {%- set mark = ' ⬇' if k == kmin else (' ⬆' if k == kmax else '') -%}
+        {%- set b1 = '**' if k == nowh else '' -%}
+        | {{ b1 }}{{ k | timestamp_custom('%H:%M') }}{{ b1 }}{{ ' ◀' if k == nowh else '' }} | {{ b1 }}<font color="{{ col }}">{{ '%.3f' | format(p) }}</font>{{ b1 }}{{ mark }} | <font color="{{ col }}">{{ '▰' * bar }}</font> | {{ plan.t | join(' · ') }} | <ha-icon icon="{{ bi }}"></ha-icon> {{ soc }}% |
+        {% endfor -%}
+        {%- endfor -%}
+        {%- endif -%}
+      visibility: *id001
+  - type: grid
+    cards:
+    - type: vertical-stack
+      cards:
+      - type: tile
+        entity: input_boolean.zendure_ems_toon_o_soc
+        name: Laadtoestand (24 uur)
+        icon: mdi:chart-bell-curve
+        hide_state: true
+        tap_action:
+          action: toggle
+        icon_tap_action:
+          action: toggle
+      - type: conditional
+        conditions:
+        - condition: state
+          entity: input_boolean.zendure_ems_toon_o_soc
+          state: 'on'
+        card:
+          type: vertical-stack
+          cards:
+          - type: history-graph
+            hours_to_show: 24
+            entities:
+            - entity: sensor.zendure_set1_soc
+              name: Set 1
+            - entity: sensor.zendure_set2_soc
+              name: Set 2
+            - entity: sensor.zendure_set3_soc
+              name: Set 3
+    - type: vertical-stack
+      cards:
+      - type: tile
+        entity: input_boolean.zendure_ems_toon_o_vermogen
+        name: Vermogen (laatste 3 uur)
+        icon: mdi:chart-line
+        hide_state: true
+        tap_action:
+          action: toggle
+        icon_tap_action:
+          action: toggle
+      - type: conditional
+        conditions:
+        - condition: state
+          entity: input_boolean.zendure_ems_toon_o_vermogen
+          state: 'on'
+        card:
+          type: vertical-stack
+          cards:
+          - type: history-graph
+            hours_to_show: 3
+            entities:
+            - entity: sensor.zendure_ems_grafiek_net
+              name: Net (+ afname)
+            - entity: sensor.zendure_ems_accuvermogen
+              name: Accu's totaal (+ laden)
+            - entity: sensor.zendure_set1_vermogen
+              name: Set 1
+            - entity: sensor.zendure_set2_vermogen
+              name: Set 2
+            - entity: sensor.zendure_set3_vermogen
+              name: Set 3
+    - type: vertical-stack
+      cards:
+      - type: tile
+        entity: input_boolean.zendure_ems_toon_o_ev
+        name: EV laden
+        icon: mdi:car-electric
+        hide_state: true
+        tap_action:
+          action: toggle
+        icon_tap_action:
+          action: toggle
+      - type: conditional
+        conditions:
+        - condition: state
+          entity: input_boolean.zendure_ems_toon_o_ev
+          state: 'on'
+        card:
+          type: vertical-stack
+          cards:
+          - type: entities
+            state_color: true
+            entities:
+            - entity: switch.zendure_ems_ev_laden_van_het_net
+              name: EV laden van het net
+            - entity: binary_sensor.zendure_ems_ev_laadt
+              name: Auto laadt
+            - entity: sensor.zendure_ems_ev_vermogen
+              name: Autolader vermogen
+            - entity: sensor.zendure_ems_ev_energie_vandaag
+              name: kWh naar auto vandaag
+            - entity: sensor.zendure_ems_ev_laadtijd_vandaag
+              name: Laadtijd vandaag
+            - entity: sensor.zendure_ems_ev_kosten_vandaag
+              name: Kosten vandaag
+            - entity: sensor.zendure_ems_grafiek_net
+              name: Net zoals de accu's het zien
+    - type: vertical-stack
+      cards:
+      - type: tile
+        entity: input_boolean.zendure_ems_toon_o_kalibratie
+        name: Kalibratie (100 %)
+        icon: mdi:battery-sync
+        hide_state: true
+        tap_action:
+          action: toggle
+        icon_tap_action:
+          action: toggle
+      - type: conditional
+        conditions:
+        - condition: state
+          entity: input_boolean.zendure_ems_toon_o_kalibratie
+          state: 'on'
+        card:
+          type: vertical-stack
+          cards:
+          - type: entities
+            state_color: true
+            entities:
+            - entity: sensor.zendure_ems_kalibratie
+              name: Status
+            - entity: sensor.zendure_set1_dagen_sinds_vol
+              name: Set 1, dagen sinds 100 %
+            - type: conditional
+              conditions:
+              - entity: input_text.zendure_set2_ip
+                state_not: ''
+              - entity: input_text.zendure_set2_ip
+                state_not: unknown
+              row:
+                entity: sensor.zendure_set2_dagen_sinds_vol
+                name: Set 2, dagen sinds 100 %
+            - type: conditional
+              conditions:
+              - entity: input_text.zendure_set3_ip
+                state_not: ''
+              - entity: input_text.zendure_set3_ip
+                state_not: unknown
+              row:
+                entity: sensor.zendure_set3_dagen_sinds_vol
+                name: Set 3, dagen sinds 100 %
+- title: Instellingen
+  path: instellingen
+  icon: mdi:cog
+  cards:
+  - type: markdown
+    content: |-
+      **Eerst doen:** zet in de Zendure-app bij elke set **HEMS uit** en zet de **lokale API (HTTP)** aan. Vul hieronder de IP-adressen, de netmeter en de prijssensor in. Kies daarna op het Overzicht een modus. **Niet aansturen** = deze regeling doet niets. **Uit (stand-by)** = alle sets 0 W. **Laden / Ontladen (vol vermogen)** = alle sets laden van of ontladen naar het net op hun maximale vermogen; als de accu vol of leeg is, gaat de modus terug naar de vorige modus. Tik op een onderdeel hieronder om het open of dicht te klappen.
+      Dashboard **1.12.6** · package **{{ states('input_text.zendure_ems_versie') }}** {% if states('input_text.zendure_ems_versie') != '1.12.6' %}
+      ⚠️ **Package en dashboard hebben niet dezelfde versie.** Plaats het package en het dashboard uit dezelfde zip en herstart Home Assistant. {% endif %}
+  - type: vertical-stack
+    cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_aansluiting
+      name: Aansluiting
+      icon: mdi:lan-connect
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+    - type: conditional
+      conditions:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_aansluiting
+        state: 'on'
+      card:
+        type: vertical-stack
+        cards:
+        - type: entities
+          entities:
+          - entity: input_text.zendure_set1_ip
+            name: IP-adres set 1
+          - entity: input_text.zendure_set2_ip
+            name: IP-adres set 2
+          - entity: input_text.zendure_set3_ip
+            name: IP-adres set 3
+          - entity: input_text.zendure_ems_netsensor
+            name: Netmeter-sensor (bv. sensor.p1_meter_power)
+          - entity: input_text.zendure_ems_p1_ip
+            name: HomeWizard P1 IP-adres (optioneel, meting elke seconde)
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_ems_p1_ip
+              state_not:
+              - ''
+              - unknown
+              - unavailable
+            row:
+              entity: sensor.zendure_ems_p1_vermogen
+              name: P1 vermogen (elke seconde)
+          - entity: sensor.zendure_ems_netmeter_bron
+            name: Regeling gebruikt
+          - entity: input_boolean.zendure_ems_net_omkeren
+            name: Netmeter omkeren (als teruglevering positief is)
+          - entity: input_text.zendure_ems_prijssensor
+            name: Prijssensor
+          - entity: input_number.zendure_ems_kwh_per_pack
+            name: Capaciteit per accupack
+  - type: vertical-stack
+    cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_planner
+      name: Planner (zon en verbruik)
+      icon: mdi:chart-timeline-variant
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+    - type: conditional
+      conditions:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_planner
+        state: 'on'
+      card:
+        type: vertical-stack
+        cards:
+        - type: entities
+          entities:
+          - entity: input_text.zendure_ems_zon_vandaag
+            name: Zonneverwachting vandaag (sensor.energy_production_today_remaining)
+          - entity: input_text.zendure_ems_zon_morgen
+            name: Zonneverwachting morgen (sensor.energy_production_tomorrow)
+          - entity: input_number.zendure_ems_zon_factor
+            name: Zonneverwachting meetellen voor
+          - entity: input_text.zendure_ems_zonproductie
+            name: Zonneproductie-sensor (optioneel, voor het verbruiksprofiel)
+          - entity: sensor.zendure_ems_grafiek_huisverbruik
+            name: Huisverbruik nu
+          - entity: sensor.zendure_ems_verbruiksprofiel
+            name: Geleerd gemiddeld verbruik (werkdag)
+          - type: attribute
+            entity: sensor.zendure_ems_verbruiksprofiel
+            attribute: dagverbruik_werkdag_kwh
+            name: Geleerd dagverbruik werkdag
+            suffix: kWh
+          - type: attribute
+            entity: sensor.zendure_ems_verbruiksprofiel
+            attribute: dagverbruik_weekend_kwh
+            name: Geleerd dagverbruik weekend
+            suffix: kWh
+          - type: attribute
+            entity: sensor.zendure_ems_verbruiksprofiel
+            attribute: geleerd
+            name: Geleerd
+            icon: mdi:school
+          - entity: input_text.zendure_ems_historie_laden
+            name: Historie laadvermogen accu (oud, bv. Gielz Vermogen Import)
+          - entity: input_text.zendure_ems_historie_ontladen
+            name: Historie ontlaadvermogen accu (oud, bv. Gielz Vermogen Export)
+          - type: button
+            name: Startprofiel uit historie opbouwen
+            icon: mdi:history
+            action_name: Starten
+            tap_action:
+              action: perform-action
+              perform_action: script.zendure_ems_startprofiel
+              data:
+                dagen: 28
+              confirmation:
+                text: Het geleerde verbruiksprofiel wordt overschreven met een profiel uit de laatste 28 dagen historie. Doe dit pas als alle sets zijn aangesloten. Doorgaan?
+  - type: vertical-stack
+    cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_teruglevering
+      name: Teruglevering (salderen en terugleverprijs)
+      icon: mdi:transmission-tower-export
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+    - type: conditional
+      conditions:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_teruglevering
+        state: 'on'
+      card:
+        type: vertical-stack
+        cards:
+        - type: entities
+          entities:
+          - entity: input_select.zendure_ems_salderen
+            name: Salderen
+          - entity: input_text.zendure_ems_terugleverprijs_sensor
+            name: Kale-prijssensor (bv. sensor.nordpool_kwh_nl_eur_3_10_0)
+          - entity: input_boolean.zendure_ems_teruglever_btw
+            name: Btw over terugleververgoeding
+          - entity: input_number.zendure_ems_teruglever_vast
+            name: Vaste vergoeding (+) of terugleverkosten (−)
+          - entity: input_number.zendure_ems_teruglever_bonus
+            name: Terugleverbonus (Zonneplan-zonnebonus 10 %)
+          - entity: input_boolean.zendure_ems_bonus_overdag
+            name: Bonus alleen overdag
+          - entity: input_number.zendure_ems_energiebelasting
+            name: Energiebelasting (alleen zonder kale-prijssensor)
+          - entity: input_number.zendure_ems_inkoop
+            name: Inkoopvergoeding (alleen zonder kale-prijssensor)
+          - entity: sensor.zendure_ems_terugleverprijs
+            name: Terugleverprijs nu
+          - type: attribute
+            entity: sensor.zendure_ems_terugleverprijs
+            attribute: opbouw
+            name: Opbouw
+            icon: mdi:information-outline
+  - type: vertical-stack
+    cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_afschalen
+      name: Zonnepanelen afschalen (negatieve prijs)
+      icon: mdi:solar-power-variant
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+    - type: conditional
+      conditions:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_afschalen
+        state: 'on'
+      card:
+        type: vertical-stack
+        cards:
+        - type: entities
+          entities:
+          - entity: input_select.zendure_ems_afschalen
+            name: Afschalen
+          - entity: input_boolean.zendure_ems_afgeschaald
+            name: Nu afgeschaald (status)
+          - entity: input_number.zendure_ems_afschaal_drempel
+            name: Afschalen onder terugleverprijs
+          - entity: input_text.zendure_ems_export_entiteit
+            name: Exportlimiet-entiteit (bv. number.goodwe_net_exportlimiet)
+          - entity: input_number.zendure_ems_export_normaal
+            name: Exportlimiet normaal
+          - entity: input_number.zendure_ems_export_afgeschaald
+            name: Exportlimiet afgeschaald
+          - entity: input_number.zendure_ems_afschaal_stap
+            name: Exportlimiet in stappen van (0 = in één keer)
+          - entity: input_number.zendure_ems_afschaal_interval
+            name: Tijd tussen stappen
+          - entity: input_text.zendure_ems_export_schakelaar
+            name: Limiter-schakelaar (optioneel)
+          - entity: input_text.zendure_ems_extra_entiteit
+            name: Extra apparaat-limiet (optioneel)
+          - entity: input_number.zendure_ems_extra_normaal
+            name: Extra apparaat normaal
+          - entity: input_number.zendure_ems_extra_afgeschaald
+            name: Extra apparaat afgeschaald
+  - type: vertical-stack
+    cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_ev
+      name: EV laden (granny-lader)
+      icon: mdi:car-electric
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+    - type: conditional
+      conditions:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_ev
+        state: 'on'
+      card:
+        type: vertical-stack
+        cards:
+        - type: entities
+          entities:
+          - entity: input_text.zendure_ems_ev_sensor
+            name: Vermogenssensor lader (bv. sensor.autolader_power)
+          - entity: input_text.zendure_ems_ev_actief
+            name: EV laden van het net (bv. input_boolean.ev_laden_actief)
+          - entity: sensor.zendure_ems_ev_vermogen
+            name: EV-vermogen nu
+  - type: vertical-stack
+    cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_kalibratie
+      name: Kalibratie (volladen naar 100 %)
+      icon: mdi:battery-sync
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+    - type: conditional
+      conditions:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_kalibratie
+        state: 'on'
+      card:
+        type: vertical-stack
+        cards:
+        - type: entities
+          entities:
+          - entity: input_select.zendure_ems_kalibratie
+            name: Volladen naar 100 %
+          - entity: input_select.zendure_ems_kalibratie_dag
+            name: Dag (bij Wekelijks / Elke 2 of 3 weken)
+          - entity: input_datetime.zendure_ems_kalibratie_datum
+            name: Datum (bij Op datum)
+          - entity: input_number.zendure_ems_kalibratie_dagen
+            name: Uiterlijk na (dagen)
+          - entity: input_number.zendure_ems_kalibratie_tot
+            name: Klaar om (uur, volgende ochtend)
+          - entity: input_datetime.zendure_set1_laatst_vol
+            name: Set 1 laatst 100 % (zelf aan te passen)
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set2_ip
+              state_not: ''
+            - entity: input_text.zendure_set2_ip
+              state_not: unknown
+            row:
+              entity: input_datetime.zendure_set2_laatst_vol
+              name: Set 2 laatst 100 % (zelf aan te passen)
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set3_ip
+              state_not: ''
+            - entity: input_text.zendure_set3_ip
+              state_not: unknown
+            row:
+              entity: input_datetime.zendure_set3_laatst_vol
+              name: Set 3 laatst 100 % (zelf aan te passen)
+          - entity: sensor.zendure_ems_kalibratie
+            name: Status
+  - type: vertical-stack
+    cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_zonnecorrectie
+      name: Zonnecorrectie
+      icon: mdi:white-balance-sunny
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+    - type: conditional
+      conditions:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_zonnecorrectie
+        state: 'on'
+      card:
+        type: vertical-stack
+        cards:
+        - type: entities
+          entities:
+          - entity: input_boolean.zendure_ems_zon_leren
+            name: Zonnecorrectie leren
+          - entity: sensor.zendure_ems_zonnecorrectie
+            name: Geleerde correctie
+          - type: attribute
+            entity: sensor.zendure_ems_zonnecorrectie
+            attribute: dagen
+            name: Geleerde dagen (gebruikt vanaf 3)
+            icon: mdi:calendar-check
+          - type: attribute
+            entity: sensor.zendure_ems_zonnecorrectie
+            attribute: laatste
+            name: Laatste vergelijking
+            icon: mdi:compare
+          - entity: sensor.zendure_ems_zonneproductie
+            name: Zonneproductie nu
+          - entity: sensor.zendure_ems_zonne_energie_vandaag
+            name: Zonne-energie vandaag (gemeten)
+          - type: button
+            name: Zonnecorrectie opnieuw leren
+            icon: mdi:restore
+            action_name: Terugzetten
+            tap_action:
+              action: perform-action
+              perform_action: script.zendure_ems_zonnecorrectie_reset
+              confirmation:
+                text: De geleerde zonnecorrectie wordt teruggezet naar de vaste factor. Doorgaan?
+  - type: vertical-stack
+    cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_prijssturing
+      name: Prijssturing (modus Prijsgestuurd)
+      icon: mdi:cash-multiple
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+    - type: conditional
+      conditions:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_prijssturing
+        state: 'on'
+      card:
+        type: vertical-stack
+        cards:
+        - type: entities
+          entities:
+          - entity: input_boolean.zendure_ems_verkoop_plannen
+            name: Verkopen plannen (aan bij de profielen Handelen)
+          - entity: input_boolean.zendure_ems_laden_negatieve_prijs
+            name: Laden van het net bij negatieve prijs
+          - entity: input_number.zendure_ems_laadprijs
+            name: Laden van het net onder (-0,50 = uit)
+          - entity: input_number.zendure_ems_ontlaadprijs
+            name: Alleen ontladen boven (-0,50 = altijd)
+          - entity: input_number.zendure_ems_verkoopprijs
+            name: Verkopen aan het net boven (1,00 = uit)
+          - entity: input_number.zendure_ems_handel_prijs
+            name: Profielen Handelen verkopen boven
+          - entity: input_boolean.zendure_ems_slim_laden
+            name: Slim laden (planner, per kwartier)
+          - entity: input_boolean.zendure_ems_slim_ontladen
+            name: Slim ontladen (accu bewaren voor dure kwartieren)
+          - entity: input_number.zendure_ems_min_spread
+            name: Minimale winst per kWh
+          - entity: input_number.zendure_ems_slijtage
+            name: Slijtagekosten per kWh
+          - entity: input_number.zendure_ems_rendement
+            name: Rendement heen en terug
+          - entity: input_number.zendure_ems_verwacht_verbruik
+            name: Verwacht verbruik (tot het profiel geleerd is)
+          - entity: input_number.zendure_ems_max_netafname
+            name: Max netafname bij netladen (hoofdzekering, 0 = uit)
+  - type: vertical-stack
+    cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_grenzen
+      name: Grenzen per set
+      icon: mdi:battery-heart-variant
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+    - type: conditional
+      conditions:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_grenzen
+        state: 'on'
+      card:
+        type: vertical-stack
+        cards:
+        - type: entities
+          title: Grenzen set 1
+          entities:
+          - entity: input_number.zendure_set1_min_soc
+            name: Minimale SOC
+          - entity: input_number.zendure_set1_capaciteit
+            name: Accucapaciteit (0 = packs × kWh per pack)
+          - entity: input_number.zendure_set1_reserve
+            name: Reserve boven min SOC (kWh)
+          - entity: input_number.zendure_set1_max_soc
+            name: Maximale SOC
+          - entity: input_number.zendure_set1_max_laden
+            name: Max laadvermogen
+          - entity: input_number.zendure_set1_max_ontladen
+            name: Max ontlaadvermogen
+        - type: entities
+          title: Grenzen set 2
+          entities:
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set2_ip
+              state_not: ''
+            - entity: input_text.zendure_set2_ip
+              state_not: unknown
+            row:
+              entity: input_number.zendure_set2_min_soc
+              name: Minimale SOC
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set2_ip
+              state_not: ''
+            - entity: input_text.zendure_set2_ip
+              state_not: unknown
+            row:
+              entity: input_number.zendure_set2_capaciteit
+              name: Accucapaciteit (0 = packs × kWh per pack)
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set2_ip
+              state_not: ''
+            - entity: input_text.zendure_set2_ip
+              state_not: unknown
+            row:
+              entity: input_number.zendure_set2_reserve
+              name: Reserve boven min SOC (kWh)
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set2_ip
+              state_not: ''
+            - entity: input_text.zendure_set2_ip
+              state_not: unknown
+            row:
+              entity: input_number.zendure_set2_max_soc
+              name: Maximale SOC
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set2_ip
+              state_not: ''
+            - entity: input_text.zendure_set2_ip
+              state_not: unknown
+            row:
+              entity: input_number.zendure_set2_max_laden
+              name: Max laadvermogen
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set2_ip
+              state_not: ''
+            - entity: input_text.zendure_set2_ip
+              state_not: unknown
+            row:
+              entity: input_number.zendure_set2_max_ontladen
+              name: Max ontlaadvermogen
+          visibility:
+          - condition: state
+            entity: input_text.zendure_set2_ip
+            state_not:
+            - ''
+            - unknown
+            - unavailable
+        - type: entities
+          title: Grenzen set 3
+          entities:
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set3_ip
+              state_not: ''
+            - entity: input_text.zendure_set3_ip
+              state_not: unknown
+            row:
+              entity: input_number.zendure_set3_min_soc
+              name: Minimale SOC
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set3_ip
+              state_not: ''
+            - entity: input_text.zendure_set3_ip
+              state_not: unknown
+            row:
+              entity: input_number.zendure_set3_capaciteit
+              name: Accucapaciteit (0 = packs × kWh per pack)
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set3_ip
+              state_not: ''
+            - entity: input_text.zendure_set3_ip
+              state_not: unknown
+            row:
+              entity: input_number.zendure_set3_reserve
+              name: Reserve boven min SOC (kWh)
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set3_ip
+              state_not: ''
+            - entity: input_text.zendure_set3_ip
+              state_not: unknown
+            row:
+              entity: input_number.zendure_set3_max_soc
+              name: Maximale SOC
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set3_ip
+              state_not: ''
+            - entity: input_text.zendure_set3_ip
+              state_not: unknown
+            row:
+              entity: input_number.zendure_set3_max_laden
+              name: Max laadvermogen
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set3_ip
+              state_not: ''
+            - entity: input_text.zendure_set3_ip
+              state_not: unknown
+            row:
+              entity: input_number.zendure_set3_max_ontladen
+              name: Max ontlaadvermogen
+          visibility:
+          - condition: state
+            entity: input_text.zendure_set3_ip
+            state_not:
+            - ''
+            - unknown
+            - unavailable
+  - type: vertical-stack
+    cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_regeling
+      name: Regeling (geavanceerd)
+      icon: mdi:tune
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+    - type: conditional
+      conditions:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_regeling
+        state: 'on'
+      card:
+        type: vertical-stack
+        cards:
+        - type: entities
+          entities:
+          - entity: input_number.zendure_ems_doel_net
+            name: Doel netvermogen
+          - entity: input_number.zendure_ems_deadband
+            name: Dode zone
+          - entity: input_number.zendure_ems_kp
+            name: Kp (reactiesnelheid)
+          - entity: input_number.zendure_ems_kd
+            name: Kd (demping)
+          - entity: input_number.zendure_ems_max_stap
+            name: Max stap per cyclus
+          - entity: input_boolean.zendure_ems_wachttijd_auto
+            name: Wachttijd automatisch (volgens meterinterval)
+          - type: attribute
+            entity: sensor.zendure_ems_regelaar
+            attribute: meterinterval
+            name: Gemeten meterinterval
+            suffix: s
+            icon: mdi:timer-outline
+          - type: attribute
+            entity: sensor.zendure_ems_regelaar
+            attribute: wachttijd_auto
+            name: Automatische wachttijd
+            suffix: s
+            icon: mdi:timer-cog-outline
+          - entity: input_number.zendure_ems_wachttijd
+            name: Wachttijd na opdracht (als automatisch uit staat)
+          - entity: input_number.zendure_ems_min_vermogen
+            name: Minimaal vermogen per set
+          - entity: input_number.zendure_ems_min_looptijd
+            name: Minimale looptijd bij klein vermogen (0 = uit)
+          - entity: input_boolean.zendure_ems_korte_dips_negeren
+            name: Korte dips negeren (bv. droger)
+          - entity: input_number.zendure_ems_dip_tijd
+            name: Korte dips negeren tot
+          - entity: input_number.zendure_ems_staging
+            name: Volgende set inzetten vanaf
+          - entity: input_number.zendure_ems_systeem_max_laden
+            name: Systeem max laden (0 = geen)
+          - entity: input_number.zendure_ems_systeem_max_ontladen
+            name: Systeem max ontladen (0 = geen)
+          - entity: input_boolean.zendure_ems_standaard_ingesteld
+            name: Standaardwaarden ingesteld (uitzetten = alles terugzetten)
+          - entity: automation.zendure_ems_regeling
+            name: Regeling actief
+          - type: section
+            label: Flashgeheugen sparen
+          - entity: input_boolean.zendure_ems_flash_schrijven
+            name: Limieten naar flash schrijven (uit = RAM, aanbevolen)
+          - entity: input_number.zendure_ems_standby_vertraging
+            name: Standby na inactiviteit (0 = uit)
+          - entity: sensor.zendure_set1_smartmode
+            name: Set 1 schrijft naar
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set2_ip
+              state_not: ''
+            - entity: input_text.zendure_set2_ip
+              state_not: unknown
+            row:
+              entity: sensor.zendure_set2_smartmode
+              name: Set 2 schrijft naar
+          - type: conditional
+            conditions:
+            - entity: input_text.zendure_set3_ip
+              state_not: ''
+            - entity: input_text.zendure_set3_ip
+              state_not: unknown
+            row:
+              entity: sensor.zendure_set3_smartmode
+              name: Set 3 schrijft naar
+          - entity: automation.zendure_ems_smartmode_ram_bewaken
+            name: smartMode bewaken
+- title: Statistieken
+  path: statistieken
+  icon: mdi:chart-box-outline
+  type: sections
+  max_columns: 2
+  sections:
+  - cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_s_dagplanning
+      name: Dagplanning
+      icon: mdi:calendar-clock
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+      grid_options:
+        columns: full
+    - content: |-
+        {%- set up = state_attr('sensor.zendure_ems_planning','komende') or [] -%}
+        {%- set pa = 'sensor.zendure_ems_prijsactie' -%}
+        {%- if up | count == 0 -%}
+        Nog geen plan: er is geen prijsdata. Controleer de prijssensor bij **Instellingen**.
+        {%- else -%}
+        {%- set vandaag = now().strftime('%d') -%}
+        {%- set ns = namespace(b=[]) -%}
+        {%- for q in up -%}
+        {%- if q.c > 0.01 -%}{%- set a = '🔌 Laden van het net' -%}{%- set k = q.c -%}
+        {%- elif q.h -%}{%- set a = '⏸ Accu vasthouden' -%}{%- set k = 0 -%}
+        {%- elif q.d > 0.02 -%}{%- set a = '🔋 Accu levert aan huis' -%}{%- set k = q.d -%}
+        {%- elif q.z > q.v + 0.01 -%}{%- set a = '☀️ Zonoverschot' -%}{%- set k = q.z - q.v -%}
+        {%- elif q.u > 0.02 -%}{%- set a = '🏠 Huis van het net' -%}{%- set k = q.u -%}
+        {%- elif q.z > 0.01 and q.z >= q.v - 0.02 -%}{%- set a = '☀️ Zon dekt verbruik' -%}{%- set k = q.v -%}
+        {%- else -%}{%- set a = '— Rust' -%}{%- set k = 0 -%}{%- endif -%}
+        {%- set last = ns.b[-1] if ns.b | count > 0 else none -%}
+        {%- if last is not none and last.a == a -%}
+        {%- set ns.b = ns.b[:-1] + [dict(last, e=q.s + 900, k=last.k + k, p=last.p + q.p, n=last.n + 1, soc=q.soc)] -%}
+        {%- else -%}
+        {%- set ns.b = ns.b + [dict(a=a, s=q.s, e=q.s + 900, k=k, p=q.p, n=1, soc=q.soc)] -%}
+        {%- endif -%}
+        {%- endfor -%}
+        {%- set hs = namespace(u=[]) -%}
+        {%- for q in up -%}
+        {%- set h = (q.s // 3600) * 3600 -%}
+        {%- if h not in hs.u | map(attribute='h') | list -%}
+        {%- set g = up | selectattr('s','ge',h) | selectattr('s','lt',h+3600) | map(attribute='p') | list -%}
+        {%- set hs.u = hs.u + [dict(h=h, p=(g | sum) / (g | count))] -%}
+        {%- endif -%}
+        {%- endfor -%}
+        {%- set goedkoop = hs.u | sort(attribute='p') | first -%}
+        {%- set duur = hs.u | sort(attribute='p') | last -%}
+        {%- set laag = up | sort(attribute='soc') | first -%}
+        {%- macro tijd(t) -%}{{ '' if (t | timestamp_custom('%d')) == vandaag else 'morgen ' }}{{ t | timestamp_custom('%H:%M') }}{%- endmacro -%}
+        {%- set laden = ns.b | selectattr('a','eq','🔌 Laden van het net') | list -%}
+        ### {{ '🔌 ' ~ (laden | count) ~ ' laadmoment(en) van het net' if laden | count > 0 else '✅ Geen netladen gepland' }}
+        {% for b in laden -%}
+        - **{{ tijd(b.s) }}–{{ (b.e) | timestamp_custom('%H:%M') }}** · {{ '%.1f' | format(b.k) }} kWh · gem. € {{ '%.3f' | format(b.p / b.n) }} · SOC naar {{ b.soc }}%
+        {% endfor %}
+        **Goedkoopste uur:** {{ tijd(goedkoop.h) }} (€ {{ '%.3f' | format(goedkoop.p) }}) · **duurste uur:** {{ tijd(duur.h) }} (€ {{ '%.3f' | format(duur.p) }})
+        **Laagste SOC verwacht:** {{ laag.soc }}% om {{ tijd(laag.s) }}
+        **Plan tot {{ tijd(up[-1].s + 900) }}:** verbruik {{ state_attr(pa,'verwacht_verbruik_kwh') }} kWh · zon {{ state_attr(pa,'verwachte_zon_kwh') }} kWh · netladen {{ state_attr(pa,'gepland_netladen_kwh') }} kWh · tekort {{ state_attr(pa,'verwacht_tekort_kwh') }} kWh
+
+        | Wanneer | Wat | kWh | Gem. prijs | SOC eind |
+        |:--|:--|--:|--:|--:|
+        {% for b in ns.b if b.n >= 2 or b.a != '— Rust' -%}
+        | {{ tijd(b.s) }}–{{ b.e | timestamp_custom('%H:%M') }} | {{ b.a }} | {{ '%.1f' | format(b.k) if b.k > 0.05 else '' }} | € {{ '%.3f' | format(b.p / b.n) }} | {{ b.soc }}% |
+        {% endfor -%}
+        {%- if states('input_select.zendure_ems_modus') != 'Prijsgestuurd' %}
+        <sub>⚠️ Modus is nu **{{ states('input_select.zendure_ems_modus') }}**: het plan wordt berekend, maar alleen uitgevoerd in **Prijsgestuurd**{{ ' met Slim laden aan' if is_state('input_boolean.zendure_ems_slim_laden','off') else '' }}.</sub>
+        {%- endif -%}
+        {%- endif -%}
+      grid_options:
+        columns: full
+      type: markdown
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_dagplanning
+        state: 'on'
+    - entities:
+      - entity: sensor.zendure_ems_opgeslagen_energie
+        name: Nu opgeslagen
+      - attribute: kwh_bruikbaar
+        entity: sensor.zendure_ems_prijsactie
+        icon: mdi:battery-arrow-down
+        name: Bruikbaar (boven min. SOC)
+        suffix: kWh
+        type: attribute
+      - attribute: kwh_tot_vol
+        entity: sensor.zendure_ems_prijsactie
+        icon: mdi:battery-arrow-up
+        name: Nog te laden tot vol
+        suffix: kWh
+        type: attribute
+      - entity: sensor.zendure_ems_zonne_energie_vandaag
+        name: Zonne-energie vandaag
+      - entity: sensor.zendure_ems_ev_energie_vandaag
+        name: Naar de auto vandaag
+      - entity: sensor.zendure_ems_ev_kosten_vandaag
+        name: Kosten auto vandaag
+      - attribute: omschrijving
+        entity: sensor.zendure_ems_prijsactie
+        icon: mdi:flash-auto
+        name: Prijsactie nu
+        type: attribute
+      - attribute: reden
+        entity: sensor.zendure_ems_prijsactie
+        icon: mdi:information-outline
+        name: Reden
+        type: attribute
+      grid_options:
+        columns: full
+      title: Vandaag
+      type: entities
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_dagplanning
+        state: 'on'
+    type: grid
+    column_span: 2
+  - type: grid
+    cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_s_besparing
+      name: Besparing door de accu
+      icon: mdi:piggy-bank
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+      grid_options:
+        columns: full
+    - type: tile
+      entity: sensor.zendure_ems_besparing_vandaag
+      name: Vandaag
+      icon: mdi:piggy-bank
+      vertical: true
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_besparing
+        state: 'on'
+    - type: tile
+      entity: sensor.zendure_ems_besparing_maand
+      name: Deze maand
+      icon: mdi:piggy-bank
+      vertical: true
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_besparing
+        state: 'on'
+    - type: tile
+      entity: sensor.zendure_ems_besparing_totaal
+      name: Totaal
+      icon: mdi:piggy-bank
+      vertical: true
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_besparing
+        state: 'on'
+    - type: tile
+      entity: sensor.zendure_ems_gemiddelde_laadprijs
+      name: Gem. laadprijs (maand)
+      icon: mdi:cash-clock
+      vertical: true
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_besparing
+        state: 'on'
+    - type: tile
+      entity: sensor.zendure_ems_gemiddelde_ontlaadwaarde
+      name: Gem. ontlaadwaarde (maand)
+      icon: mdi:cash-check
+      vertical: true
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_besparing
+        state: 'on'
+    - type: statistics-graph
+      title: Besparing per dag (EUR)
+      entities:
+      - sensor.zendure_ems_besparing_teller
+      stat_types:
+      - change
+      period: day
+      chart_type: bar
+      days_to_show: 14
+      hide_legend: true
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_besparing
+        state: 'on'
+    - type: statistics-graph
+      title: Opgebouwde besparing sinds installatie (EUR)
+      entities:
+      - sensor.zendure_ems_besparing_teller
+      stat_types:
+      - state
+      period: hour
+      chart_type: line
+      days_to_show: 30
+      hide_legend: true
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_besparing
+        state: 'on'
+    - type: entities
+      entities:
+      - entity: sensor.zendure_ems_kosten_laden
+        name: Kosten laden (totaal)
+      - entity: sensor.zendure_ems_waarde_ontladen
+        name: Waarde ontladen (totaal)
+      - entity: input_number.zendure_ems_besparing_start
+        name: Startwaarde (bv. besparing uit batterij planner)
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_besparing
+        state: 'on'
+    - type: markdown
+      content: Waarde van wat de accu leverde min wat het laden kostte, gewogen met de prijs van dat moment. Laden uit het net telt tegen de afnameprijs, laden met zonne-overschot tegen de terugleverprijs; leveren aan het huis tegen de afnameprijs, verkopen aan het net tegen de terugleverprijs. Tot en met 2026 (salderen) zijn die gelijk. Alle sets samen; de teller start bij installatie van 1.9.2.
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_besparing
+        state: 'on'
+  - cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_s_plan
+      name: Plan over de dag
+      icon: mdi:chart-timeline-variant
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+      grid_options:
+        columns: full
+    - apex_config:
+        chart:
+          height: 320
+        legend:
+          show: true
+        plotOptions:
+          bar:
+            columnWidth: 90%
+      graph_span: 36h
+      grid_options:
+        columns: full
+      header:
+        show: true
+        show_states: false
+        title: Prijs, laden en ontladen
+      now:
+        label: Nu
+        show: true
+      series:
+      - color: '#9e9e9e'
+        curve: stepline
+        entity: sensor.zendure_ems_stroomprijs
+        name: Prijs (gemeten)
+        stroke_width: 2
+        type: line
+        yaxis_id: prijs
+      - color: '#ffa600'
+        curve: stepline
+        data_generator: return (entity.attributes.komende || []).map(q => [q.s * 1000, q.p]);
+        entity: sensor.zendure_ems_planning
+        name: Prijs (plan)
+        stroke_width: 2
+        type: line
+        yaxis_id: prijs
+      - color: '#2ecc71'
+        data_generator: return (entity.attributes.komende || []).map(q => [q.s * 1000, q.c * 4]);
+        entity: sensor.zendure_ems_planning
+        name: Netladen gepland
+        type: column
+        yaxis_id: kw
+      - color: '#e67e22'
+        data_generator: return (entity.attributes.komende || []).map(q => [q.s * 1000, -q.d * 4]);
+        entity: sensor.zendure_ems_planning
+        name: Accu ontladen gepland (−)
+        type: column
+        yaxis_id: kw
+      - color: '#3498db'
+        entity: sensor.zendure_ems_accuvermogen
+        group_by:
+          duration: 15min
+          func: avg
+        name: Accu gemeten (+ laden)
+        stroke_width: 2
+        transform: return x / 1000;
+        type: line
+        yaxis_id: kw
+      span:
+        start: day
+      type: custom:apexcharts-card
+      yaxis:
+      - apex_config:
+          title:
+            text: kW
+        decimals: 1
+        id: kw
+      - apex_config:
+          title:
+            text: €/kWh
+        decimals: 2
+        id: prijs
+        opposite: true
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_plan
+        state: 'on'
+    - apex_config:
+        chart:
+          height: 320
+        legend:
+          show: true
+      graph_span: 36h
+      grid_options:
+        columns: full
+      header:
+        show: true
+        show_states: false
+        title: Verbruik, zon en laadtoestand
+      now:
+        label: Nu
+        show: true
+      series:
+      - color: '#5dade2'
+        curve: stepline
+        data_generator: return (entity.attributes.komende || []).map(q => [q.s * 1000, q.v * 4000]);
+        entity: sensor.zendure_ems_planning
+        name: Verbruik verwacht
+        opacity: 0.2
+        stroke_width: 1
+        type: area
+        yaxis_id: w
+      - color: '#2e86c1'
+        entity: sensor.zendure_ems_huisverbruik_kwartiergemiddelde
+        group_by:
+          duration: 15min
+          func: avg
+        name: Huisverbruik gemeten
+        stroke_width: 2
+        type: line
+        yaxis_id: w
+      - color: '#f4d03f'
+        data_generator: return (entity.attributes.komende || []).map(q => [q.s * 1000, q.z * 4000]);
+        entity: sensor.zendure_ems_planning
+        name: Zon verwacht
+        opacity: 0.2
+        stroke_width: 1
+        type: area
+        yaxis_id: w
+      - color: '#f1c40f'
+        entity: sensor.zendure_ems_zonneproductie
+        group_by:
+          duration: 15min
+          func: avg
+        name: Zon gemeten
+        stroke_width: 2
+        type: line
+        yaxis_id: w
+      - color: '#27ae60'
+        data_generator: return (entity.attributes.komende || []).map(q => [q.s * 1000, q.soc]);
+        entity: sensor.zendure_ems_planning
+        name: SOC verwacht
+        stroke_dash: 5
+        stroke_width: 2
+        type: line
+        yaxis_id: soc
+      - color: '#27ae60'
+        entity: sensor.zendure_ems_gemiddelde_soc
+        name: SOC gemeten
+        stroke_width: 3
+        type: line
+        yaxis_id: soc
+      span:
+        start: day
+      type: custom:apexcharts-card
+      yaxis:
+      - apex_config:
+          title:
+            text: W
+        decimals: 0
+        id: w
+        min: 0
+      - apex_config:
+          title:
+            text: SOC %
+        decimals: 0
+        id: soc
+        max: 100
+        min: 0
+        opposite: true
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_plan
+        state: 'on'
+    type: grid
+  - cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_s_geleerd
+      name: Geleerd verbruik
+      icon: mdi:school
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+      grid_options:
+        columns: full
+    - apex_config:
+        chart:
+          height: 280
+        legend:
+          show: true
+      graph_span: 24h
+      grid_options:
+        columns: full
+      header:
+        show: true
+        show_states: false
+        title: Verbruiksprofiel (hier rekent de planner mee)
+      now:
+        label: Nu
+        show: true
+      series:
+      - color: '#8e44ad'
+        curve: stepline
+        data_generator: const d = new Date(); d.setHours(0,0,0,0); return (entity.attributes.werkdag || []).map((v, i) => [d.getTime() + i * 900000, v]);
+        entity: sensor.zendure_ems_verbruiksprofiel
+        name: Werkdag (geleerd)
+        stroke_width: 2
+        type: line
+        yaxis_id: w
+      - color: '#e84393'
+        curve: stepline
+        data_generator: const d = new Date(); d.setHours(0,0,0,0); return (entity.attributes.weekend || []).map((v, i) => [d.getTime() + i * 900000, v]);
+        entity: sensor.zendure_ems_verbruiksprofiel
+        name: Weekend (geleerd)
+        stroke_width: 2
+        type: line
+        yaxis_id: w
+      - color: '#95a5a6'
+        entity: sensor.zendure_ems_huisverbruik_kwartiergemiddelde
+        group_by:
+          duration: 15min
+          func: avg
+        name: Vandaag gemeten
+        opacity: 0.5
+        type: column
+        yaxis_id: w
+      span:
+        start: day
+      type: custom:apexcharts-card
+      yaxis:
+      - apex_config:
+          title:
+            text: W (kwartiergemiddelde)
+        decimals: 0
+        id: w
+        min: 0
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_geleerd
+        state: 'on'
+    - content: |-
+        {%- set v = 'sensor.zendure_ems_verbruiksprofiel' -%}
+        {%- set mw = state_attr(v,'metingen_werkdag') or [] -%}
+        {%- set mwe = state_attr(v,'metingen_weekend') or [] -%}
+        {%- set gw = mw | select('gt',0) | list | count -%}
+        {%- set gwe = mwe | select('gt',0) | list | count -%}
+        {%- set wk = now().weekday() >= 5 -%}
+        {%- set prof = (state_attr(v,'weekend') if wk else state_attr(v,'werkdag')) or [] -%}
+        {%- macro balk(n) -%}{%- set f = (n * 10 / 96) | round(0) | int -%}{{ '▇' * f }}{{ '░' * (10 - f) }}{%- endmacro -%}
+        {%- macro kw(i) -%}{{ '%02d:%02d' | format(i // 4, (i % 4) * 15) }}{%- endmacro -%}
+        Vandaag rekent de planner met het **{{ 'weekend' if wk else 'werkdag' }}profiel**{% if prof | count == 96 %}: nu {{ prof[(now().hour * 4 + now().minute // 15)] }} W verwacht{% endif %}.
+
+        | | Werkdag | Weekend |
+        |:--|--:|--:|
+        | Kwartieren geleerd | {{ gw }}/96 | {{ gwe }}/96 |
+        | Voortgang | {{ balk(gw) }} | {{ balk(gwe) }} |
+        | Metingen totaal | {{ mw | sum }} | {{ mwe | sum }} |
+        | Dagverbruik | {{ state_attr(v,'dagverbruik_werkdag_kwh') }} kWh | {{ state_attr(v,'dagverbruik_weekend_kwh') }} kWh |
+        {%- if prof | count == 96 %}
+        | Piek vandaag | {{ prof | max }} W om {{ kw(prof.index(prof | max)) }} | |
+        | Laagst vandaag | {{ prof | min }} W om {{ kw(prof.index(prof | min)) }} | |
+        {%- endif %}
+
+        **Zonnecorrectie:** {{ states('sensor.zendure_ems_zonnecorrectie') ~ ' %' if states('sensor.zendure_ems_zonnecorrectie') | is_number else 'nog niet geleerd (vaste factor ' ~ states('input_number.zendure_ems_zon_factor') | int ~ ' %)' }}
+
+        <sub>Kwartieren die nog niet geleerd zijn, gebruiken de vaste waarde van {{ states('input_number.zendure_ems_verwacht_verbruik') | int }} W (Instellingen → Verwacht verbruik). Met **Startprofiel uit historie opbouwen** (Instellingen) vul je het profiel in één keer uit de laatste 28 dagen.</sub>
+      grid_options:
+        columns: full
+      type: markdown
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_geleerd
+        state: 'on'
+    type: grid
+  - cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_s_historie
+      name: Historie
+      icon: mdi:history
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+      grid_options:
+        columns: full
+    - chart_type: bar
+      days_to_show: 14
+      entities:
+      - color: '#2ecc71'
+        entity: sensor.zendure_ems_energie_geladen
+        name: Accu geladen
+      - color: '#e67e22'
+        entity: sensor.zendure_ems_energie_ontladen
+        name: Accu ontladen
+      - color: '#f1c40f'
+        entity: sensor.zendure_ems_zonne_energie
+        name: Zon
+      - color: '#9b59b6'
+        entity: sensor.zendure_ems_ev_energie
+        name: Auto
+      grid_options:
+        columns: full
+      period: day
+      stat_types:
+      - change
+      title: Energie per dag (14 dagen)
+      type: statistics-graph
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_historie
+        state: 'on'
+    - entities:
+      - color: '#ffa600'
+        entity: sensor.zendure_ems_stroomprijs
+        name: Prijs
+      grid_options:
+        columns: full
+      hours_to_show: 168
+      title: Stroomprijs (7 dagen)
+      type: history-graph
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_historie
+        state: 'on'
+    type: grid
+  - cards:
+    - type: tile
+      entity: input_boolean.zendure_ems_toon_s_relais
+      name: Relais en kalibratie
+      icon: mdi:electric-switch
+      hide_state: true
+      tap_action:
+        action: toggle
+      icon_tap_action:
+        action: toggle
+      grid_options:
+        columns: full
+    - type: vertical-stack
+      title: Set 1
+      grid_options:
+        columns: full
+      cards:
+      - type: horizontal-stack
+        cards:
+        - type: tile
+          entity: sensor.zendure_set1_relais_schakelingen_vandaag
+          name: Schakelingen vandaag
+          icon: mdi:swap-vertical-bold
+          color: '#01a180'
+        - type: tile
+          entity: sensor.zendure_set1_dagen_sinds_vol
+          name: Dagen sinds 100 %
+          icon: mdi:battery-sync
+          color: '#01a180'
+      - type: custom:apexcharts-card
+        stacked: true
+        header:
+          show: true
+          title: Relaisschakelingen per dag
+        graph_span: 2month
+        span:
+          start: month
+          offset: -1month
+        cache: false
+        apex_config:
+          annotations:
+            yaxis:
+            - y: 100
+              borderColor: var(--accent-color)
+              strokeDashArray: 4
+              borderWidth: 2
+          yaxis:
+          - decimalsInFloat: 0
+            labels:
+              show: true
+              style:
+                colors: color-mix(in srgb, var(--primary-text-color) 75%, transparent)
+          tooltip:
+            x:
+              format: d/MM
+              show: false
+          grid:
+            show: true
+            borderColor: color-mix(in srgb, var(--divider-color) 50%, transparent)
+            strokeDashArray: 0
+            padding:
+              top: -10
+          chart:
+            height: 150px
+          legend:
+            show: false
+          xaxis:
+            labels:
+              show: false
+            axisTicks:
+              show: false
+            axisBorder:
+              color: color-mix(in srgb, var(--divider-color) 50%, transparent)
+        series:
+        - entity: sensor.zendure_set1_relais_opladen_vandaag
+          name: Opladen
+          transform: 'return x > 0 ? x - 1 : 0;'
+          statistics:
+            period: day
+            type: max
+            align: middle
+          type: column
+          color: '#01a180'
+          show:
+            in_header: false
+            extremas: false
+        - entity: sensor.zendure_set1_relais_ontladen_vandaag
+          name: Ontladen
+          statistics:
+            period: day
+            type: max
+            align: middle
+          type: column
+          color: '#01a180'
+          show:
+            in_header: false
+            extremas: false
+      - type: custom:apexcharts-card
+        stacked: true
+        header:
+          show: true
+          title: Kalibraties (hoogste SOC per dag)
+        graph_span: 2month
+        span:
+          start: month
+          offset: -1month
+        cache: false
+        apex_config:
+          yaxis:
+          - decimalsInFloat: 0
+            min: 0
+            max: 100
+            tickAmount: 4
+            labels:
+              show: true
+              style:
+                colors: color-mix(in srgb, var(--primary-text-color) 75%, transparent)
+          tooltip:
+            x:
+              format: d/MM
+              show: false
+          grid:
+            show: true
+            borderColor: color-mix(in srgb, var(--divider-color) 50%, transparent)
+            strokeDashArray: 0
+            padding:
+              top: -10
+          chart:
+            height: 150px
+          legend:
+            show: false
+          xaxis:
+            labels:
+              show: false
+            axisTicks:
+              show: false
+            axisBorder:
+              color: color-mix(in srgb, var(--divider-color) 50%, transparent)
+        series:
+        - entity: sensor.zendure_set1_soc
+          name: Kalibratie voltooid
+          transform: 'return x === 100 ? x : null;'
+          statistics:
+            period: day
+            type: max
+            align: middle
+          type: column
+          color: '#01a180'
+          show:
+            in_header: false
+            extremas: false
+        - entity: sensor.zendure_set1_soc
+          name: Geen kalibratie
+          transform: 'return x < 100 ? x : null;'
+          statistics:
+            period: day
+            type: max
+            align: middle
+          type: column
+          color: '#a2a2a3'
+          show:
+            in_header: false
+            extremas: false
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_relais
+        state: 'on'
+    - type: vertical-stack
+      title: Set 2
+      grid_options:
+        columns: full
+      cards:
+      - type: horizontal-stack
+        cards:
+        - type: tile
+          entity: sensor.zendure_set2_relais_schakelingen_vandaag
+          name: Schakelingen vandaag
+          icon: mdi:swap-vertical-bold
+          color: '#01a180'
+        - type: tile
+          entity: sensor.zendure_set2_dagen_sinds_vol
+          name: Dagen sinds 100 %
+          icon: mdi:battery-sync
+          color: '#01a180'
+      - type: custom:apexcharts-card
+        stacked: true
+        header:
+          show: true
+          title: Relaisschakelingen per dag
+        graph_span: 2month
+        span:
+          start: month
+          offset: -1month
+        cache: false
+        apex_config:
+          annotations:
+            yaxis:
+            - y: 100
+              borderColor: var(--accent-color)
+              strokeDashArray: 4
+              borderWidth: 2
+          yaxis:
+          - decimalsInFloat: 0
+            labels:
+              show: true
+              style:
+                colors: color-mix(in srgb, var(--primary-text-color) 75%, transparent)
+          tooltip:
+            x:
+              format: d/MM
+              show: false
+          grid:
+            show: true
+            borderColor: color-mix(in srgb, var(--divider-color) 50%, transparent)
+            strokeDashArray: 0
+            padding:
+              top: -10
+          chart:
+            height: 150px
+          legend:
+            show: false
+          xaxis:
+            labels:
+              show: false
+            axisTicks:
+              show: false
+            axisBorder:
+              color: color-mix(in srgb, var(--divider-color) 50%, transparent)
+        series:
+        - entity: sensor.zendure_set2_relais_opladen_vandaag
+          name: Opladen
+          transform: 'return x > 0 ? x - 1 : 0;'
+          statistics:
+            period: day
+            type: max
+            align: middle
+          type: column
+          color: '#01a180'
+          show:
+            in_header: false
+            extremas: false
+        - entity: sensor.zendure_set2_relais_ontladen_vandaag
+          name: Ontladen
+          statistics:
+            period: day
+            type: max
+            align: middle
+          type: column
+          color: '#01a180'
+          show:
+            in_header: false
+            extremas: false
+      - type: custom:apexcharts-card
+        stacked: true
+        header:
+          show: true
+          title: Kalibraties (hoogste SOC per dag)
+        graph_span: 2month
+        span:
+          start: month
+          offset: -1month
+        cache: false
+        apex_config:
+          yaxis:
+          - decimalsInFloat: 0
+            min: 0
+            max: 100
+            tickAmount: 4
+            labels:
+              show: true
+              style:
+                colors: color-mix(in srgb, var(--primary-text-color) 75%, transparent)
+          tooltip:
+            x:
+              format: d/MM
+              show: false
+          grid:
+            show: true
+            borderColor: color-mix(in srgb, var(--divider-color) 50%, transparent)
+            strokeDashArray: 0
+            padding:
+              top: -10
+          chart:
+            height: 150px
+          legend:
+            show: false
+          xaxis:
+            labels:
+              show: false
+            axisTicks:
+              show: false
+            axisBorder:
+              color: color-mix(in srgb, var(--divider-color) 50%, transparent)
+        series:
+        - entity: sensor.zendure_set2_soc
+          name: Kalibratie voltooid
+          transform: 'return x === 100 ? x : null;'
+          statistics:
+            period: day
+            type: max
+            align: middle
+          type: column
+          color: '#01a180'
+          show:
+            in_header: false
+            extremas: false
+        - entity: sensor.zendure_set2_soc
+          name: Geen kalibratie
+          transform: 'return x < 100 ? x : null;'
+          statistics:
+            period: day
+            type: max
+            align: middle
+          type: column
+          color: '#a2a2a3'
+          show:
+            in_header: false
+            extremas: false
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_relais
+        state: 'on'
+      - condition: state
+        entity: input_text.zendure_set2_ip
+        state_not:
+        - ''
+        - unknown
+        - unavailable
+    - type: vertical-stack
+      title: Set 3
+      grid_options:
+        columns: full
+      cards:
+      - type: horizontal-stack
+        cards:
+        - type: tile
+          entity: sensor.zendure_set3_relais_schakelingen_vandaag
+          name: Schakelingen vandaag
+          icon: mdi:swap-vertical-bold
+          color: '#01a180'
+        - type: tile
+          entity: sensor.zendure_set3_dagen_sinds_vol
+          name: Dagen sinds 100 %
+          icon: mdi:battery-sync
+          color: '#01a180'
+      - type: custom:apexcharts-card
+        stacked: true
+        header:
+          show: true
+          title: Relaisschakelingen per dag
+        graph_span: 2month
+        span:
+          start: month
+          offset: -1month
+        cache: false
+        apex_config:
+          annotations:
+            yaxis:
+            - y: 100
+              borderColor: var(--accent-color)
+              strokeDashArray: 4
+              borderWidth: 2
+          yaxis:
+          - decimalsInFloat: 0
+            labels:
+              show: true
+              style:
+                colors: color-mix(in srgb, var(--primary-text-color) 75%, transparent)
+          tooltip:
+            x:
+              format: d/MM
+              show: false
+          grid:
+            show: true
+            borderColor: color-mix(in srgb, var(--divider-color) 50%, transparent)
+            strokeDashArray: 0
+            padding:
+              top: -10
+          chart:
+            height: 150px
+          legend:
+            show: false
+          xaxis:
+            labels:
+              show: false
+            axisTicks:
+              show: false
+            axisBorder:
+              color: color-mix(in srgb, var(--divider-color) 50%, transparent)
+        series:
+        - entity: sensor.zendure_set3_relais_opladen_vandaag
+          name: Opladen
+          transform: 'return x > 0 ? x - 1 : 0;'
+          statistics:
+            period: day
+            type: max
+            align: middle
+          type: column
+          color: '#01a180'
+          show:
+            in_header: false
+            extremas: false
+        - entity: sensor.zendure_set3_relais_ontladen_vandaag
+          name: Ontladen
+          statistics:
+            period: day
+            type: max
+            align: middle
+          type: column
+          color: '#01a180'
+          show:
+            in_header: false
+            extremas: false
+      - type: custom:apexcharts-card
+        stacked: true
+        header:
+          show: true
+          title: Kalibraties (hoogste SOC per dag)
+        graph_span: 2month
+        span:
+          start: month
+          offset: -1month
+        cache: false
+        apex_config:
+          yaxis:
+          - decimalsInFloat: 0
+            min: 0
+            max: 100
+            tickAmount: 4
+            labels:
+              show: true
+              style:
+                colors: color-mix(in srgb, var(--primary-text-color) 75%, transparent)
+          tooltip:
+            x:
+              format: d/MM
+              show: false
+          grid:
+            show: true
+            borderColor: color-mix(in srgb, var(--divider-color) 50%, transparent)
+            strokeDashArray: 0
+            padding:
+              top: -10
+          chart:
+            height: 150px
+          legend:
+            show: false
+          xaxis:
+            labels:
+              show: false
+            axisTicks:
+              show: false
+            axisBorder:
+              color: color-mix(in srgb, var(--divider-color) 50%, transparent)
+        series:
+        - entity: sensor.zendure_set3_soc
+          name: Kalibratie voltooid
+          transform: 'return x === 100 ? x : null;'
+          statistics:
+            period: day
+            type: max
+            align: middle
+          type: column
+          color: '#01a180'
+          show:
+            in_header: false
+            extremas: false
+        - entity: sensor.zendure_set3_soc
+          name: Geen kalibratie
+          transform: 'return x < 100 ? x : null;'
+          statistics:
+            period: day
+            type: max
+            align: middle
+          type: column
+          color: '#a2a2a3'
+          show:
+            in_header: false
+            extremas: false
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_relais
+        state: 'on'
+      - condition: state
+        entity: input_text.zendure_set3_ip
+        state_not:
+        - ''
+        - unknown
+        - unavailable
+    - type: markdown
+      grid_options:
+        columns: full
+      content: 'Relaisschakelingen: hoe vaak een set per dag is gaan laden of ontladen (zoals bij Gielz). Onder de 100 per dag is normaal op een deels bewolkte dag. Kalibraties: groen is een dag waarop de set 100 % haalde. De grafieken komen uit de statistieken (LTS) en lopen daardoor ongeveer een uur achter.'
+      visibility:
+      - condition: state
+        entity: input_boolean.zendure_ems_toon_s_relais
+        state: 'on'
+    type: grid

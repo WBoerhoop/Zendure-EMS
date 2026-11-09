@@ -1,0 +1,914 @@
+# Tabblad Statistieken (overgenomen uit 1.7.0-ram). Vereist de HACS-kaart ApexCharts Card.
+title: Statistieken
+path: statistieken
+icon: mdi:chart-box-outline
+type: sections
+max_columns: 2
+sections:
+- cards:
+  - heading: Dagplanning
+    icon: mdi:calendar-clock
+    type: heading
+  - content: '{%- set up = state_attr(''sensor.zendure_ems_planning'',''komende'') or [] -%}
+
+      {%- set pa = ''sensor.zendure_ems_prijsactie'' -%}
+
+      {%- if up | count == 0 -%}
+
+      Nog geen plan: er is geen prijsdata. Controleer de prijssensor bij **Instellingen**.
+
+      {%- else -%}
+
+      {%- set vandaag = now().strftime(''%d'') -%}
+
+      {%- set ns = namespace(b=[]) -%}
+
+      {%- for q in up -%}
+
+      {%- if q.c > 0.01 -%}{%- set a = ''🔌 Laden van het net'' -%}{%- set k = q.c -%}
+
+      {%- elif q.h -%}{%- set a = ''⏸ Accu vasthouden'' -%}{%- set k = 0 -%}
+
+      {%- elif q.d > 0.02 -%}{%- set a = ''🔋 Accu levert aan huis'' -%}{%- set k = q.d -%}
+
+      {%- elif q.z > q.v + 0.01 -%}{%- set a = ''☀️ Zonoverschot'' -%}{%- set k = q.z - q.v -%}
+
+      {%- elif q.u > 0.02 -%}{%- set a = ''🏠 Huis van het net'' -%}{%- set k = q.u -%}
+
+      {%- elif q.z > 0.01 and q.z >= q.v - 0.02 -%}{%- set a = ''☀️ Zon dekt verbruik'' -%}{%- set k = q.v -%}
+
+      {%- else -%}{%- set a = ''— Rust'' -%}{%- set k = 0 -%}{%- endif -%}
+
+      {%- set last = ns.b[-1] if ns.b | count > 0 else none -%}
+
+      {%- if last is not none and last.a == a -%}
+
+      {%- set ns.b = ns.b[:-1] + [dict(last, e=q.s + 900, k=last.k + k, p=last.p + q.p, n=last.n + 1, soc=q.soc)] -%}
+
+      {%- else -%}
+
+      {%- set ns.b = ns.b + [dict(a=a, s=q.s, e=q.s + 900, k=k, p=q.p, n=1, soc=q.soc)] -%}
+
+      {%- endif -%}
+
+      {%- endfor -%}
+
+      {%- set hs = namespace(u=[]) -%}
+
+      {%- for q in up -%}
+
+      {%- set h = (q.s // 3600) * 3600 -%}
+
+      {%- if h not in hs.u | map(attribute=''h'') | list -%}
+
+      {%- set g = up | selectattr(''s'',''ge'',h) | selectattr(''s'',''lt'',h+3600) | map(attribute=''p'') | list -%}
+
+      {%- set hs.u = hs.u + [dict(h=h, p=(g | sum) / (g | count))] -%}
+
+      {%- endif -%}
+
+      {%- endfor -%}
+
+      {%- set goedkoop = hs.u | sort(attribute=''p'') | first -%}
+
+      {%- set duur = hs.u | sort(attribute=''p'') | last -%}
+
+      {%- set laag = up | sort(attribute=''soc'') | first -%}
+
+      {%- macro tijd(t) -%}{{ '''' if (t | timestamp_custom(''%d'')) == vandaag else ''morgen '' }}{{ t | timestamp_custom(''%H:%M'') }}{%- endmacro -%}
+
+      {%- set laden = ns.b | selectattr(''a'',''eq'',''🔌 Laden van het net'') | list -%}
+
+      ### {{ ''🔌 '' ~ (laden | count) ~ '' laadmoment(en) van het net'' if laden | count > 0 else ''✅ Geen netladen gepland'' }}
+
+      {% for b in laden -%}
+
+      - **{{ tijd(b.s) }}–{{ (b.e) | timestamp_custom(''%H:%M'') }}** · {{ ''%.1f'' | format(b.k) }} kWh · gem. € {{ ''%.3f'' | format(b.p / b.n) }} · SOC naar {{ b.soc }}%
+
+      {% endfor %}
+
+      **Goedkoopste uur:** {{ tijd(goedkoop.h) }} (€ {{ ''%.3f'' | format(goedkoop.p) }}) · **duurste uur:** {{ tijd(duur.h) }} (€ {{ ''%.3f'' | format(duur.p) }})
+
+      **Laagste SOC verwacht:** {{ laag.soc }}% om {{ tijd(laag.s) }}
+
+      **Plan tot {{ tijd(up[-1].s + 900) }}:** verbruik {{ state_attr(pa,''verwacht_verbruik_kwh'') }} kWh · zon {{ state_attr(pa,''verwachte_zon_kwh'') }} kWh · netladen {{ state_attr(pa,''gepland_netladen_kwh'') }} kWh · tekort {{ state_attr(pa,''verwacht_tekort_kwh'') }} kWh
+
+
+      | Wanneer | Wat | kWh | Gem. prijs | SOC eind |
+
+      |:--|:--|--:|--:|--:|
+
+      {% for b in ns.b if b.n >= 2 or b.a != ''— Rust'' -%}
+
+      | {{ tijd(b.s) }}–{{ b.e | timestamp_custom(''%H:%M'') }} | {{ b.a }} | {{ ''%.1f'' | format(b.k) if b.k > 0.05 else '''' }} | € {{ ''%.3f'' | format(b.p / b.n) }} | {{ b.soc }}% |
+
+      {% endfor -%}
+
+      {%- if states(''input_select.zendure_ems_modus'') != ''Prijsgestuurd'' %}
+
+      <sub>⚠️ Modus is nu **{{ states(''input_select.zendure_ems_modus'') }}**: het plan wordt berekend, maar alleen uitgevoerd in **Prijsgestuurd**{{ '' met Slim laden aan'' if is_state(''input_boolean.zendure_ems_slim_laden'',''off'') else '''' }}.</sub>
+
+      {%- endif -%}
+
+      {%- endif -%}'
+    grid_options:
+      columns: full
+    type: markdown
+  - entities:
+    - entity: sensor.zendure_ems_opgeslagen_energie
+      name: Nu opgeslagen
+    - attribute: kwh_bruikbaar
+      entity: sensor.zendure_ems_prijsactie
+      icon: mdi:battery-arrow-down
+      name: Bruikbaar (boven min. SOC)
+      suffix: kWh
+      type: attribute
+    - attribute: kwh_tot_vol
+      entity: sensor.zendure_ems_prijsactie
+      icon: mdi:battery-arrow-up
+      name: Nog te laden tot vol
+      suffix: kWh
+      type: attribute
+    - entity: sensor.zendure_ems_zonne_energie_vandaag
+      name: Zonne-energie vandaag
+    - entity: sensor.zendure_ems_ev_energie_vandaag
+      name: Naar de auto vandaag
+    - entity: sensor.zendure_ems_ev_kosten_vandaag
+      name: Kosten auto vandaag
+    - attribute: omschrijving
+      entity: sensor.zendure_ems_prijsactie
+      icon: mdi:flash-auto
+      name: Prijsactie nu
+      type: attribute
+    - attribute: reden
+      entity: sensor.zendure_ems_prijsactie
+      icon: mdi:information-outline
+      name: Reden
+      type: attribute
+    grid_options:
+      columns: full
+    title: Vandaag
+    type: entities
+  type: grid
+- cards:
+  - heading: Plan over de dag
+    icon: mdi:chart-timeline-variant
+    type: heading
+  - apex_config:
+      chart:
+        height: 320
+      legend:
+        show: true
+      plotOptions:
+        bar:
+          columnWidth: 90%
+    graph_span: 36h
+    grid_options:
+      columns: full
+    header:
+      show: true
+      show_states: false
+      title: Prijs, laden en ontladen
+    now:
+      label: Nu
+      show: true
+    series:
+    - color: '#9e9e9e'
+      curve: stepline
+      entity: sensor.zendure_ems_stroomprijs
+      name: Prijs (gemeten)
+      stroke_width: 2
+      type: line
+      yaxis_id: prijs
+    - color: '#ffa600'
+      curve: stepline
+      data_generator: return (entity.attributes.komende || []).map(q => [q.s * 1000, q.p]);
+      entity: sensor.zendure_ems_planning
+      name: Prijs (plan)
+      stroke_width: 2
+      type: line
+      yaxis_id: prijs
+    - color: '#2ecc71'
+      data_generator: return (entity.attributes.komende || []).map(q => [q.s * 1000, q.c * 4]);
+      entity: sensor.zendure_ems_planning
+      name: Netladen gepland
+      type: column
+      yaxis_id: kw
+    - color: '#e67e22'
+      data_generator: return (entity.attributes.komende || []).map(q => [q.s * 1000, -q.d * 4]);
+      entity: sensor.zendure_ems_planning
+      name: Accu ontladen gepland (−)
+      type: column
+      yaxis_id: kw
+    - color: '#3498db'
+      entity: sensor.zendure_ems_accuvermogen
+      group_by:
+        duration: 15min
+        func: avg
+      name: Accu gemeten (+ laden)
+      stroke_width: 2
+      transform: return x / 1000;
+      type: line
+      yaxis_id: kw
+    span:
+      start: day
+    type: custom:apexcharts-card
+    yaxis:
+    - apex_config:
+        title:
+          text: kW
+      decimals: 1
+      id: kw
+    - apex_config:
+        title:
+          text: €/kWh
+      decimals: 2
+      id: prijs
+      opposite: true
+  - apex_config:
+      chart:
+        height: 320
+      legend:
+        show: true
+    graph_span: 36h
+    grid_options:
+      columns: full
+    header:
+      show: true
+      show_states: false
+      title: Verbruik, zon en laadtoestand
+    now:
+      label: Nu
+      show: true
+    series:
+    - color: '#5dade2'
+      curve: stepline
+      data_generator: return (entity.attributes.komende || []).map(q => [q.s * 1000, q.v * 4000]);
+      entity: sensor.zendure_ems_planning
+      name: Verbruik verwacht
+      opacity: 0.2
+      stroke_width: 1
+      type: area
+      yaxis_id: w
+    - color: '#2e86c1'
+      entity: sensor.zendure_ems_huisverbruik_kwartiergemiddelde
+      group_by:
+        duration: 15min
+        func: avg
+      name: Huisverbruik gemeten
+      stroke_width: 2
+      type: line
+      yaxis_id: w
+    - color: '#f4d03f'
+      data_generator: return (entity.attributes.komende || []).map(q => [q.s * 1000, q.z * 4000]);
+      entity: sensor.zendure_ems_planning
+      name: Zon verwacht
+      opacity: 0.2
+      stroke_width: 1
+      type: area
+      yaxis_id: w
+    - color: '#f1c40f'
+      entity: sensor.zendure_ems_zonneproductie
+      group_by:
+        duration: 15min
+        func: avg
+      name: Zon gemeten
+      stroke_width: 2
+      type: line
+      yaxis_id: w
+    - color: '#27ae60'
+      data_generator: return (entity.attributes.komende || []).map(q => [q.s * 1000, q.soc]);
+      entity: sensor.zendure_ems_planning
+      name: SOC verwacht
+      stroke_dash: 5
+      stroke_width: 2
+      type: line
+      yaxis_id: soc
+    - color: '#27ae60'
+      entity: sensor.zendure_ems_gemiddelde_soc
+      name: SOC gemeten
+      stroke_width: 3
+      type: line
+      yaxis_id: soc
+    span:
+      start: day
+    type: custom:apexcharts-card
+    yaxis:
+    - apex_config:
+        title:
+          text: W
+      decimals: 0
+      id: w
+      min: 0
+    - apex_config:
+        title:
+          text: SOC %
+      decimals: 0
+      id: soc
+      max: 100
+      min: 0
+      opposite: true
+  type: grid
+- cards:
+  - heading: Geleerd verbruik
+    icon: mdi:school
+    type: heading
+  - apex_config:
+      chart:
+        height: 280
+      legend:
+        show: true
+    graph_span: 24h
+    grid_options:
+      columns: full
+    header:
+      show: true
+      show_states: false
+      title: Verbruiksprofiel (hier rekent de planner mee)
+    now:
+      label: Nu
+      show: true
+    series:
+    - color: '#8e44ad'
+      curve: stepline
+      data_generator: const d = new Date(); d.setHours(0,0,0,0); return (entity.attributes.werkdag || []).map((v, i) => [d.getTime() + i * 900000, v]);
+      entity: sensor.zendure_ems_verbruiksprofiel
+      name: Werkdag (geleerd)
+      stroke_width: 2
+      type: line
+      yaxis_id: w
+    - color: '#e84393'
+      curve: stepline
+      data_generator: const d = new Date(); d.setHours(0,0,0,0); return (entity.attributes.weekend || []).map((v, i) => [d.getTime() + i * 900000, v]);
+      entity: sensor.zendure_ems_verbruiksprofiel
+      name: Weekend (geleerd)
+      stroke_width: 2
+      type: line
+      yaxis_id: w
+    - color: '#95a5a6'
+      entity: sensor.zendure_ems_huisverbruik_kwartiergemiddelde
+      group_by:
+        duration: 15min
+        func: avg
+      name: Vandaag gemeten
+      opacity: 0.5
+      type: column
+      yaxis_id: w
+    span:
+      start: day
+    type: custom:apexcharts-card
+    yaxis:
+    - apex_config:
+        title:
+          text: W (kwartiergemiddelde)
+      decimals: 0
+      id: w
+      min: 0
+  - content: '{%- set v = ''sensor.zendure_ems_verbruiksprofiel'' -%}
+
+      {%- set mw = state_attr(v,''metingen_werkdag'') or [] -%}
+
+      {%- set mwe = state_attr(v,''metingen_weekend'') or [] -%}
+
+      {%- set gw = mw | select(''gt'',0) | list | count -%}
+
+      {%- set gwe = mwe | select(''gt'',0) | list | count -%}
+
+      {%- set wk = now().weekday() >= 5 -%}
+
+      {%- set prof = (state_attr(v,''weekend'') if wk else state_attr(v,''werkdag'')) or [] -%}
+
+      {%- macro balk(n) -%}{%- set f = (n * 10 / 96) | round(0) | int -%}{{ ''▇'' * f }}{{ ''░'' * (10 - f) }}{%- endmacro -%}
+
+      {%- macro kw(i) -%}{{ ''%02d:%02d'' | format(i // 4, (i % 4) * 15) }}{%- endmacro -%}
+
+      Vandaag rekent de planner met het **{{ ''weekend'' if wk else ''werkdag'' }}profiel**{% if prof | count == 96 %}: nu {{ prof[(now().hour * 4 + now().minute // 15)] }} W verwacht{% endif %}.
+
+
+      | | Werkdag | Weekend |
+
+      |:--|--:|--:|
+
+      | Kwartieren geleerd | {{ gw }}/96 | {{ gwe }}/96 |
+
+      | Voortgang | {{ balk(gw) }} | {{ balk(gwe) }} |
+
+      | Metingen totaal | {{ mw | sum }} | {{ mwe | sum }} |
+
+      | Dagverbruik | {{ state_attr(v,''dagverbruik_werkdag_kwh'') }} kWh | {{ state_attr(v,''dagverbruik_weekend_kwh'') }} kWh |
+
+      {%- if prof | count == 96 %}
+
+      | Piek vandaag | {{ prof | max }} W om {{ kw(prof.index(prof | max)) }} | |
+
+      | Laagst vandaag | {{ prof | min }} W om {{ kw(prof.index(prof | min)) }} | |
+
+      {%- endif %}
+
+
+      **Zonnecorrectie:** {{ states(''sensor.zendure_ems_zonnecorrectie'') ~ '' %'' if states(''sensor.zendure_ems_zonnecorrectie'') | is_number else ''nog niet geleerd (vaste factor '' ~ states(''input_number.zendure_ems_zon_factor'') | int ~ '' %)'' }}
+
+
+      <sub>Kwartieren die nog niet geleerd zijn, gebruiken de vaste waarde van {{ states(''input_number.zendure_ems_verwacht_verbruik'') | int }} W (Instellingen → Verwacht verbruik). Met **Startprofiel uit historie opbouwen** (Instellingen) vul je het profiel in één keer uit de laatste 28 dagen.</sub>'
+    grid_options:
+      columns: full
+    type: markdown
+  type: grid
+- cards:
+  - heading: Historie
+    icon: mdi:history
+    type: heading
+  - chart_type: bar
+    days_to_show: 14
+    entities:
+    - color: '#2ecc71'
+      entity: sensor.zendure_ems_energie_geladen
+      name: Accu geladen
+    - color: '#e67e22'
+      entity: sensor.zendure_ems_energie_ontladen
+      name: Accu ontladen
+    - color: '#f1c40f'
+      entity: sensor.zendure_ems_zonne_energie
+      name: Zon
+    - color: '#9b59b6'
+      entity: sensor.zendure_ems_ev_energie
+      name: Auto
+    grid_options:
+      columns: full
+    period: day
+    stat_types:
+    - change
+    title: Energie per dag (14 dagen)
+    type: statistics-graph
+  - entities:
+    - color: '#ffa600'
+      entity: sensor.zendure_ems_stroomprijs
+      name: Prijs
+    grid_options:
+      columns: full
+    hours_to_show: 168
+    title: Stroomprijs (7 dagen)
+    type: history-graph
+  type: grid
+- cards:
+  - type: heading
+    heading: Relais en kalibratie
+    icon: mdi:electric-switch
+  - type: vertical-stack
+    title: Set 1
+    grid_options:
+      columns: full
+    cards:
+    - type: horizontal-stack
+      cards:
+      - type: tile
+        entity: sensor.zendure_set1_relais_schakelingen_vandaag
+        name: Schakelingen vandaag
+        icon: mdi:swap-vertical-bold
+        color: '#01a180'
+      - type: tile
+        entity: sensor.zendure_set1_dagen_sinds_vol
+        name: Dagen sinds 100 %
+        icon: mdi:battery-sync
+        color: '#01a180'
+    - type: custom:apexcharts-card
+      stacked: true
+      header:
+        show: true
+        title: Relaisschakelingen per dag
+      graph_span: 2month
+      span:
+        start: month
+        offset: -1month
+      cache: false
+      apex_config:
+        annotations:
+          yaxis:
+          - y: 100
+            borderColor: var(--accent-color)
+            strokeDashArray: 4
+            borderWidth: 2
+        yaxis:
+        - decimalsInFloat: 0
+          labels:
+            show: true
+            style:
+              colors: color-mix(in srgb, var(--primary-text-color) 75%, transparent)
+        tooltip:
+          x:
+            format: d/MM
+            show: false
+        grid:
+          show: true
+          borderColor: color-mix(in srgb, var(--divider-color) 50%, transparent)
+          strokeDashArray: 0
+          padding:
+            top: -10
+        chart:
+          height: 150px
+        legend:
+          show: false
+        xaxis:
+          labels:
+            show: false
+          axisTicks:
+            show: false
+          axisBorder:
+            color: color-mix(in srgb, var(--divider-color) 50%, transparent)
+      series:
+      - entity: sensor.zendure_set1_relais_opladen_vandaag
+        name: Opladen
+        transform: 'return x > 0 ? x - 1 : 0;'
+        statistics:
+          period: day
+          type: max
+          align: middle
+        type: column
+        color: '#01a180'
+        show:
+          in_header: false
+          extremas: false
+      - entity: sensor.zendure_set1_relais_ontladen_vandaag
+        name: Ontladen
+        statistics:
+          period: day
+          type: max
+          align: middle
+        type: column
+        color: '#01a180'
+        show:
+          in_header: false
+          extremas: false
+    - type: custom:apexcharts-card
+      stacked: true
+      header:
+        show: true
+        title: Kalibraties (hoogste SOC per dag)
+      graph_span: 2month
+      span:
+        start: month
+        offset: -1month
+      cache: false
+      apex_config:
+        yaxis:
+        - decimalsInFloat: 0
+          min: 0
+          max: 100
+          tickAmount: 4
+          labels:
+            show: true
+            style:
+              colors: color-mix(in srgb, var(--primary-text-color) 75%, transparent)
+        tooltip:
+          x:
+            format: d/MM
+            show: false
+        grid:
+          show: true
+          borderColor: color-mix(in srgb, var(--divider-color) 50%, transparent)
+          strokeDashArray: 0
+          padding:
+            top: -10
+        chart:
+          height: 150px
+        legend:
+          show: false
+        xaxis:
+          labels:
+            show: false
+          axisTicks:
+            show: false
+          axisBorder:
+            color: color-mix(in srgb, var(--divider-color) 50%, transparent)
+      series:
+      - entity: sensor.zendure_set1_soc
+        name: Kalibratie voltooid
+        transform: 'return x === 100 ? x : null;'
+        statistics:
+          period: day
+          type: max
+          align: middle
+        type: column
+        color: '#01a180'
+        show:
+          in_header: false
+          extremas: false
+      - entity: sensor.zendure_set1_soc
+        name: Geen kalibratie
+        transform: 'return x < 100 ? x : null;'
+        statistics:
+          period: day
+          type: max
+          align: middle
+        type: column
+        color: '#a2a2a3'
+        show:
+          in_header: false
+          extremas: false
+  - type: vertical-stack
+    title: Set 2
+    grid_options:
+      columns: full
+    cards:
+    - type: horizontal-stack
+      cards:
+      - type: tile
+        entity: sensor.zendure_set2_relais_schakelingen_vandaag
+        name: Schakelingen vandaag
+        icon: mdi:swap-vertical-bold
+        color: '#01a180'
+      - type: tile
+        entity: sensor.zendure_set2_dagen_sinds_vol
+        name: Dagen sinds 100 %
+        icon: mdi:battery-sync
+        color: '#01a180'
+    - type: custom:apexcharts-card
+      stacked: true
+      header:
+        show: true
+        title: Relaisschakelingen per dag
+      graph_span: 2month
+      span:
+        start: month
+        offset: -1month
+      cache: false
+      apex_config:
+        annotations:
+          yaxis:
+          - y: 100
+            borderColor: var(--accent-color)
+            strokeDashArray: 4
+            borderWidth: 2
+        yaxis:
+        - decimalsInFloat: 0
+          labels:
+            show: true
+            style:
+              colors: color-mix(in srgb, var(--primary-text-color) 75%, transparent)
+        tooltip:
+          x:
+            format: d/MM
+            show: false
+        grid:
+          show: true
+          borderColor: color-mix(in srgb, var(--divider-color) 50%, transparent)
+          strokeDashArray: 0
+          padding:
+            top: -10
+        chart:
+          height: 150px
+        legend:
+          show: false
+        xaxis:
+          labels:
+            show: false
+          axisTicks:
+            show: false
+          axisBorder:
+            color: color-mix(in srgb, var(--divider-color) 50%, transparent)
+      series:
+      - entity: sensor.zendure_set2_relais_opladen_vandaag
+        name: Opladen
+        transform: 'return x > 0 ? x - 1 : 0;'
+        statistics:
+          period: day
+          type: max
+          align: middle
+        type: column
+        color: '#01a180'
+        show:
+          in_header: false
+          extremas: false
+      - entity: sensor.zendure_set2_relais_ontladen_vandaag
+        name: Ontladen
+        statistics:
+          period: day
+          type: max
+          align: middle
+        type: column
+        color: '#01a180'
+        show:
+          in_header: false
+          extremas: false
+    - type: custom:apexcharts-card
+      stacked: true
+      header:
+        show: true
+        title: Kalibraties (hoogste SOC per dag)
+      graph_span: 2month
+      span:
+        start: month
+        offset: -1month
+      cache: false
+      apex_config:
+        yaxis:
+        - decimalsInFloat: 0
+          min: 0
+          max: 100
+          tickAmount: 4
+          labels:
+            show: true
+            style:
+              colors: color-mix(in srgb, var(--primary-text-color) 75%, transparent)
+        tooltip:
+          x:
+            format: d/MM
+            show: false
+        grid:
+          show: true
+          borderColor: color-mix(in srgb, var(--divider-color) 50%, transparent)
+          strokeDashArray: 0
+          padding:
+            top: -10
+        chart:
+          height: 150px
+        legend:
+          show: false
+        xaxis:
+          labels:
+            show: false
+          axisTicks:
+            show: false
+          axisBorder:
+            color: color-mix(in srgb, var(--divider-color) 50%, transparent)
+      series:
+      - entity: sensor.zendure_set2_soc
+        name: Kalibratie voltooid
+        transform: 'return x === 100 ? x : null;'
+        statistics:
+          period: day
+          type: max
+          align: middle
+        type: column
+        color: '#01a180'
+        show:
+          in_header: false
+          extremas: false
+      - entity: sensor.zendure_set2_soc
+        name: Geen kalibratie
+        transform: 'return x < 100 ? x : null;'
+        statistics:
+          period: day
+          type: max
+          align: middle
+        type: column
+        color: '#a2a2a3'
+        show:
+          in_header: false
+          extremas: false
+  - type: vertical-stack
+    title: Set 3
+    grid_options:
+      columns: full
+    cards:
+    - type: horizontal-stack
+      cards:
+      - type: tile
+        entity: sensor.zendure_set3_relais_schakelingen_vandaag
+        name: Schakelingen vandaag
+        icon: mdi:swap-vertical-bold
+        color: '#01a180'
+      - type: tile
+        entity: sensor.zendure_set3_dagen_sinds_vol
+        name: Dagen sinds 100 %
+        icon: mdi:battery-sync
+        color: '#01a180'
+    - type: custom:apexcharts-card
+      stacked: true
+      header:
+        show: true
+        title: Relaisschakelingen per dag
+      graph_span: 2month
+      span:
+        start: month
+        offset: -1month
+      cache: false
+      apex_config:
+        annotations:
+          yaxis:
+          - y: 100
+            borderColor: var(--accent-color)
+            strokeDashArray: 4
+            borderWidth: 2
+        yaxis:
+        - decimalsInFloat: 0
+          labels:
+            show: true
+            style:
+              colors: color-mix(in srgb, var(--primary-text-color) 75%, transparent)
+        tooltip:
+          x:
+            format: d/MM
+            show: false
+        grid:
+          show: true
+          borderColor: color-mix(in srgb, var(--divider-color) 50%, transparent)
+          strokeDashArray: 0
+          padding:
+            top: -10
+        chart:
+          height: 150px
+        legend:
+          show: false
+        xaxis:
+          labels:
+            show: false
+          axisTicks:
+            show: false
+          axisBorder:
+            color: color-mix(in srgb, var(--divider-color) 50%, transparent)
+      series:
+      - entity: sensor.zendure_set3_relais_opladen_vandaag
+        name: Opladen
+        transform: 'return x > 0 ? x - 1 : 0;'
+        statistics:
+          period: day
+          type: max
+          align: middle
+        type: column
+        color: '#01a180'
+        show:
+          in_header: false
+          extremas: false
+      - entity: sensor.zendure_set3_relais_ontladen_vandaag
+        name: Ontladen
+        statistics:
+          period: day
+          type: max
+          align: middle
+        type: column
+        color: '#01a180'
+        show:
+          in_header: false
+          extremas: false
+    - type: custom:apexcharts-card
+      stacked: true
+      header:
+        show: true
+        title: Kalibraties (hoogste SOC per dag)
+      graph_span: 2month
+      span:
+        start: month
+        offset: -1month
+      cache: false
+      apex_config:
+        yaxis:
+        - decimalsInFloat: 0
+          min: 0
+          max: 100
+          tickAmount: 4
+          labels:
+            show: true
+            style:
+              colors: color-mix(in srgb, var(--primary-text-color) 75%, transparent)
+        tooltip:
+          x:
+            format: d/MM
+            show: false
+        grid:
+          show: true
+          borderColor: color-mix(in srgb, var(--divider-color) 50%, transparent)
+          strokeDashArray: 0
+          padding:
+            top: -10
+        chart:
+          height: 150px
+        legend:
+          show: false
+        xaxis:
+          labels:
+            show: false
+          axisTicks:
+            show: false
+          axisBorder:
+            color: color-mix(in srgb, var(--divider-color) 50%, transparent)
+      series:
+      - entity: sensor.zendure_set3_soc
+        name: Kalibratie voltooid
+        transform: 'return x === 100 ? x : null;'
+        statistics:
+          period: day
+          type: max
+          align: middle
+        type: column
+        color: '#01a180'
+        show:
+          in_header: false
+          extremas: false
+      - entity: sensor.zendure_set3_soc
+        name: Geen kalibratie
+        transform: 'return x < 100 ? x : null;'
+        statistics:
+          period: day
+          type: max
+          align: middle
+        type: column
+        color: '#a2a2a3'
+        show:
+          in_header: false
+          extremas: false
+  - type: markdown
+    grid_options:
+      columns: full
+    content: 'Relaisschakelingen: hoe vaak een set per dag is gaan laden of ontladen (zoals bij Gielz). Onder de 100 per dag is normaal op een deels bewolkte dag. Kalibraties: groen is een dag waarop de set 100 % haalde. De grafieken komen uit de statistieken (LTS) en lopen daardoor ongeveer een uur achter.'
+  type: grid
