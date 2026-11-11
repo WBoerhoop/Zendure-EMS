@@ -1,6 +1,6 @@
 # Zendure EMS: Home Assistant-package in YAML
 
-Nul op de meter en sturing op dynamische prijzen voor **1, 2 of 3 Zendure SolarFlow-sets**
+Nul op de meter en sturing op dynamische prijzen voor **1, 2, 3 of 4 Zendure SolarFlow-sets**
 (2400 AC+ / 2400 AC Pro; andere SolarFlow-modellen werken via dezelfde lokale API).
 Alles in YAML: geen Python, geen HACS en geen extra kaarten.
 
@@ -10,25 +10,25 @@ Gebaseerd op de regelaanpak en de Zendure-API-kennis van
 > **Let op:** dit package stuurt het laad- en ontlaadvermogen van je batterijen. Gebruik het op eigen risico
 > en begin altijd met lage vermogens (zie *Eerste keer testen*).
 
-## Nieuw in versie 1.13.1: minder relaisschakelingen bij het bijschakelen van een extra set
+## Nieuw in versie 1.14.0: ondersteuning voor 4 sets
 
-* **Minimale aan- en uittijd per set bij het bijschakelen.** Tot en met 1.13.0 kon een tweede of derde set om de paar
-  seconden aan en uit gaan als de vraag rond de drempel *Volgende set inzetten vanaf* schommelde (een waterkoker, een
-  droger met een element dat aan- en uitslaat, of het even doorschieten van de regeling na zo'n piek). Elke keer is
-  dat een relaisklik in die set. Nu geldt:
-  * een set die erbij komt, blijft **minstens 2 minuten** meedoen, zolang de richting (laden of ontladen) gelijk blijft;
-  * een set die afvalt, komt **pas na 1 minuut** terug, tenzij de sets die nog draaien de vraag niet aankunnen
-    (dan direct, zoals voorheen);
-  * slaat de richting om (bijvoorbeeld van ontladen naar laden van zonne-overschot), dan houdt de minimale aantijd de
-    set niet vast: die zou anders juist een extra relaisschakeling maken.
-* In een simulatie met een vraag die elke 20 s tussen 900 en 1700 W schommelt (twee sets, drempel 60 %), daalt het
-  aantal schakelingen in 10 minuten van 57 naar 9.
-* De tijden van de laatste wissel per set staan in het nieuwe attribuut `set_wissel` van `sensor.zendure_ems_regelaar`.
-* Er zijn geen nieuwe instellingen; je bestaande instellingen blijven ongewijzigd. Het dashboard is alleen in het
-  versienummer veranderd: plak `dashboards/dashboard.yaml` toch opnieuw, anders meldt het dashboard dat package en
-  dashboard niet dezelfde versie hebben.
-* Tip bij veel schakelingen door een droger of waterkoker: zet ook *Korte dips negeren* aan (Instellingen → Regeling,
-  bijvoorbeeld 30 s). Dan schakelt een set na zo'n piek niet een paar seconden naar laden.
+* **Eén package en één dashboard voor 1, 2, 3 of 4 sets.** Set 4 heeft alles wat sets 1 tot 3 hebben: IP-adres,
+  min/max SOC, max laad- en ontlaadvermogen, capaciteit, reserve, laden/ontladen toegestaan, eigen modus,
+  kalibratie (laatst 100 %), relaisschakelingen, rendement en een eigen kaart op Overzicht, Instellingen en
+  Statistieken. Bijschakelen (*Volgende set inzetten vanaf*), minimale aan- en uittijd, planner, kalibratie,
+  standby en de modi Alleen slim opladen/ontladen werken met 4 sets precies zoals met 3.
+* Vul alleen de IP-adressen in van de sets die je hebt: een set zonder IP-adres wordt niet aangestuurd en niet getoond.
+* **De opdrachten aan de sets gaan tegelijk de deur uit** in plaats van na elkaar. Een extra set, of een set die even
+  niet antwoordt (tot 4 s time-out), houdt de andere sets daardoor niet meer op: de regelcyclus is met 4 sets niet
+  trager dan voorheen met 3, en met een haperende set juist sneller.
+* *Max stap per cyclus* kan nu tot 9600 W (4 × 2400 W; was 7200 W). De standaardwaarde blijft 1500 W en wordt bij
+  de update niet aangepast: **met 4 sets ben je zelf verantwoordelijk voor de juiste instelling** van *Max stap per
+  cyclus* en, als je die gebruikt, *Systeem max laden* en *Systeem max ontladen* (maximaal 4 × 2400 = 9600 W, of
+  lager als je aansluiting of groepen dat vragen).
+* Energiestroom-tekening: vier vaste plekken voor de accutorens, met de omvormer boven de vierde toren.
+* Na de update krijgen de velden van set 4 eenmalig hun standaardwaarde (max SOC 100 %, 2400 W, laden en ontladen
+  toegestaan). Je bestaande instellingen van sets 1 tot 3 blijven ongewijzigd.
+* Plak `dashboards/dashboard.yaml` opnieuw in de Raw-configuratie-editor.
 
 ## Eerdere versies
 
@@ -38,8 +38,8 @@ Alle wijzigingen per versie staan in [CHANGELOG.md](CHANGELOG.md).
 
 | Bestand | Wat |
 |---|---|
-| `packages/zendure_ems.yaml` | Package voor 1, 2 of 3 sets |
-| `dashboards/dashboard.yaml` | Dashboard voor 1, 2 of 3 sets |
+| `packages/zendure_ems.yaml` | Package voor 1, 2, 3 of 4 sets |
+| `dashboards/dashboard.yaml` | Dashboard voor 1, 2, 3 of 4 sets |
 | `Zendure-EMS-handleiding.docx` | Volledige handleiding met alle velden |
 | `CHANGELOG.md` | Alle wijzigingen per versie |
 | `generator/`, `tests/` | Generator en tests (alleen nodig als je het package wilt aanpassen) |
