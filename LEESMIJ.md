@@ -10,6 +10,102 @@ Gebaseerd op de regelaanpak en de Zendure-API-kennis van
 > **Let op:** dit package stuurt het laad- en ontlaadvermogen van je batterijen. Gebruik het op eigen risico
 > en begin altijd met lage vermogens (zie *Eerste keer testen*).
 
+## Nieuw in versie 1.13.1: minder relaisschakelingen bij het bijschakelen van een extra set
+
+* **Minimale aan- en uittijd per set bij het bijschakelen.** Tot en met 1.13.0 kon een tweede of derde set om de paar
+  seconden aan en uit gaan als de vraag rond de drempel *Volgende set inzetten vanaf* schommelde (een waterkoker, een
+  droger met een element dat aan- en uitslaat, of het even doorschieten van de regeling na zo'n piek). Elke keer is
+  dat een relaisklik in die set. Nu geldt:
+  * een set die erbij komt, blijft **minstens 2 minuten** meedoen, zolang de richting (laden of ontladen) gelijk blijft;
+  * een set die afvalt, komt **pas na 1 minuut** terug, tenzij de sets die nog draaien de vraag niet aankunnen
+    (dan direct, zoals voorheen);
+  * slaat de richting om (bijvoorbeeld van ontladen naar laden van zonne-overschot), dan houdt de minimale aantijd de
+    set niet vast: die zou anders juist een extra relaisschakeling maken.
+* In een simulatie met een vraag die elke 20 s tussen 900 en 1700 W schommelt (twee sets, drempel 60 %), daalt het
+  aantal schakelingen in 10 minuten van 57 naar 9.
+* De tijden van de laatste wissel per set staan in het nieuwe attribuut `set_wissel` van `sensor.zendure_ems_regelaar`.
+* Er zijn geen nieuwe instellingen; je bestaande instellingen blijven ongewijzigd. Het dashboard is alleen in het
+  versienummer veranderd: plak `dashboards/dashboard.yaml` toch opnieuw, anders meldt het dashboard dat package en
+  dashboard niet dezelfde versie hebben.
+* Tip bij veel schakelingen door een droger of waterkoker: zet ook *Korte dips negeren* aan (Instellingen → Regeling,
+  bijvoorbeeld 30 s). Dan schakelt een set na zo'n piek niet een paar seconden naar laden.
+
+## Nieuw in versie 1.13.0: Alleen slim opladen en Alleen slim ontladen, ook per set
+
+* **Twee nieuwe modi**, zoals *Alleen slim opladen* en *Alleen slim ontladen* in
+  [Gielz' Zendure-HA-zenSDK](https://github.com/Gielz1986/Zendure-HA-zenSDK/wiki/NL-%E2%80%90-Modussen): nul op de
+  meter in één richting.
+  * **Alleen slim opladen**: de sets laden van zonne-overschot (net rond 0 W), maar ontladen nooit. Status
+    *Alleen slim opladen: niet ontladen* als het huis stroom vraagt.
+  * **Alleen slim ontladen**: de sets ontladen voor het eigen verbruik (net rond 0 W), maar laden nooit, ook niet van
+    de zon. Status *Alleen slim ontladen: niet laden* bij zonne-overschot.
+  * Prijzen en de planner spelen in deze modi geen rol (zoals bij *Nul op de meter*). Beide staan ook als profiel in
+    *Profiel activeren*.
+* **Eigen modus per set** (`input_select.zendure_setN_setmodus`, op de setkaart onder *Eigen modus*):
+  * **Volgt EMS-modus** (standaard): de set doet wat de modus zegt, zoals tot en met 1.12.8.
+  * **Alleen slim opladen**: deze set laadt alleen van zonne-overschot en ontlaadt nooit.
+  * **Alleen slim ontladen**: deze set ontlaadt alleen voor het eigen verbruik en laadt nooit.
+
+  Zo kun je bijvoorbeeld set 1 de zon laten opvangen en set 2 's avonds het huis laten voeden. Een set in een eigen
+  modus doet alleen mee aan nul op de meter: hij **laadt niet van het net** (netladen, *Laden (vol vermogen)*) en
+  **verkoopt niet** (verkopen, *Ontladen (vol vermogen)*). De andere sets nemen dat over, en de planner rekent die set
+  niet mee voor netladen en verkopen. De eigen modus werkt in alle modi die de sets aansturen (dus niet bij *Niet
+  aansturen* en *Uit*). *Laden toegestaan* en *Ontladen toegestaan* blijven daarnaast gelden.
+* Een set in *Alleen slim ontladen* doet niet mee aan de **kalibratie** (hij laadt nooit naar 100 %).
+* Na de update staat elke set op *Volgt EMS-modus*: er verandert niets tot je zelf een eigen modus kiest.
+* Plak na de update het nieuwe `dashboards/dashboard.yaml` in je dashboard.
+
+## Nieuw in versie 1.12.8: gemeten rendement per set
+
+* **Rendement per set uit de Zendure-integratie.** Heb je naast Zendure EMS ook de integratie *Zendure Home Assistant*
+  (`zendure_ha`) draaien, dan gebruikt de EMS de **retourrendementen die die integratie per set meet** (de sensoren
+  `…_roundtrip_efficiency`). Je hoeft niets in te vullen: de EMS zoekt per set de sensor van het apparaat met
+  **hetzelfde serienummer**. Zonder integratie, of als een meting ontbreekt of buiten 50–100 % valt, telt die set met
+  het vaste *Rendement heen en terug* (standaard 85 %), zoals tot en met 1.12.7.
+* **Waarom?** Sets verschillen echt. Gemeten bij een 2400 AC+ en een 2400 AC (beide 5 packs): 85,4 % en 81,9 %. Elke kWh
+  die via de minder zuinige set heen en terug gaat, verliest zo'n 3,5 % meer. Een vast rendement voor alle sets laat dat
+  liggen op twee plekken:
+  * **De planner** rekent met één rendement voor het hele systeem (laden loont als *prijs ÷ rendement + slijtage +
+    minimale winst* ≤ latere prijs; verkopen met √rendement aan beide kanten). Dat is nu het **capaciteitsgewogen
+    gemiddelde** van de gemeten sets, omdat de energie in de planning over de sets verdeeld wordt naar hun capaciteit.
+    Een te hoog vast rendement laat de planner laden en verkopen bij een te klein prijsverschil; een te laag laat
+    winst liggen.
+  * **De regeling** koos bij een kleine vraag (één set aan het werk) puur op SOC. Nu weegt het rendement mee als
+    kleine voorkeur: een set die zuiniger is dan het gemiddelde van de sets die mogen meedoen, telt alsof zijn SOC
+    **2 punten hoger is per % rendement** (bij laden: lager), **hoogstens 10 punten**. Bij 85,4 % tegen 81,9 % is
+    dat 7 SOC-punten: tot dat verschil doet de AC+ het werk, daarboven neemt de AC het weer over. Zo gaan zoveel
+    mogelijk kWh via de zuinige set, terwijl de sets niet blijvend uit elkaar lopen (de SOC blijft leidend). De
+    bestaande voorkeuren (een set die al draait, of al in de goede richting staat) blijven gelden. Werken meerdere
+    sets tegelijk, dan verandert de verdeling tussen hen niet.
+* **Nieuw:** `input_boolean.zendure_ems_rendement_meten` (*Gemeten rendement per set gebruiken*, Instellingen →
+  *Prijssturing*, na de update aan; uit = het vaste rendement zoals vroeger), `sensor.zendure_ems_rendement` (het
+  rendement dat de planner gebruikt, met de attributen `gemeten`, `bron` en `vast`, elke 5 minuten bijgewerkt) en per
+  set `sensor.zendure_setN_rendement` (op de setkaart onder *Instellingen*, met attribuut `bron`: de sensor, of
+  *vast*). De prijsactie heeft het nieuwe attribuut `rendement`.
+* *Rendement heen en terug* heet op het dashboard nu *Rendement heen en terug (vast, zonder meting)*: het is de
+  terugvalwaarde.
+* **Na het bijwerken (vanaf 1.12.7 of eerder), zelf doen:**
+  1. Had je een eigen automatisering (of script) die *Rendement heen en terug* op een gemeten waarde zet, **verwijder
+     die**. De EMS doet dit nu zelf, en per set. Blijft hij staan, dan overschrijft hij het vaste terugvalrendement.
+  2. Zet daarna *Rendement heen en terug (vast, zonder meting)* terug op **85 %**, of op je eigen gemeten waarde als
+     je de Zendure-integratie niet hebt. Dit getal geldt nu alleen nog voor een set zonder meting.
+  3. Kijk op de setkaarten (Instellingen) bij *Rendement heen en terug* of elke set een gemeten waarde heeft. Het
+     attribuut `bron` toont de sensor, of *vast* als er geen meting gevonden is.
+* Plak na de update het nieuwe `dashboards/dashboard.yaml` in je dashboard.
+
+## Nieuw in versie 1.12.7: Energiestroom overdag en 's nachts
+
+* **Dag- en nachtversie van de Energiestroom.** Zolang de zon op is (`sun.sun` = *above_horizon*) toont de kaart
+  een lichte dagversie van het huis: blauwe lucht met zon, groen gras, glazen ramen in plaats van verlichte, en de
+  tuinlampjes uit. 's Nachts (en als `sun.sun` ontbreekt) blijft de bekende donkere versie staan. Het is dezelfde
+  tekening: de accutorens van set 2 en 3, de bewegende lijnen en de waarden liggen er op dezelfde plek overheen.
+  De lucht is overdag bewust middenblauw, zodat de witte tekst leesbaar blijft.
+* **Beter leesbare waarden.** De namen onder de waarden (NET, ZON, HUIS, ACCU'S, AUTO) zijn helemaal wit in plaats
+  van lichtgrijs, de waarden staan iets verder van hun naam en alle waarden (ook de SOC) hebben een donkere rand.
+* Het dashboard wordt daardoor ongeveer 40 kB groter (de dagversie zit, net als de nachtversie, in het bestand
+  zelf; je hoeft nog steeds niets naar `/config/www` te kopiëren). Geen nieuwe velden, het package verandert alleen
+  van versienummer. Plak na de update het nieuwe `dashboards/dashboard.yaml` in je dashboard.
+
 ## Nieuw in versie 1.12.6: rustiger bij klein vermogen, sneller met een meter van 1 s, juiste prijs na een herstart
 
 * **Minimale looptijd bij klein vermogen** (`input_number.zendure_ems_min_looptijd`, Instellingen → *Regeling*,
@@ -565,6 +661,12 @@ Tot de IP-adressen zijn ingevuld, meldt het logboek dat de rapporten niet opgeha
 | **Uit (stand-by)** | Alle sets op 0 W. |
 | **Nul op de meter** | De sets laden van zonne-overschot en ontladen voor eigen verbruik, zodat het net rond 0 W blijft. |
 | **Prijsgestuurd** | Als nul op de meter, maar met prijsacties (zie hieronder). |
+| **Alleen slim opladen** | Nul op de meter zonder ontladen: alleen zonne-overschot laden. |
+| **Alleen slim ontladen** | Nul op de meter zonder laden: alleen ontladen voor eigen verbruik. |
+| **Laden / Ontladen (vol vermogen)** | Alle sets laden van of ontladen naar het net op hun maximale vermogen. |
+
+Per set kun je ook een **eigen modus** kiezen (*Alleen slim opladen* of *Alleen slim ontladen*, op de setkaart);
+*Volgt EMS-modus* = de set doet wat de modus hierboven zegt. Zie *Nieuw in versie 1.13.0*.
 
 ### Prijsacties (modus Prijsgestuurd)
 
@@ -592,13 +694,19 @@ prijzen bekend zijn (tot maximaal 36 uur vooruit):
 2. **Zon per kwartier**: uit de zonneverwachting, vermenigvuldigd met de geleerde zonnecorrectie (of, de
    eerste 3 dagen en zonder leren, *Zonneverwachting meetellen voor*, standaard 80 %).
 3. **Simulatie**: de opgeslagen energie wordt kwartier voor kwartier doorgerekend. Zonne-overschot laadt
-   de accu (tot de max SOC), verbruik trekt hem leeg (tot de min SOC). Rendementsverlies telt mee.
+   de accu (tot de max SOC), verbruik trekt hem leeg (tot de min SOC). Rendementsverlies telt mee: met het
+   gemeten rendement per set (capaciteitsgewogen, zie hieronder), of met het vaste *Rendement heen en terug*.
 4. **Tekort oplossen op de goedkoopste manier**: raakt de accu in een kwartier te kort, dan kiest de planner
    uit alle eerdere kwartieren de goedkoopste oplossing:
    * **vasthouden** (*Slim ontladen*): in een goedkoper kwartier ontlaadt de accu niet, het net voedt daar het
      huis en de energie blijft bewaard. Loont als *prijs dan + minimale winst* ≤ prijs van het tekortkwartier.
    * **laden van het net** (*Slim laden*): loont als *prijs dan ÷ rendement + slijtagekosten + minimale winst*
      ≤ prijs van het tekortkwartier.
+
+   **Rendement:** met *Gemeten rendement per set gebruiken* aan neemt de planner het capaciteitsgewogen gemiddelde
+   van de retourrendementen die de sets via de Zendure-integratie melden (`sensor.zendure_ems_rendement`). De energie
+   wordt in de planning over de sets verdeeld naar hun capaciteit, dus dat gemiddelde is het verlies van een
+   gemiddelde kWh. Een set zonder geldige meting telt met het vaste *Rendement heen en terug*.
 
    De energie moet tussen bron- en tekortkwartier in de accu passen: vult de zon de accu toch al, dan wordt
    er niet van het net geladen. Bij gelijke kosten kiest hij het laatste kwartier. Goedkope kwartieren
@@ -633,6 +741,14 @@ verlaagd zodra huis + laden boven deze waarde komt (bijvoorbeeld 3 × 25 A ≈ 1
   de goede richting staat krijgt voorrang tot 15 % SOC-verschil, zodat er geen acMode naar het flashgeheugen hoeft). Een
   volgende set doet mee zodra de vraag boven *Volgende set inzetten vanaf* (standaard 60 %) van de actieve sets komt.
   0 % = altijd alle sets. Tussen actieve sets wordt zo verdeeld dat hun SOC naar elkaar toe groeit.
+  Een bijgeschakelde set blijft minstens 2 minuten meedoen (zolang de richting gelijk blijft) en een afgevallen set
+  komt pas na 1 minuut terug, tenzij de andere sets de vraag niet aankunnen. Zo gaat een set niet steeds aan en uit
+  als de vraag rond de drempel schommelt (sinds 1.13.1).
+* **Rendement bij de keuze van de set:** met een gemeten rendement per set (Zendure-integratie, *Gemeten rendement per
+  set gebruiken*) krijgt de zuinigere set voorrang: per % rendement boven het gemiddelde van de sets die mogen meedoen
+  telt hij alsof hij 2 SOC-punten voller (bij ontladen) of leger (bij laden) is, hoogstens 10. Bij een klein
+  SOC-verschil doet dus de zuinige set het werk; bij een groter verschil beslist de SOC, zodat de sets niet uit elkaar
+  lopen. Zonder meting, of met maar één gemeten set, verandert er niets.
 * Een set die vol, leeg, uitgeschakeld of onbereikbaar is, doet niet mee. De rest neemt het over.
 * Opdrachten gaan alleen naar een set als zijn vermogen meer dan 15 W moet veranderen, en worden
   in het RAM gezet (`smartMode=1`): dat geeft geen slijtage van het flashgeheugen.
@@ -704,5 +820,6 @@ draaien de templates tegen gesimuleerde sets.
 | Prijsactie blijft *Geen prijsdata* | Prijssensor heeft geen `raw_today`, `forecast` of `prices_today`-attribuut |
 | Planner laadt nooit van het net | *Slim laden* staat uit, de prijsverschillen zijn kleiner dan *minimale winst* plus verlies en slijtage, of de zon dekt het tekort |
 | Set springt bij heel kleine vraag aan en uit | Verhoog *Minimaal vermogen per set* of de *dode zone* |
+| Veel relaisschakelingen bij een waterkoker of droger | Zet *Korte dips negeren* aan (bijvoorbeeld 30 s); vanaf 1.13.1 schakelt een extra set ook niet meer steeds bij en af. Verhoog eventueel *Volgende set inzetten vanaf* |
 | Planner laadt terwijl de zon het zou doen | Controleer *zonbron* in de prijsactie-attributen; staat *Zonneverwachting meetellen voor* niet te laag? |
 | Melding over te grote attributen in het log | Zet `sensor.zendure_ems_planning` in de recorder-exclude (zie installatie) |
