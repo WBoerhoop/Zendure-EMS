@@ -1,6 +1,6 @@
 # Zendure EMS
 
-Energiebeheer voor thuisbatterijen in Home Assistant. Zendure EMS stuurt 1, 2 of 3
+Energiebeheer voor thuisbatterijen in Home Assistant. Zendure EMS stuurt 1, 2, 3 of 4
 Zendure SolarFlow-sets (2400 AC+ / 2400 AC Pro) rechtstreeks aan via de lokale API.
 Volledig in YAML: geen Python, geen HACS en geen extra kaarten nodig.
 
