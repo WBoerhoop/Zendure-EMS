@@ -31,7 +31,7 @@ volledig in YAML: geen Python, geen HACS, geen extra kaarten.
 | `LEESMIJ.md` | Installatie, modi, werking en problemen |
 | `Zendure-EMS-handleiding.docx` | Volledige handleiding |
 | `CHANGELOG.md` | Wijzigingen per versie |
-| `generator/`, `tests/` | Generator en tests waarmee het package gemaakt wordt |
+
 
 ## Snel starten
 
@@ -42,4 +42,5 @@ volledig in YAML: geen Python, geen HACS, geen extra kaarten.
 
 > **Let op:** dit package stuurt het laad- en ontlaadvermogen van je batterijen. Gebruik het op eigen risico.
 
-Gebaseerd op [Omnibattery](https://github.com/ffunes/omnibattery). Licentie: GPL-3.0.
+Gebaseerd op [Omnibattery](https://github.com/ffunes/omnibattery) en Gielz
+Licentie: GPL-3.0.
