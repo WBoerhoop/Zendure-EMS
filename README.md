@@ -1,5 +1,5 @@
 [README.md](https://github.com/user-attachments/files/34856266/README.md)
-# Zendure EMS voor Home Assistant (v1.14.4)
+# Zendure EMS voor Home Assistant (v1.14.5)
 
 Nul op de meter en sturing op dynamische prijzen voor **1 tot 4 Zendure SolarFlow-sets**,
 volledig in YAML: geen Python, geen HACS, geen extra kaarten.
