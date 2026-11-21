@@ -42,4 +42,4 @@ volledig in YAML: geen Python, geen HACS, geen extra kaarten.
 
 > **Let op:** dit package stuurt het laad- en ontlaadvermogen van je batterijen. Gebruik het op eigen risico.
 
-Gebaseerd op [Omnibattery](https://github.com/ffunes/omnibattery). Licentie: GPL-3.0.
+Gebaseerd op [Omnibattery](https://github.com/ffunes/omnibattery)  en GielZ. Licentie: GPL-3.0.
