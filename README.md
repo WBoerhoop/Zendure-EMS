@@ -33,7 +33,6 @@ volledig in YAML: geen Python, geen HACS, geen extra kaarten.
 | `LEESMIJ.md` | Installatie, modi, werking en problemen |
 | `Zendure-EMS-handleiding.docx` | Volledige handleiding |
 | `CHANGELOG.md` | Wijzigingen per versie |
-| `generator/`, `tests/` | Generator en tests waarmee het package gemaakt wordt |
 
 ## Snel starten
 
