@@ -258,7 +258,6 @@ Alle wijzigingen per versie staan in [CHANGELOG.md](CHANGELOG.md).
 | `Zendure-EMS-handleiding.docx` | Volledige handleiding met alle velden |
 | `CHANGELOG.md` | Alle wijzigingen per versie |
 | `docs/` | Afbeeldingen bij deze LEESMIJ |
-| `generator/`, `tests/` | Generator en tests (alleen nodig als je het package wilt aanpassen) |
 
 Vul alleen de IP-adressen in van de sets die je hebt: een set zonder IP-adres wordt niet aangestuurd en niet getoond.
 
